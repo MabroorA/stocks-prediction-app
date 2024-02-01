@@ -1,20 +1,35 @@
-.Menu{
-    padding-left: 100px;
-    padding-top: 0px;
-    justify-items: left;
-
+.Menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.Menu li {
+    float:left;
 }
 .Menu a {
-    float: right;
-    text-align: right;
-    padding-top: 25px;
+    display: block;
     color: white;
-    text-decoration:solid;
-    font-size: 35px;
-    
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
-.Logo{
-    padding-top: 10px;
-    border-radius: 50%;
-    width: 200px;
+.Menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.Menu li a:hover {
+    background-color:rgb(21, 80, 122)A6D;
+}
+
+.Menu li a:active {
+    background-color: rgb(113, 25, 131)A6D;
+}
+.register-button{
+    background-color: blueviolet;
+    float: right;
 }

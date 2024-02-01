@@ -7,8 +7,8 @@ import ApiCall from './Components/ApiCall.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Menu/>
-    <ApiCall/>
+    {/* <Menu/>
+    <ApiCall/> */}
     <App />
   </React.StrictMode>,
 )
