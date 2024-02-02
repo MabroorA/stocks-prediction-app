@@ -6,7 +6,7 @@
     background-color: #333;
 }
 .Menu li {
-    float:left;
+    float:inline-start;
 }
 .Menu a {
     display: block;
@@ -31,5 +31,5 @@
 }
 .register-button{
     background-color: blueviolet;
-    float: right;
+    float: inline-end;
 }

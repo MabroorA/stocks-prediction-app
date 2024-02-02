@@ -1,4 +1,11 @@
 import { useEffect, useState } from "react";
+import StockTable from "./StockTable";
+
+
+interface StockData {
+    "Meta Data": Record<string, string>;
+    "Time Series (Daily)": Record<string, Record<string, string>>;
+  }
 
 async function fetchData() {
     const fetchResponse = await fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo")
@@ -23,12 +30,15 @@ export default function ApiCall(){
 
     return (
         <>
-        <h1>api call</h1>
-        <div>
-        <p>
-        {JSON.stringify(data)}
-        </p>
-        </div>
+        <h1>Stock Data</h1>
+        {Object.keys(data).length > 0 ? (
+            <StockTable
+            metaData={data["Meta Data"]}
+            timeSeriesData={data["Time Series (Daily)"]}
+            />
+        ) : (
+            <p>Loading...</p>
+        )}
         </>
     );
 }
