@@ -8,7 +8,6 @@ export default function Menu() {
         <>
         <div className="Menu">
             <ul>
-            
                 <li><a className="active" href="/#"> Today Trends</a></li>
                 <li><a href="/#"> Top Companies</a></li>
                 <li><a href="/#"> Login </a></li>
