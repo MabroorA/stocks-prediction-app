@@ -1,16 +1,11 @@
-
-import { useEffect, useState } from 'react'
-import './App.css'
-import Menu from './Components/Menu'
-import ApiCall from './Components/ApiCall'
-import MainPage from './Pages/MainPage'
+import "./App.css";
+import HomePage from "./Pages/HomePage";
 
 export default function App() {
-
   return (
     <>
-    <MainPage/>
+      {/* <MainPage /> */}
+      <HomePage />
     </>
-  )
+  );
 }
-

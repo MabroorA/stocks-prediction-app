@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+}
+nav {
+  padding: 10px;
+
+  background-color: darkgreen;
+}
+.navbar-links-container {
+  background-color: rgb(17, 162, 138);
+}
+.navbar-logo-container {
+  display: inline-block;
+}
