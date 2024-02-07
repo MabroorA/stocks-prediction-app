@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const StockTable = ({ metaData, timeSeriesData }) => {
   return (
     <div>
-      <h2>Stock Data</h2>
       <table>
         <thead>
           <tr>
@@ -19,11 +18,11 @@ const StockTable = ({ metaData, timeSeriesData }) => {
           {Object.keys(timeSeriesData).map((date) => (
             <tr key={date}>
               <td>{date}</td>
-              <td>{timeSeriesData[date]['1. open']}</td>
-              <td>{timeSeriesData[date]['2. high']}</td>
-              <td>{timeSeriesData[date]['3. low']}</td>
-              <td>{timeSeriesData[date]['4. close']}</td>
-              <td>{timeSeriesData[date]['5. volume']}</td>
+              <td>{timeSeriesData[date]["1. open"]}</td>
+              <td>{timeSeriesData[date]["2. high"]}</td>
+              <td>{timeSeriesData[date]["3. low"]}</td>
+              <td>{timeSeriesData[date]["4. close"]}</td>
+              <td>{timeSeriesData[date]["5. volume"]}</td>
             </tr>
           ))}
         </tbody>

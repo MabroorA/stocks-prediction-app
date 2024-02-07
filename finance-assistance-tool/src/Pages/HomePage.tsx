@@ -1,10 +1,17 @@
-import Navbar from "../Components/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Slider from "../Components/Slider";
+import AppBar from "../Components/AppBar";
+import SearchAppBar from "../Components/AppBar";
+import "./HomePage.css";
+import ApiCall from "../Components/ApiCall";
 export default function HomePage() {
   return (
     <>
-      <Navbar />
-      <h1>Mabroor</h1>
+      <AppBar />
+      <div className="content">
+        <h1>Home</h1>
+        <p>Todays rising Stock</p>
+        <ApiCall />
+      </div>
     </>
   );
 }
