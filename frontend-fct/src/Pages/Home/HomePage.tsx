@@ -2,18 +2,15 @@ import "./HomePage.css";
 import ApiCall from "../../Components/ApiCall";
 import AppBar from "../../Components/Menu/AppBar";
 import Footer from "../../Components/Footer/Footer";
+import DailyView from "../../Components/DailyView/DailyView";
 
 export default function HomePage() {
   return (
     <>
       <AppBar />
-      <div className="content">
+      <div className="home-page">
         <h1>Home</h1>
-        <p>Todays rising Stock</p>
-        <div className="data">
-          <ApiCall />
-        </div>
-        <Footer />
+        <DailyView />
       </div>
       {/* <Footer /> */}
     </>

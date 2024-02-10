@@ -1,9 +1,7 @@
-.content {
+.home-page {
   color: black;
-  display: list-item;
-}
-p {
   text-align: center;
-}
-.body {
+  border: 2px blue dotted;
+  margin: 20px;
+  background-color: bisque;
 }
