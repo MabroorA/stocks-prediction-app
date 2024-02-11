@@ -1,0 +1,12 @@
+.daily-view {
+  border: 5px rgb(0, 0, 0) solid;
+  display: block;
+  overflow-y: scroll;
+  padding-left: 10px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: rgb(255, 255, 255);
+}
+h2 {
+  color: blue;
+}

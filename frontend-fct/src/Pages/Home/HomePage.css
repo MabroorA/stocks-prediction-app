@@ -1,7 +1,30 @@
+* {
+  padding: 5px 20px;
+}
+body {
+  font-family: monospace;
+}
 .home-page {
   color: black;
   text-align: center;
   border: 2px blue dotted;
   margin: 20px;
-  background-color: bisque;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #b6b6b6;
+  border-radius: 24px;
+  font-size: large;
+}
+.navbar a {
+  text-decoration: none;
+  color: black;
+}
+.login-button {
+  background-color: aquamarine;
+  border-radius: 24px;
+  padding: 10px;
 }
