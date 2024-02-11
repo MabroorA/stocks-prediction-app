@@ -64,7 +64,7 @@ function DailyView() {
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="datetime" activeDot={{ r: 8 }}>
+            <XAxis dataKey="datetime">
               <Label value="Date" offset={0} position="insideBottom" />
             </XAxis>
             <YAxis dataKey="avgprice">
