@@ -7,6 +7,8 @@ import {
   YAxis,
   Tooltip,
   Legend,
+  Label,
+  ResponsiveContainer,
 } from "recharts";
 import "./DailyView.css";
 function DailyView() {
@@ -56,25 +58,35 @@ function DailyView() {
         <div>DailyView Data </div>
         {data.length > 0 && (
           <LineChart
-            width={800}
+            width={1750}
             height={400}
             data={data}
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="datetime" />
-            <YAxis dataKey="avgprice" />
+            <XAxis dataKey="datetime" activeDot={{ r: 8 }}>
+              <Label value="Date" offset={0} position="insideBottom" />
+            </XAxis>
+            <YAxis dataKey="avgprice">
+              <Label value="Avg Price" offset={0} position="insideLeft" />
+            </YAxis>
+
             <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="avgprice" stroke="#8884d8" />
+            <Legend verticalAlign="top" height={40} />
+            <Line
+              type="monotone"
+              dataKey="avgprice"
+              name="IBM Average Price "
+              stroke="#8884d8"
+            />
           </LineChart>
         )}
-        {data && (
+        {/* {data && (
           <div>
             <h2>json data from server :</h2>
             <pre>{JSON.stringify(data, null, 2)}</pre>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
