@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import { daily_fetchStocksData } from "./data-fetching/fetch-stocks-data";
+import daily_fetchStocksData from "./data-fetching/fetch-stocks-data";
 
 dotenv.config();
 
@@ -37,7 +37,7 @@ app.get("/fetch-data", async (req: Request, res: Response) => {
 app.get("/daily-view", async (req: Request, res: Response) => {
   console.log("RECEIVED A CALL AT FETCH DATA ENDPOINT");
   try {
-    console.log("Calling external API (alpha vantage) ");
+    console.log("Calling external API (twelvedata) ");
     const response = await daily_fetchStocksData();
     res.send(response);
   } catch (error) {
