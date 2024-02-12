@@ -18,13 +18,11 @@ export default function HomePage() {
             prediction models and various other technologies, helping you make
             better decisions.
           </p>
-          <button className="predict-button" >
-          Start Predicting
-        </button>
+          <button className="predict-button">Start Predicting</button>
         </div>
         <div className="right-container">
           <p>Rising Stocks this Week</p>
-          <DailyView />
+          <div className="top-stocks"></div>
         </div>
       </div>
       {/* <Footer /> */}
