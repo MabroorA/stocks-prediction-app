@@ -13,14 +13,17 @@ export default function HomePage() {
         <div className="left-container">
           <h1 className="non-color-change">Unlock Future</h1>
           <h1 className="color-change">Stock Performance</h1>
-          <p>
+          <p className="introduction">
             We help you predict what your future stocks will look like by using
             prediction models and various other technologies, helping you make
             better decisions.
           </p>
+          <button className="predict-button" >
+          Start Predicting
+        </button>
         </div>
         <div className="right-container">
-          <h1>Rising Stocks this Week</h1>
+          <p>Rising Stocks this Week</p>
           <DailyView />
         </div>
       </div>

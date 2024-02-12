@@ -60,7 +60,7 @@ function DailyView() {
       <div className="daily-view">
         {data.length > 0 && (
           <LineChart
-            width={500}
+            width={400}
             height={400}
             data={data}
             margin={{ top: 10, right: 15, left: 50, bottom: 50 }}
