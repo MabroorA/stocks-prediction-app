@@ -1,12 +1,10 @@
 .daily-view {
-  border: 5px rgb(0, 0, 0) solid;
-  display: block;
-  overflow-y: scroll;
-  padding-left: 10px;
-  margin: 10px;
-  border-radius: 15px;
-  background-color: rgb(255, 255, 255);
+  /* border: 5px rgb(0, 0, 0) solid; */
 }
-h2 {
-  color: blue;
+.refresh-button {
+  background: -webkit-linear-gradient(left, #7fd1b9, #de6e4b);
+  border-radius: 24px;
+  padding: 10px;
+  color: black;
+  font-weight: bolder;
 }

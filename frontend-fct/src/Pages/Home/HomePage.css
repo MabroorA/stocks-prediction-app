@@ -10,21 +10,42 @@ body {
   border: 2px blue dotted;
   margin: 20px;
 }
-.navbar {
+
+.container {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between; /* Creates space between the containers */
+}
+
+.left-container,
+.right-container {
+  width: 500px;
+  height: 420px;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  background-color: #b6b6b6;
-  border-radius: 24px;
-  font-size: large;
+
+  margin: 25px 0px;
 }
-.navbar a {
-  text-decoration: none;
-  color: black;
+
+.left-container {
+  text-align: left;
+  border-radius: 1px black solid;
 }
-.login-button {
-  background-color: aquamarine;
-  border-radius: 24px;
-  padding: 10px;
+
+.right-container {
+  text-align: left;
+  border-radius: 1px black solid;
+}
+.non-color-change {
+  font-size: 80px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.color-change {
+  font-size: 80px;
+  background: -webkit-linear-gradient(left, #7fd1b9, #de6e4b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+
+  font-size: 80px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

@@ -32,7 +32,7 @@ function DailyView() {
     };
   }
   // getting data from server api call
-  async function fetchServerData() {
+  async function fetchServerData(): Promise<{ values: DailyData[] }> {
     const serverRequest = await fetch("http://localhost:3000/daily-view");
     const response = await serverRequest.json();
     console.log(response, "IS THE SERVER RESPONSE");
@@ -41,38 +41,37 @@ function DailyView() {
 
   const [data, setData] = useState<DailyData[]>([]); // State to store the fetched data
 
+  const fetchData = async () => {
+    const response = await fetchServerData();
+    setData(response.values); // Set the fetched data in state
+    console.log(response, "Daily View Working");
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetchServerData();
-      setData(response.values); // Set the fetched data in state
-      console.log(response, "Daily View Working");
-    };
     fetchData();
   }, []);
-
   // line graph
 
   return (
     <>
       <div className="daily-view">
-        <div>DailyView Data </div>
         {data.length > 0 && (
           <LineChart
-            width={1750}
+            width={500}
             height={400}
             data={data}
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+            margin={{ top: 10, right: 15, left: 15, bottom: 50 }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="0 0" />
             <XAxis dataKey="datetime">
-              <Label value="Date" offset={0} position="insideBottom" />
+              <Label value="Date" offset={-5} position="insideBottom" />
             </XAxis>
             <YAxis dataKey="avgprice">
-              <Label value="Avg Price" offset={0} position="insideLeft" />
+              <Label value="Avg Price" offset={-25} position="insideLeft" />
             </YAxis>
 
             <Tooltip />
-            <Legend verticalAlign="top" height={40} />
+            <Legend verticalAlign="bottom" height={40} />
             <Line
               type="monotone"
               dataKey="avgprice"
@@ -81,12 +80,9 @@ function DailyView() {
             />
           </LineChart>
         )}
-        {/* {data && (
-          <div>
-            <h2>json data from server :</h2>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </div>
-        )} */}
+        <button className="refresh-button" onClick={fetchData}>
+          Refresh
+        </button>
       </div>
     </>
   );
