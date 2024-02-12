@@ -54,14 +54,14 @@ function DailyView() {
 
   return (
     <>
-    <button className="refresh-button" onClick={fetchData}>
-          Refresh
-        </button>
+      <button className="refresh-button" onClick={fetchData}>
+        Refresh
+      </button>
       <div className="daily-view">
         {data.length > 0 && (
           <LineChart
             width={400}
-            height={400}
+            height={280}
             data={data}
             margin={{ top: 10, right: 15, left: 50, bottom: 50 }}
           >
@@ -74,7 +74,7 @@ function DailyView() {
             </YAxis>
 
             <Tooltip />
-            <Legend verticalAlign="top" height={40} />
+            <Legend verticalAlign="top" height={30} />
             <Line
               type="monotone"
               dataKey="avgprice"
