@@ -54,35 +54,35 @@ function DailyView() {
 
   return (
     <>
+    <button className="refresh-button" onClick={fetchData}>
+          Refresh
+        </button>
       <div className="daily-view">
         {data.length > 0 && (
           <LineChart
             width={500}
             height={400}
             data={data}
-            margin={{ top: 10, right: 15, left: 15, bottom: 50 }}
+            margin={{ top: 10, right: 15, left: 50, bottom: 50 }}
           >
             <CartesianGrid strokeDasharray="0 0" />
             <XAxis dataKey="datetime">
               <Label value="Date" offset={-5} position="insideBottom" />
             </XAxis>
             <YAxis dataKey="avgprice">
-              <Label value="Avg Price" offset={-25} position="insideLeft" />
+              <Label value="Avg Price" offset={-35} position="insideLeft" />
             </YAxis>
 
             <Tooltip />
-            <Legend verticalAlign="bottom" height={40} />
+            <Legend verticalAlign="top" height={40} />
             <Line
               type="monotone"
               dataKey="avgprice"
               name="IBM Average Price "
-              stroke="#8884d8"
+              stroke="#de6e4b"
             />
           </LineChart>
         )}
-        <button className="refresh-button" onClick={fetchData}>
-          Refresh
-        </button>
       </div>
     </>
   );

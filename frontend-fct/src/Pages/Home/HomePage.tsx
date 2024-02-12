@@ -3,6 +3,7 @@ import Logo from "../../../public/vite.svg";
 import DailyView from "../../Components/DailyView/DailyView";
 import MovingAverageView from "../../Components/MovingAverageView/Moving AverageView";
 import NavBar from "../../Components/Navbar/NavBar";
+import Footer from "../../Components/Footer/Footer";
 
 export default function HomePage() {
   return (

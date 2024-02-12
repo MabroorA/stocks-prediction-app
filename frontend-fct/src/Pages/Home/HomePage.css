@@ -4,14 +4,9 @@
 body {
   font-family: monospace;
 }
-.home-page {
-  color: black;
-  text-align: center;
-  border: 2px blue dotted;
-  margin: 20px;
-}
 
 .container {
+  padding: 5px 0px;
   display: flex;
   justify-content: space-between; /* Creates space between the containers */
 }
@@ -23,7 +18,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
 
-  margin: 25px 0px;
 }
 
 .left-container {
@@ -33,21 +27,25 @@ body {
 
 .right-container {
   text-align: left;
+  
+  margin: 0px;
   border-radius: 1px black solid;
+  margin-right: 70px;
 }
 .non-color-change {
-  font-size: 80px;
+  font-size: 70px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 70px;
+  line-height:55px;
 }
 .color-change {
-  font-size: 80px;
+  font-size: 70px;
   background: -webkit-linear-gradient(left, #7fd1b9, #de6e4b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bolder;
 
-  line-height: 70px;
+  line-height: 60px;
   font-size: 70px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
