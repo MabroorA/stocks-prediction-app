@@ -24,7 +24,7 @@ export default function App() {
   // }, []);
   return (
     <>
-      <SearchPage />
+      <HomePage />
       {/* <HomePage /> */}
       {/* Render the fetched data */}
       {/* {data && (

@@ -4,6 +4,7 @@ import DailyView from "../../Components/DailyView/DailyView";
 import MovingAverageView from "../../Components/MovingAverageView/Moving AverageView";
 import NavBar from "../../Components/Navbar/NavBar";
 import Footer from "../../Components/Footer/Footer";
+import SearchPage from "../SearchStocksPage/SearchPage";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
           <h1 className="title-stock">Rising Stocks this Week</h1>
           <div className="top-stocks">
             <h1>Top 5 Stocks will go here</h1>
+            <SearchPage />
           </div>
         </div>
       </div>

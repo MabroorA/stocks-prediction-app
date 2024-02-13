@@ -45,7 +45,7 @@ function SearchPage() {
   };
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <input
         type="text"
         value={searchQuery}
