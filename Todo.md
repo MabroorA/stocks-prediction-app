@@ -1,17 +1,25 @@
 # Finance Assistance tool
-- to Run 
+
+- to Run
 - Navigate to front-end folder & enter
   - npm run dev
-- Navigate to front-end folder & enter 
+- Navigate to front-end folder & enter
   - npx ts-node src/index.ts
+
 ## Information about this repository
-### Doing 
+
+### Done
+
+- Landing Page being designed right now
+- Make search box made to search company by ticker
+
+### Doing
+
 - Design Css of Website
- - Landing Page being designed right now
- - Nav bar needs logo and working links
 
 ### To do
-- Nav bar needs logo and working links
+
+- Use the ticker search box as props to feed data to a new function(Linegraph)
 - Make a button which calls the api instead of the api call being made every refresh of the page
   - Allow user to use a Ticker
-
+- Nav bar needs logo and working links
