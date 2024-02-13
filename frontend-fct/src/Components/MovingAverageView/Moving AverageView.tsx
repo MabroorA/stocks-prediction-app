@@ -54,12 +54,12 @@ function MovingAverageView() {
   return (
     <>
       <div className="Moving-avg-view">
-        <div>Exponential Moving Average </div>
+        <div className="moving-avg-title">Exponential Moving Average </div>
         <LineChart
-          width={1750}
-          height={400}
+          width={400}
+          height={280}
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+          margin={{ top: 10, right: 15, left: 50, bottom: 50 }}
         >
           <CartesianGrid strokeDasharray="5 5" />
           <XAxis dataKey="timestamp" />
@@ -70,7 +70,7 @@ function MovingAverageView() {
           <Line
             type="monotone"
             dataKey="value" // Use "value" instead of "avgprice" if that's the correct key
-            name="Moving Average"
+            name="Exponential Moving Average"
             stroke="#8884d8"
           />
         </LineChart>

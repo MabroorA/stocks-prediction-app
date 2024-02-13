@@ -53,6 +53,14 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      <div className="Graphs-container">
+          <div className="bottom-right-graph-container">
+            <DailyView/>
+          </div>
+          <div className="bottom-right-graph-container">
+            <MovingAverageView/>
+          </div>
+        </div>
       {/* <Footer /> */}
     </>
   );

@@ -1,12 +1,17 @@
 .daily-view {
-  border: 5px rgb(0, 0, 0) solid;
-  display: block;
+  /* border: 5px rgb(0, 0, 0) solid; */
+  /* display: block;
   overflow-y: scroll;
   padding-left: 10px;
   margin: 10px;
   border-radius: 15px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255); */
 }
 h2 {
   color: blue;
+}
+.moving-avg-title{
+  text-align: center;
+  font-size: 20px;
+  color: white;
 }

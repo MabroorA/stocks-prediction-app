@@ -63,9 +63,9 @@ function DailyView() {
             width={400}
             height={280}
             data={data}
-            margin={{ top: 10, right: 15, left: 50, bottom: 50 }}
+            margin={{ top: 10, right: 5, left: 50, bottom: 50 }}
           >
-            <CartesianGrid strokeDasharray="0 0" />
+            <CartesianGrid strokeDasharray="5 5" />
             <XAxis dataKey="datetime">
               <Label value="Date" offset={-5} position="insideBottom" />
             </XAxis>
@@ -79,7 +79,7 @@ function DailyView() {
               type="monotone"
               dataKey="avgprice"
               name="IBM Average Price "
-              stroke="#de6e4b"
+              stroke="#8884d8"
             />
           </LineChart>
         )}
