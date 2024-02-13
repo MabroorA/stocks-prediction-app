@@ -1,0 +1,16 @@
+* {
+  padding: 5px 20px;
+  margin: 0px;
+}
+body {
+  font-family: monospace;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.Search-bar {
+  border-radius: 16px;
+  border: 2px #de6e4b solid;
+}
+.Search-bar:hover {
+  background: -webkit-linear-gradient(right, #7fd1b9, #de6e4b);
+}
