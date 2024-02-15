@@ -1,3 +1,4 @@
+
 export default async function daily_AvgPrice() {
   const API_KEY = process.env.API_KEY;
   const request = await fetch(
@@ -23,4 +24,20 @@ export async function Search_ticker(ticker: string) {
   );
   const response = await request.json();
   return response;
+}
+export async function Search_to_display_ticker(ticker: string) {
+  try {
+      const API_KEY = process.env.Poly_API_KEY;
+      const request = await fetch(
+          `https://api.polygon.io/v1/indicators/sma/${ticker}?timespan=minute&adjusted=true&window=7&series_type=close&order=asc&limit=10&apiKey=${API_KEY}`
+      );
+      if (!request.ok) {
+          throw new Error(`Failed to fetch data for ${ticker}. Status: ${request.status}`);
+      }
+      const response = await request.json();
+      return response;
+  } catch (error) {
+      console.error("Error fetching ticker data:", error);
+      throw error; // Re-throw the error to be handled by the caller
+  }
 }

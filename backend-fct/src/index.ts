@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import daily_fetchStocksData, {
   Exponential_Moving_Avg,
   Search_ticker,
+  Search_to_display_ticker,
 } from "./data-fetching/fetch-stocks-data";
+
 
 dotenv.config();
 
@@ -75,6 +77,24 @@ app.get("/search-ticker", async (req: Request, res: Response) => {
     res.status(500).send("Failed to search ticker");
   }
 });
+
+// Searching to display 
+// Searching to display
+app.get("/ticker-to-display", async (req: Request, res: Response) => {
+  try {
+      const { ticker } = req.query; // Get the ticker parameter from the request query
+      if (!ticker || typeof ticker !== "string") {
+          throw new Error("Ticker parameter is missing or invalid");
+      }
+      const searchResult = await Search_to_display_ticker(ticker as string); // Call the Search_ticker function
+      res.send(searchResult);
+  } catch (error) {
+      console.error("Error searching ticker:", error);
+      res.status(500).send("Failed to search ticker");
+  }
+});
+
+
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

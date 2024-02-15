@@ -3,6 +3,8 @@ import DailyView from "../../Components/DailyView/DailyView";
 import MovingAverageView from "../../Components/MovingAverageView/Moving AverageView";
 import NavBar from "../../Components/Navbar/NavBar";
 import SearchPage from "../SearchStocksPage/SearchPage";
+import Search_to_display from "../Ticker-to-display/Search-to-display";
+import Searchdisplay from "../Ticker-to-display/Searchdisplay";
 
 export default function HomePage() {
   return (
@@ -56,7 +58,8 @@ export default function HomePage() {
             <DailyView/>
           </div>
           <div className="bottom-right-graph-container">
-            <MovingAverageView/>
+          {/* <Search_to_display/> */}
+          <Searchdisplay/>
           </div>
         </div>
       {/* <Footer /> */}
