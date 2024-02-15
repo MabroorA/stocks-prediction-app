@@ -7,8 +7,6 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  Label,
-  ResponsiveContainer,
 } from "recharts";
 
 import "./MovingAverageView.css";

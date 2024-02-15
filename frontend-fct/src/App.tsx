@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+
 import "./App.css";
 import HomePage from "./Pages/Home/HomePage";
-import { Search } from "@mui/icons-material";
-import SearchPage from "./Pages/SearchStocksPage/SearchPage";
 
 // async function fetchServerData() {
 //   const serverRequest = await fetch("http://localhost:3000/fetch-data");
