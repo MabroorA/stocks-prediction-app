@@ -8,7 +8,7 @@ import Searchdisplay from "./Pages/Ticker-to-display/Searchdisplay";
 export default function App() {
   return (
     <>
-     <Searchdisplay/>
+     <HomePage/>
     </>
   );
 }
