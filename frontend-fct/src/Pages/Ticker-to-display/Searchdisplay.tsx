@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { LineChart, CartesianGrid, XAxis, Label, YAxis, Tooltip, Legend, Line } from "recharts";
+import NavBar from "../../Components/Navbar/NavBar";
 
 interface TickerData {
     timestamp: number;
@@ -56,6 +57,7 @@ export default function Searchdisplay() {
   }, []);
     return (
     <>
+      <NavBar/>
       <div className="search-box">
         <input
           type="text"
@@ -70,7 +72,7 @@ export default function Searchdisplay() {
             width={400}
             height={280}
             data={data}
-            margin={{ top: 10, right: 5, left: 50, bottom: 50 }}
+            // margin={{ top: 10, right: 5, left: 50, bottom: 50 }}
           >
             <CartesianGrid strokeDasharray="5 5" />
             <XAxis dataKey="timestamp">

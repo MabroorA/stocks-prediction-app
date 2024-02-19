@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { LineChart, CartesianGrid, XAxis, Label, YAxis, Tooltip, Legend, Line } from "recharts";
+import NavBar from "../../Components/Navbar/NavBar";
 
 
 // 
@@ -11,19 +12,6 @@ interface TickerInfo {
   
 
 export default  function Search_to_display() {
-//   const [ticker, setTicker] = useState<string>("");
-//   const [searchResult, setSearchResult] = useState<Value[] > ([]);
-
-//   const handleSearch = async () => {
-//     try {
-//       const response = await fetch(`http://localhost:3000/ticker-to-display?ticker=${ticker}`
-//       );
-//       const data = await response.json();
-//       setSearchResult(data.values || []);
-//     } catch (error) {
-//       console.error("FAILED TO FETCH DATA:", error);
-//     }
-//   };
   const [searchQuery, setSearchQuery] = useState<string>(""); // State to store the search query
   const [searchResults, setSearchResults] = useState<TickerInfo[]>([]); // State to store the search results
 
@@ -51,6 +39,7 @@ export default  function Search_to_display() {
   };
   return (
     <>
+    <NavBar/>
     <div className="search-box">
       <input
         type="text"
@@ -67,7 +56,7 @@ export default  function Search_to_display() {
             width={400}
             height={280}
             data={searchResults}
-            margin={{ top: 10, right: 5, left: 50, bottom: 50 }}
+            // margin={{ top: 10, right: 5, left: 50, bottom: 50 }}
           >
             <CartesianGrid strokeDasharray="5 5" />
             <XAxis dataKey="datetime">
