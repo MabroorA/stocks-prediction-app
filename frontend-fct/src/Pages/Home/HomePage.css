@@ -1,11 +1,9 @@
 * {
-  padding: 5px 20px;
-  margin: 0px;
+  
 }
 body {
   font-family: monospace;
   max-width: 1280px;
-  margin: 0 auto;
 }
 
 .container {

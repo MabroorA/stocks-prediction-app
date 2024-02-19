@@ -6,19 +6,17 @@
   font-weight: 700;
   font-size: large;
   font-family: monospace;
-  margin: 0;
-  padding: 0;
+  
 }
 .navbar a {
   text-decoration: none;
   color: black;
+  border-bottom: 2px #de6e4b solid;
 }
 .navbar a:hover {
-  background-color: aquamarine;
+  background-color: #7fd1b9;
   border-radius: 24px;
 }
 .login-button {
-  background-color: aquamarine;
-  border-radius: 24px;
   padding: 5px;
 }

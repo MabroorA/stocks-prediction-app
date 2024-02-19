@@ -3,6 +3,7 @@ import "./App.css";
 import AboutusPage from "./Pages/About-us/AboutusPage";
 import HomePage from "./Pages/Home/HomePage";
 import LoginPage from "./Pages/Login/Login";
+import NewsPage from "./Pages/News/NewsPage";
 import SearchPage from "./Pages/SearchStocksPage/SearchPage";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ const router = createBrowserRouter(
       },
       {
         path:'/news',
-        element:<HomePage/>
+        element:<NewsPage/>
       },
       {
         path:'/search',
