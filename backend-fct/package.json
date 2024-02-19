@@ -2,10 +2,10 @@
   "name": "backend-fct",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc",
+    "build": "tsc",
     "server:start": "node dist/index.ts",
     "server:dev": "nodemon src/index.ts"
   },

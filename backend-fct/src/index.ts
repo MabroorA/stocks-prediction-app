@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import daily_fetchStocksData, {
   Exponential_Moving_Avg,
+  Grouped_Daily,
   Search_ticker,
   Search_to_display_ticker,
 } from "./data-fetching/fetch-stocks-data";
@@ -93,7 +94,18 @@ app.get("/ticker-to-display", async (req: Request, res: Response) => {
       res.status(500).send("Failed to search ticker");
   }
 });
-
+// Grouped Daily
+app.get("/grouped-daily", async (req: Request, res: Response) => {
+  console.log("RECEIVED A CALL AT FETCH DATA ENDPOINT");
+  try {
+    console.log("Calling Grouped Daily");
+    const response = await Grouped_Daily();
+    res.send(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to get data");
+  }
+});
 
 
 app.listen(port, () => {

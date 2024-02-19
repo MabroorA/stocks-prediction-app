@@ -4,6 +4,7 @@ import MovingAverageView from "../../Components/MovingAverageView/Moving Average
 import NavBar from "../../Components/Navbar/NavBar";
 
 import Searchdisplay from "../Ticker-to-display/Searchdisplay";
+import GroupedDaily from "../../Components/GroupDaily/GroupedDaily";
 
 export default function HomePage() {
   return (
@@ -21,10 +22,10 @@ export default function HomePage() {
           <button className="predict-button">Start Predicting</button>
         </div>
         <div className="right-container">
-          <h1 className="title-stock">Rising Stocks this Week</h1>
+          <h1 className="title-stock">Grouped Daily Stock Market Data</h1>
           <div className="top-stocks">
-            <h1>Top 5 Stocks will go here</h1>
-            {/* <Searchdisplay /> */}
+
+            <DailyView />
           </div>
         </div>
       </div>
@@ -53,14 +54,14 @@ export default function HomePage() {
         </div>
       </div>
       <div className="Graphs-container">
-          <div className="bottom-right-graph-container">
-            <h1>text will go here</h1>
-          </div>
-          <div className="bottom-right-graph-container">
+        <div className="bottom-right-graph-container">
+          <h1>text will go here</h1>
+        </div>
+        <div className="bottom-right-graph-container">
           {/* <Search_to_display/> */}
           <h1>text will go here</h1>
-          </div>
         </div>
+      </div>
       {/* <Footer /> */}
     </>
   );

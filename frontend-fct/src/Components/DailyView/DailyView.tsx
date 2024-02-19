@@ -60,7 +60,7 @@ function DailyView() {
         {data.length > 0 && (
           <LineChart
             width={400}
-            height={280}
+            height={320}
             data={data}
             margin={{ top: 10, right: 5, left: 50, bottom: 50 }}
           >
@@ -78,7 +78,7 @@ function DailyView() {
               type="monotone"
               dataKey="avgprice"
               name="IBM Average Price "
-              stroke="#8884d8"
+              stroke="#de6e4b"
             />
           </LineChart>
         )}

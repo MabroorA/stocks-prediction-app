@@ -41,3 +41,25 @@ export async function Search_to_display_ticker(ticker: string) {
       throw error; // Re-throw the error to be handled by the caller
   }
 }
+// Group Daily
+export async function Grouped_Daily() {
+  try {
+    const API = process.env.Poly_API_KEY;
+    const request = await fetch(
+      `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+    );
+    if (!request.ok) {
+      throw new Error(
+        `Failed to fetch data , Status: ${request.status}`
+      );
+    }
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching Grouped Daily data:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
+
+  
+
+}
