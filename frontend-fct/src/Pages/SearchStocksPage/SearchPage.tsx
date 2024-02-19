@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SearchPage.css";
+import NavBar from "../../Components/Navbar/NavBar";
 
 interface TickerInfo {
   ticker: string;
@@ -44,7 +45,7 @@ function SearchPage() {
   };
   return (
     <>
-      
+      <NavBar/>
       <input
         type="text"
         value={searchQuery}

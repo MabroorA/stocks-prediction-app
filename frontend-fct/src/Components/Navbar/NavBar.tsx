@@ -4,15 +4,18 @@ function NavBar() {
   return (
     <nav className="navbar">
       <div>
-        <a className="Logo" href="/Home">
+        <a className="Logo" href="/">
           FS
         </a>
-        <a href="/About-us">About Us</a>
-        <a href="/learn-stocks">Learn Stocks</a>
+        <a href="/about-us">About Us</a>
+        <a href="/news">News</a>
       </div>
-      <a className="login-button" href="Login">
+      <div>
+      <a href="/search">Search</a>
+      <a className="login-button" href="/account">
         My Account
       </a>
+      </div>
     </nav>
   );
 }

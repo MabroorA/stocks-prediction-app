@@ -2,8 +2,7 @@ import "./HomePage.css";
 import DailyView from "../../Components/DailyView/DailyView";
 import MovingAverageView from "../../Components/MovingAverageView/Moving AverageView";
 import NavBar from "../../Components/Navbar/NavBar";
-import SearchPage from "../SearchStocksPage/SearchPage";
-import Search_to_display from "../Ticker-to-display/Search-to-display";
+
 import Searchdisplay from "../Ticker-to-display/Searchdisplay";
 
 export default function HomePage() {
@@ -25,7 +24,7 @@ export default function HomePage() {
           <h1 className="title-stock">Rising Stocks this Week</h1>
           <div className="top-stocks">
             <h1>Top 5 Stocks will go here</h1>
-            <SearchPage />
+            {/* <Searchdisplay /> */}
           </div>
         </div>
       </div>
@@ -55,11 +54,11 @@ export default function HomePage() {
       </div>
       <div className="Graphs-container">
           <div className="bottom-right-graph-container">
-            <DailyView/>
+            <h1>text will go here</h1>
           </div>
           <div className="bottom-right-graph-container">
           {/* <Search_to_display/> */}
-          <Searchdisplay/>
+          <h1>text will go here</h1>
           </div>
         </div>
       {/* <Footer /> */}

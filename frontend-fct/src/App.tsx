@@ -1,14 +1,41 @@
 
 import "./App.css";
+import AboutusPage from "./Pages/About-us/AboutusPage";
 import HomePage from "./Pages/Home/HomePage";
-import Searchdisplay from "./Pages/Ticker-to-display/Searchdisplay";
+import LoginPage from "./Pages/Login/Login";
+import SearchPage from "./Pages/SearchStocksPage/SearchPage";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-
+const router = createBrowserRouter(
+    [
+      {
+        path:'/',
+        element:<HomePage/>
+      },
+      {
+        path:'/about-us',
+        element:<AboutusPage/>
+      },
+      {
+        path:'/news',
+        element:<HomePage/>
+      },
+      {
+        path:'/search',
+        element:<SearchPage/>
+      },
+      {
+        path:'/account',
+        element:<LoginPage/>
+      }
+    ]
+);
 
 export default function App() {
   return (
     <>
-     <HomePage/>
+     <RouterProvider router={router}/>
+     
     </>
   );
 }
