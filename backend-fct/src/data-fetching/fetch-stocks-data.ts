@@ -46,7 +46,7 @@ export async function Grouped_Daily() {
   try {
     const API = process.env.Poly_API_KEY;
     const request = await fetch(
-      `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+      `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-21?adjusted=true&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
     );
     if (!request.ok) {
       throw new Error(

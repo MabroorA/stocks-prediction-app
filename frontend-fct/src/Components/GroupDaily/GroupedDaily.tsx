@@ -1,67 +1,107 @@
 import React, { useState, useEffect } from "react";
+import { Line } from "react-chartjs-2";
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  Label,
-} from "recharts";
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale, // x axis
+  LinearScale, // y axis
+  PointElement
+} from "chart.js";
+
+ChartJS.register(
+  LineElement,
+  CategoryScale, 
+  LinearScale, 
+  PointElement
+)
+
+interface ApiResponse {
+  adjusted: boolean;
+  queryCount: number;
+  results: {
+    T: string;
+    c: number;
+    h: number;
+    l: number;
+    n: number;
+    o: number;
+    t: number;
+    v: number;
+    vw: number;
+  }[];
+  resultsCount: number;
+  status: string;
+}
+
 
 function GroupedDaily() {
-  const [data, setData] = useState([]); // State to store the fetched data
+  const [data, setData] = useState<ApiResponse>({
+    adjusted: false,
+    queryCount: 0,
+    results: [],
+    resultsCount: 0,
+    status: ""
+  }); // State to store the fetched data
 
   // Function to fetch data from the server
   async function fetchServerData() {
     const serverRequest = await fetch("http://localhost:3000/grouped-daily");
-    const response = await serverRequest.json();
-    console.log(response, "Grouped Daily sent from server");
+    const response: ApiResponse = await serverRequest.json();
+    console.log("Grouped Daily sent from server");
     return response;
   }
 
   // Function to fetch and set data
   const fetchData = async () => {
     const response = await fetchServerData();
-    setData(response.values); // Set the fetched data in state
-    console.log(response, "GroupedDaily Working");
+    setData(response); // Set the fetched data in state
+    console.log(response);
   };
 
   // Fetch data on component mount
   useEffect(() => {
     fetchData();
   }, []);  
+
+
+
+
+
+
   return (
     <div>
-      <button className="refresh-button" onClick={fetchData}>
-        Refresh
+     <button className="refresh-button" onClick={fetchData}>
+        Fetch Data
       </button>
       <div className="grouped-daily">
-        {data.length > 0 && (
-          <BarChart
-            width={800}
-            height={400}
-            data={data}
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="T">
-              <Label value="Stock" offset={-5} position="insideBottom" />
-            </XAxis>
-            <YAxis>
-              <Label
-                value="Avg Volume-Weighted Price"
-                offset={-5}
-                position="insideLeft"
-                angle={-90}
-              />
-            </YAxis>
-            <Tooltip />
-            <Legend verticalAlign="top" height={36} />
-            <Bar dataKey="vw" fill="#8884d8" name="Average VW Price" />
-          </BarChart>
-        )}
+        <Line
+          data={{
+            labels: data.results?.map((item) => item.T),
+            datasets: [
+              {
+                label: "Average VW Price",
+                data: data.results?.map((item) => item.vw),
+                backgroundColor: "#8884d8",
+              },
+            ],
+          }}
+          options={{
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: "Stock",
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: "Avg Volume-Weighted Price",
+                },
+              },
+            },
+          }}
+        />
       </div>
     </div>
   );
