@@ -18,7 +18,7 @@ export async function Exponential_Moving_Avg() {
 }
 // searching with Company/ticker name
 export async function Search_ticker(ticker: string) {
-  const API_KEY = process.env.Poly_API_KEY;
+  const API_KEY = "UyzPkn5wTGhDq7aauKltPyTyNburS6FC"
   const request = await fetch(
     `https://api.polygon.io/v3/reference/tickers?active=true&apiKey=${API_KEY}&ticker=${ticker}`
   );

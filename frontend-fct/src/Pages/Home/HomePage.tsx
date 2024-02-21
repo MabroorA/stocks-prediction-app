@@ -5,6 +5,8 @@ import NavBar from "../../Components/Navbar/NavBar";
 
 import Searchdisplay from "../Ticker-to-display/Searchdisplay";
 import GroupedDaily from "../../Components/GroupDaily/GroupedDaily";
+import Search_to_display from "../Ticker-to-display/Search-to-display";
+import SearchPage from "../SearchStocksPage/SearchPage";
 
 export default function HomePage() {
   return (
@@ -24,7 +26,7 @@ export default function HomePage() {
         <div className="right-container">
           <h1 className="title-stock">Grouped Daily Stock Market Data</h1>
           <div className="top-stocks">
-
+            <SearchPage />
             {/* <DailyView /> */}
           </div>
         </div>
@@ -58,7 +60,6 @@ export default function HomePage() {
           <h1>text will go here</h1>
         </div>
         <div className="bottom-right-graph-container">
-          {/* <Search_to_display/> */}
           <h1>text will go here</h1>
         </div>
       </div>
