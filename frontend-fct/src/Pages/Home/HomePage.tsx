@@ -25,7 +25,7 @@ export default function HomePage() {
           <h1 className="title-stock">Grouped Daily Stock Market Data</h1>
           <div className="top-stocks">
 
-            <DailyView />
+            {/* <DailyView /> */}
           </div>
         </div>
       </div>

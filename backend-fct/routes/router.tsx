@@ -79,7 +79,7 @@ try {
 });
 // Grouped Daily
 router.get("/grouped-daily", async (req: Request, res: Response) => {
-console.log("RECEIVED A CALL AT FETCH DATA ENDPOINT");
+console.log("Getting grouped daily");
 try {
     console.log("Calling Grouped Daily");
     const response = await Grouped_Daily();
