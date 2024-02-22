@@ -31,7 +31,7 @@ function DailyView() {
     };
   }
   // getting data from server api call
-  async function fetchServerData(): Promise<{ values: DailyData[] }> {
+  async function fetchServerData() {
     const serverRequest = await fetch("http://localhost:3000/daily-view");
     const response = await serverRequest.json();
     console.log(response, "IS THE SERVER RESPONSE");
@@ -42,7 +42,7 @@ function DailyView() {
 
   const fetchData = async () => {
     const response = await fetchServerData();
-    setData(response.values); // Set the fetched data in state
+    setData(response.values || []); // Set the fetched data in state
     console.log(response, "Daily View Working");
   };
 
@@ -57,7 +57,7 @@ function DailyView() {
         Refresh
       </button>
       <div className="daily-view">
-        {data.length > 0 && (
+
           <LineChart
             width={400}
             height={320}
@@ -81,7 +81,6 @@ function DailyView() {
               stroke="#de6e4b"
             />
           </LineChart>
-        )}
       </div>
     </>
   );

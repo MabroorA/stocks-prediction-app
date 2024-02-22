@@ -11,14 +11,14 @@ export default async function daily_AvgPrice() {
 export async function Exponential_Moving_Avg() {
   const API_KEY = process.env.Poly_API_KEY;
   const request = await fetch(
-    "https://api.polygon.io/v1/indicators/ema/AAPL?timespan=hour&adjusted=true&window=50&series_type=close&order=desc&limit=5000&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC"
+    "https://api.polygon.io/v1/indicators/ema/AAPL?timespan=day&adjusted=true&window=10&series_type=close&order=desc&limit=5000&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC"
   );
   const response = await request.json();
   return response;
 }
 // searching with Company/ticker name
 export async function Search_ticker(ticker: string) {
-  const API_KEY = "UyzPkn5wTGhDq7aauKltPyTyNburS6FC"
+  const API_KEY = "UyzPkn5wTGhDq7aauKltPyTyNburS6FC";
   const request = await fetch(
     `https://api.polygon.io/v3/reference/tickers?active=true&apiKey=${API_KEY}&ticker=${ticker}`
   );
@@ -46,7 +46,7 @@ export async function Grouped_Daily() {
   try {
     const API = process.env.Poly_API_KEY;
     const request = await fetch(
-      `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-21?adjusted=true&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+      `https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
     );
     if (!request.ok) {
       throw new Error(
@@ -59,7 +59,24 @@ export async function Grouped_Daily() {
     console.error("Error fetching Grouped Daily data:", error);
     throw error; // Re-throw the error to be handled by the caller
   }
+}
 
-  
-
+// Latest News 
+export async function News_latest() {
+  try {
+    const API = process.env.Poly_API_KEY;
+    const request = await fetch(
+      `https://api.polygon.io/v2/reference/news?limit=10&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+    );
+    if (!request.ok) {
+      throw new Error(
+        `Failed to fetch data , Status: ${request.status}`
+      );
+    }
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching Grouped Daily data:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
 }

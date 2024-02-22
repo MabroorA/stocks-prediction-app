@@ -7,6 +7,7 @@ import {
   YAxis,
   Tooltip,
   Legend,
+  Label,
 } from "recharts";
 
 import "./MovingAverageView.css";
@@ -51,28 +52,36 @@ function MovingAverageView() {
 
   return (
     <>
-      <div className="Moving-avg-view">
-        <div className="moving-avg-title">Exponential Moving Average </div>
-        <LineChart
-          width={400}
-          height={280}
-          data={data}
-          margin={{ top: 10, right: 15, left: 50, bottom: 50 }}
+      <LineChart
+        width={450}
+        height={350}
+        data={data}
+        margin={{ top: 0, right: 5, left: 0, bottom: 5 }}
+      >
+        <CartesianGrid strokeDasharray="5 5" />
+        <XAxis
+          dataKey="timestamp"
+          tickFormatter={(timestamp) => {
+            const date = new Date(timestamp);
+            return `${
+              date.getMonth() + 1
+            }/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
+          }}
         >
-          <CartesianGrid strokeDasharray="5 5" />
-          <XAxis dataKey="timestamp" />
-          <YAxis dataKey="value" />
-
-          <Tooltip />
-          <Legend verticalAlign="top" height={40} />
-          <Line
-            type="monotone"
-            dataKey="value" // Use "value" instead of "avgprice" if that's the correct key
-            name="Exponential Moving Average"
-            stroke="#8884d8"
-          />
-        </LineChart>
-      </div>
+          <Label value="Hour" offset={-5} position="insideBottom" />
+        </XAxis>
+        <YAxis dataKey="value">
+          <Label value="Value" offset={0} position="left" />
+        </YAxis>
+        <Tooltip />
+        <Legend verticalAlign="top" height={40} />
+        <Line
+          type="monotone"
+          dataKey="value" // Use "value" instead of "avgprice" if that's the correct key
+          name="Exponential Moving Average"
+          stroke="#8884d8"
+        />
+      </LineChart>
     </>
   );
 }

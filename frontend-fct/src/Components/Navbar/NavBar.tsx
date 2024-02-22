@@ -5,7 +5,7 @@ export default function NavBar() {
     <nav className="navbar">
       <div>
         <a className="Logo" href="/">
-          FS
+          Home
         </a>
         <a href="/about-us">About Us</a>
         <a href="/news">News</a>
