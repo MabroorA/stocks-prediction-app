@@ -128,7 +128,7 @@ export async function IntraDay_Given_Stock_and_Timeframe(ticker: string) {
 export async function IntraDay() {
   try {
     const request = await fetch(
-      `https://financialmodelingprep.com/api/v3/historical-chart/15min/AAPL?from=2024-02-21&to=2024-02-21&apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+      `https://financialmodelingprep.com/api/v3/historical-chart/60min/AAPL?from=2024-02-21&to=2024-02-21&apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
     );
     if (!request.ok) {
       throw new Error(`Failed to fetch IntraDay data , Status: ${request.status}`);

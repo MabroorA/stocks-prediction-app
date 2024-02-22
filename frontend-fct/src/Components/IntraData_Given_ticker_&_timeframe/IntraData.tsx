@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import "./IntraData.css"
 
 interface IntradayData {
@@ -54,30 +55,25 @@ export default function IntraData() {
         />
         <button onClick={handleSearchButtonClick}>Search</button>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Open</th>
-            <th>Low</th>
-            <th>High</th>
-            <th>Close</th>
-            <th>Volume</th>
-          </tr>
-        </thead>
-        <tbody>
-          {intradayData.map((data, index) => (
-            <tr key={index}>
-              <td>{data.date}</td>
-              <td>{data.open}</td>
-              <td>{data.low}</td>
-              <td>{data.high}</td>
-              <td>{data.close}</td>
-              <td>{data.volume}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="chart-container">
+        <LineChart width={800} height={400} data={intradayData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="date"
+            label={{
+              value: "Date",
+              position: "insideBottomRight",
+              offset: -10,
+            }}
+          />
+          <YAxis
+            label={{ value: "Price", angle: -90, position: "insideLeft" }}
+          />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="close" stroke="#8884d8" />
+        </LineChart>
+      </div>
     </div>
   );
 }
