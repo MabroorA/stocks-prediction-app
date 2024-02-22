@@ -1,14 +1,14 @@
+import IntraData from '../../Components/IntraData_Given_ticker_&_timeframe/IntraData';
+import IntraData_without_ticker from '../../Components/IntraData_Given_ticker_&_timeframe/Intraday_without_ticker';
 import NavBar from '../../Components/Navbar/NavBar'
-import SearchStock from '../../Components/Search-Stock/SearchStock';
 import "./Analyse.css"
 export default function Analyse() {
   return (
     <>
       <NavBar />
-      <div className='analyse-container'>
-        <h1 className='title'>Analyse</h1>
-        <input/>
-        <SearchStock/>
+      <div className="analyse-container">
+        <h1 className="title">Analyse</h1>
+        <IntraData />
       </div>
     </>
   );

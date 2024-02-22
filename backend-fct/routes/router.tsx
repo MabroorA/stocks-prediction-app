@@ -1,5 +1,14 @@
 import {Router ,Request, Response} from "express";
-import { Exponential_Moving_Avg, Grouped_Daily, IntraDay_Given_Stock_and_Timeframe, News_latest, Search_ticker, Search_to_display_ticker, Single_Stock_Qoute } from "../src/data-fetching/fetch-stocks-data";
+import {
+  Exponential_Moving_Avg,
+  Grouped_Daily,
+  IntraDay,
+  IntraDay_Given_Stock_and_Timeframe,
+  News_latest,
+  Search_ticker,
+  Search_to_display_ticker,
+  Single_Stock_Qoute,
+} from "../src/data-fetching/fetch-stocks-data";
 const express = require('express')
 
 const router = Router();
@@ -103,6 +112,7 @@ try {
 }
 });
 
+// Not implemented Yet
 router.get("/qoute", async (req: Request, res: Response) => {
   try {
     const { ticker } = req.query; // Get the ticker parameter from the request query
@@ -117,20 +127,22 @@ router.get("/qoute", async (req: Request, res: Response) => {
   }
 });
 
+
+// Not implemented Yet
+// interval data throughout the day
 router.get("/intraday", async (req: Request, res: Response) => {
   try {
     const { ticker } = req.query; // Get the ticker parameter from the request query
     if (!ticker || typeof ticker !== "string") {
-      throw new Error("Ticker parameter is missing or invalid");
+        throw new Error("Ticker parameter is missing or invalid");
     }
-    const searchResult = await IntraDay_Given_Stock_and_Timeframe(ticker as string); // Call the Search_ticker function
+    const searchResult = await IntraDay_Given_Stock_and_Timeframe(ticker as string);
     res.send(searchResult);
   } catch (error) {
-    console.error("Error searching ticker:", error);
-    res.status(500).send("Failed to search ticker for Qoute");
+    console.log(error);
+    res.status(500).send("Failed to get IntraData");
   }
 });
-
 
 export default router;
 
