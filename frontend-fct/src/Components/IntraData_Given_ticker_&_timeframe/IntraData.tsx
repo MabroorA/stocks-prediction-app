@@ -45,34 +45,37 @@ export default function IntraData() {
   }, [searchQuery]); 
   return (
     <div className="intra-data">
-      <h1>Intraday Data</h1>
-      <div className="search-bar">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearchQueryChange}
-          placeholder="Enter ticker symbol"
-        />
-        <button onClick={handleSearchButtonClick}>Search</button>
+      <div>
+        <div className="search-bar">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchQueryChange}
+            placeholder="Enter ticker symbol"
+          />
+          <button onClick={handleSearchButtonClick}>Search</button>
+        </div>
       </div>
-      <div className="chart-container">
-        <LineChart width={800} height={400} data={intradayData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="date"
-            label={{
-              value: "Date",
-              position: "insideBottomRight",
-              offset: -10,
-            }}
-          />
-          <YAxis
-            label={{ value: "Price", angle: -90, position: "insideLeft" }}
-          />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="close" stroke="#8884d8" />
-        </LineChart>
+      <div>
+        <div className="chart-container">
+          <LineChart width={800} height={400} data={intradayData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="date"
+              label={{
+                value: "Date",
+                position: "insideBottomRight",
+                offset: -10,
+              }}
+            />
+            <YAxis
+              label={{ value: "Price", angle: -90, position: "insideLeft" }}
+            />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="close" stroke="#8884d8" />
+          </LineChart>
+        </div>
       </div>
     </div>
   );
