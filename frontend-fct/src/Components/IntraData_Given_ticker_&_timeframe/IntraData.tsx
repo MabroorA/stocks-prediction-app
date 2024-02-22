@@ -9,6 +9,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Label,
+  Legend,
 } from "recharts";
 import "./IntraData.css"
 
@@ -77,19 +79,23 @@ export default function IntraData() {
             }}
           >
             <CartesianGrid strokeDasharray="5 5" />
-            <XAxis dataKey="date" />
-            <YAxis />
+            <XAxis dataKey="date">
+              <Label value="Date" position="insideBottom" offset={0} />
+            </XAxis>
+            <YAxis>
+              <Label
+                value="Price"
+                angle={-90}
+                position="insideLeft"
+                style={{ textAnchor: "middle" }}
+              />
+            </YAxis>
             <Tooltip />
+            <Legend verticalAlign="top" height={36} />
             <Line type="monotone" dataKey="close" stroke="#8884d8" />
             <Line type="monotone" dataKey="open" stroke="#FF0000" name="Open" />
             <Line type="monotone" dataKey="low" stroke="#00FF00" name="Low" />
             <Line type="monotone" dataKey="high" stroke="#0000FF" name="High" />
-            <Line
-              type="monotone"
-              dataKey="close"
-              stroke="#8884d8"
-              name="Close"
-            />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -106,9 +112,19 @@ export default function IntraData() {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
+            <XAxis dataKey="date">
+              <Label value="Date" position="insideBottom" offset={0} />
+            </XAxis>
+            <YAxis>
+              <Label
+                value="Volume"
+                angle={-90}
+                position="insideLeft"
+                style={{ textAnchor: "middle" }}
+              />
+            </YAxis>
             <Tooltip />
+            <Legend verticalAlign="top" height={36} />
             <Area
               type="monotone"
               dataKey="volume"
