@@ -81,14 +81,36 @@ export async function News_latest() {
   }
 }
 
-// Analyse Single Stock 
-export async function Analyse_Single_Stock() {
+// Full Qoute Single Stock 
+export async function Single_Stock_Qoute(ticker: string) {
   try {
     const request = await fetch(
-      `https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+      `https://financialmodelingprep.com/api/v3/quote/${ticker}apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
     );
     if (!request.ok) {
-      throw new Error(`Failed to fetch Daily data frm FMP , Status: ${request.status}`);
+      throw new Error(
+        `Failed to fetch data for ${ticker} Qoute From FMP, Status: ${request.status}`
+      );
+    }
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching Grouped Daily data:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
+}
+//financialmodelingprep.com/api/v3/historical-chart/15min/AAPL?from=2024-02-21&to=2024-02-21&apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1
+
+// Full Qoute Single Stock
+export async function IntraDay_Given_Stock_and_Timeframe(ticker: string) {
+  try {
+    const request = await fetch(
+      `financialmodelingprep.com/api/v3/historical-chart/15min/${ticker}?from=2024-02-21&to=2024-02-21&apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+    );
+    if (!request.ok) {
+      throw new Error(
+        `Failed to fetch Daily data for ${ticker} Qoute From FMP, Status: ${request.status}`
+      );
     }
     const response = await request.json();
     return response;
