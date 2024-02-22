@@ -9,7 +9,7 @@ export default function NewsPage() {
     <>
     <NavBar/>
     <div>
-        <h1>News Page</h1>
+        <h1 className='News-title'>News Page</h1>
         <News/>
     </div>    
     </>
