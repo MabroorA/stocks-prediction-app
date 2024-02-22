@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   max-width: 800px;
-  margin: 5px auto;
+  margin: 0 auto;
 }
 
 .article-link {
@@ -26,30 +26,34 @@
 .article-image {
   width: 125px;
   height: 125px;
-  border-radius: 10%;
+  border: 1px orange solid;
   object-fit: cover;
 }
 
 .article-details {
-  padding: 20px;
+  padding: 10px;
 }
 
 .article-meta {
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
-  color: #666;
+  color: #de6e4b;
+  font-weight: bolder;
   font-size: 12px;
+
 }
 
 .article-publisher {
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: bolder;
+  color: black;
 }
 
 .article-title {
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
