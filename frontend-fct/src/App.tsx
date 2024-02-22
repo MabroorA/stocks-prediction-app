@@ -1,6 +1,7 @@
 
 import "./App.css";
 import AboutusPage from "./Pages/About-us/AboutusPage";
+import Analyse from "./Pages/Analyse/Analyse";
 import HomePage from "./Pages/Home/HomePage";
 import LoginPage from "./Pages/Login/Login";
 import NewsPage from "./Pages/News/NewsPage";
@@ -14,8 +15,8 @@ const router = createBrowserRouter(
         element:<HomePage/>
       },
       {
-        path:'/about-us',
-        element:<AboutusPage/>
+        path:'/analyse',
+        element:<Analyse/>
       },
       {
         path:'/news',

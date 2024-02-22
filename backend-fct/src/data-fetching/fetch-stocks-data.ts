@@ -11,7 +11,7 @@ export default async function daily_AvgPrice() {
 export async function Exponential_Moving_Avg() {
   const API_KEY = process.env.Poly_API_KEY;
   const request = await fetch(
-    "https://api.polygon.io/v1/indicators/ema/AAPL?timespan=day&adjusted=true&window=10&series_type=close&order=desc&limit=5000&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC"
+    "https://api.polygon.io/v1/indicators/ema/AAPL?timespan=day&adjusted=true&window=10&series_type=close&order=desc&limit=500&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC"
   );
   const response = await request.json();
   return response;
@@ -66,12 +66,30 @@ export async function News_latest() {
   try {
     const API = process.env.Poly_API_KEY;
     const request = await fetch(
-      `https://api.polygon.io/v2/reference/news?limit=10&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+      `https://api.polygon.io/v2/reference/news?limit=5&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
     );
     if (!request.ok) {
       throw new Error(
         `Failed to fetch data , Status: ${request.status}`
       );
+    }
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching Grouped Daily data:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
+}
+
+// Analyse Single Stock 
+export async function Analyse_Single_Stock() {
+  try {
+    const API = process.env.Poly_API_KEY;
+    const request = await fetch(
+      `https://api.polygon.io/v2/reference/news?limit=5&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+    );
+    if (!request.ok) {
+      throw new Error(`Failed to fetch data , Status: ${request.status}`);
     }
     const response = await request.json();
     return response;

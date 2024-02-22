@@ -1,5 +1,5 @@
 import {Router ,Request, Response} from "express";
-import { Exponential_Moving_Avg, Grouped_Daily, Search_ticker, Search_to_display_ticker } from "../src/data-fetching/fetch-stocks-data";
+import { Exponential_Moving_Avg, Grouped_Daily, News_latest, Search_ticker, Search_to_display_ticker } from "../src/data-fetching/fetch-stocks-data";
 const express = require('express')
 
 const router = Router();
@@ -90,6 +90,18 @@ try {
 }
 });
 
+// Latest News 
+router.get("/news", async (req: Request, res: Response) => {
+console.log("Getting Latest News");
+try {
+    console.log("Calling Latest News");
+    const response = await News_latest();
+    res.send(response);
+} catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to get News");
+}
+});
 
 export default router;
 

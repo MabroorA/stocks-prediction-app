@@ -3,11 +3,6 @@ import DailyView from "../../Components/DailyView/DailyView";
 import MovingAverageView from "../../Components/MovingAverageView/Moving AverageView";
 import NavBar from "../../Components/Navbar/NavBar";
 
-import Searchdisplay from "../Ticker-to-display/Searchdisplay";
-import GroupedDaily from "../../Components/GroupDaily/GroupedDaily";
-import Search_to_display from "../Ticker-to-display/Search-to-display";
-import SearchPage from "../SearchStocksPage/SearchPage";
-
 export default function HomePage() {
   return (
     <>

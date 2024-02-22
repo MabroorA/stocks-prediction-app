@@ -7,14 +7,14 @@ export default function NavBar() {
         <a className="Logo" href="/">
           Home
         </a>
-        <a href="/about-us">About Us</a>
-        <a href="/news">News</a>
+        <a href="/analyse">Analyse</a>
+        <a href="/search">Search</a>
       </div>
       <div>
-      <a href="/search">Search</a>
-      <a className="login-button" href="/account">
-        My Account
-      </a>
+        <a href="/news">News</a>
+        <a className="login-button" href="/account">
+          My Account
+        </a>
       </div>
     </nav>
   );
