@@ -20,13 +20,13 @@
 
 .article-card:hover {
   transform: scale(1.02);
-  background-color:#de6e4b ;
+  background-color:#7fd1b9 ;
 }
 
 .article-image {
   width: 125px;
   height: 125px;
-  border: 1px orange solid;
+
   object-fit: cover;
 }
 

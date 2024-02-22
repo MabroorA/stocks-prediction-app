@@ -45,25 +45,35 @@ function SearchPage() {
   };
   return (
     <>
-      <NavBar/>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchQueryChange}
-        placeholder="Enter ticker symbol"
-      />
-      <button onClick={handleSearchButtonClick}>Search</button>
-      {/* Display search results */}
-      <ul>
-        {searchResults.map((result, index) => (
-          <li key={index}>
-            <div>Ticker: {result.ticker}</div>
-            <div>Name: {result.name}</div>
-            <div>Market: {result.market}</div>
-            {/* Add more fields as needed */}
-          </li>
-        ))}
-      </ul>
+      <NavBar />
+      <div className="search-page">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchQueryChange}
+          placeholder="Enter ticker symbol"
+        />
+        <button onClick={handleSearchButtonClick}>Search</button>
+        {/* Display search results */}
+        <ul>
+          {searchResults.map((result, index) => (
+            <li key={index} className="search-result">
+              <div>Ticker: {result.ticker}</div>
+              <div>Name: {result.name}</div>
+              <div>Market: {result.market}</div>
+              <div>Locale: {result.locale}</div>
+              <div>Primary Exchange: {result.primary_exchange}</div>
+              <div>Type: {result.type}</div>
+              <div>Active: {result.active ? "Yes" : "No"}</div>
+              <div>Currency Name: {result.currency_name}</div>
+              <div>CIK: {result.cik}</div>
+              <div>Composite FIGI: {result.composite_figi}</div>
+              <div>Share Class FIGI: {result.share_class_figi}</div>
+              <div>Last Updated UTC: {result.last_updated_utc}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

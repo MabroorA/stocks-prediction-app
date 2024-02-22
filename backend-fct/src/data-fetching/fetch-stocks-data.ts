@@ -66,7 +66,7 @@ export async function News_latest() {
   try {
     const API = process.env.Poly_API_KEY;
     const request = await fetch(
-      `https://api.polygon.io/v2/reference/news?limit=5&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+      `https://api.polygon.io/v2/reference/news?limit=10&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
     );
     if (!request.ok) {
       throw new Error(
@@ -84,12 +84,11 @@ export async function News_latest() {
 // Analyse Single Stock 
 export async function Analyse_Single_Stock() {
   try {
-    const API = process.env.Poly_API_KEY;
     const request = await fetch(
-      `https://api.polygon.io/v2/reference/news?limit=5&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`
+      `https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
     );
     if (!request.ok) {
-      throw new Error(`Failed to fetch data , Status: ${request.status}`);
+      throw new Error(`Failed to fetch Daily data frm FMP , Status: ${request.status}`);
     }
     const response = await request.json();
     return response;

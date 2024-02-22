@@ -1,6 +1,6 @@
 import "./HomePage.css";
 import DailyView from "../../Components/DailyView/DailyView";
-import MovingAverageView from "../../Components/MovingAverageView/Moving AverageView";
+import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
 import NavBar from "../../Components/Navbar/NavBar";
 
 export default function HomePage() {
