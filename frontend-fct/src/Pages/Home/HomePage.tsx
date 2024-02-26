@@ -1,7 +1,7 @@
 import "./HomePage.css";
-import DailyView from "../../Components/DailyView/DailyView";
 import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
 import NavBar from "../../Components/Navbar/NavBar";
+import Top_5 from "../../Components/Top-5/Top_5";
 
 export default function HomePage() {
   return (
@@ -16,13 +16,13 @@ export default function HomePage() {
             prediction models and various other technologies, helping you make
             better decisions.
           </p>
+
           <button className="predict-button">Start Predicting</button>
         </div>
         <div className="right-container">
           <h1 className="title-stock">Grouped Daily Stock Market Data</h1>
           <div className="top-stocks">
-            {/* <SearchPage /> */}
-            <MovingAverageView/>
+            <Top_5/>
           </div>
         </div>
       </div>
@@ -52,6 +52,7 @@ export default function HomePage() {
       </div>
       <div className="Graphs-container">
         <div className="bottom-right-graph-container">
+        {/* <MovingAverageView/> */}
           <h1>text will go here</h1>
         </div>
         <div className="bottom-right-graph-container">

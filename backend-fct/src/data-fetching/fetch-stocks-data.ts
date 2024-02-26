@@ -140,3 +140,17 @@ export async function IntraDay() {
     throw error; // Re-throw the error to be handled by the caller
   }
 }
+
+// Top-5 
+export async function top5() {
+  try {
+    const request = await fetch(
+      `https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+    );
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching Grouped IntraDay data:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
+}

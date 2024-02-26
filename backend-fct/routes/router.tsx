@@ -8,6 +8,7 @@ import {
   Search_ticker,
   Search_to_display_ticker,
   Single_Stock_Qoute,
+  top5,
 } from "../src/data-fetching/fetch-stocks-data";
 const express = require('express')
 
@@ -112,6 +113,7 @@ try {
 }
 });
 
+
 // Not implemented Yet
 router.get("/qoute", async (req: Request, res: Response) => {
   try {
@@ -142,6 +144,17 @@ router.get("/intraday", async (req: Request, res: Response) => {
     console.log(error);
     res.status(500).send("Failed to get IntraData");
   }
+});
+
+router.get("/top5", async (req: Request, res: Response) => {
+  try {
+    console.log("Calling Top 5");
+    const response = await top5();
+    res.send(response);
+} catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to get News");
+}
 });
 
 export default router;
