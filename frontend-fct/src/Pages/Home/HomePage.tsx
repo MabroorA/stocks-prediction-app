@@ -20,7 +20,7 @@ export default function HomePage() {
           <button className="predict-button">Start Predicting</button>
         </div>
         <div className="right-container">
-          <h1 className="title-stock">Grouped Daily Stock Market Data</h1>
+          <h1 className="title-stock">Top 5 Gainers</h1>
           <div className="top-stocks">
             <Top_5/>
           </div>
