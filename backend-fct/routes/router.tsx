@@ -4,6 +4,7 @@ import {
   Grouped_Daily,
   IntraDay,
   IntraDay_Given_Stock_and_Timeframe,
+  Losers,
   News_latest,
   Search_ticker,
   Search_to_display_ticker,
@@ -114,6 +115,26 @@ try {
 });
 
 
+router.get("/top5", async (req: Request, res: Response) => {
+  try {
+    console.log("Calling Top 5");
+    const response = await top5();
+    res.send(response);
+} catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to get Top 5");
+}
+});
+router.get("/losers", async (req: Request, res: Response) => {
+  try {
+    console.log("Calling Biggests Losers ");
+    const response = await Losers();
+    res.send(response);
+} catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to get Losers");
+}
+});
 // Not implemented Yet
 router.get("/qoute", async (req: Request, res: Response) => {
   try {
@@ -145,17 +166,5 @@ router.get("/intraday", async (req: Request, res: Response) => {
     res.status(500).send("Failed to get IntraData");
   }
 });
-
-router.get("/top5", async (req: Request, res: Response) => {
-  try {
-    console.log("Calling Top 5");
-    const response = await top5();
-    res.send(response);
-} catch (error) {
-    console.log(error);
-    res.status(500).send("Failed to get News");
-}
-});
-
 export default router;
 

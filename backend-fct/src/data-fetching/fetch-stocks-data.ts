@@ -150,7 +150,20 @@ export async function top5() {
     const response = await request.json();
     return response;
   } catch (error) {
-    console.error("Error fetching Grouped IntraDay data:", error);
+    console.error("Error fetching Top 5 stocks data:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
+}
+// Top-5 
+export async function Losers() {
+  try {
+    const request = await fetch(
+      `https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+    );
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching biggest Losers data:", error);
     throw error; // Re-throw the error to be handled by the caller
   }
 }
