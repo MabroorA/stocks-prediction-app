@@ -1,6 +1,5 @@
 
 import "./App.css";
-import AboutusPage from "./Pages/About-us/AboutusPage";
 import Analyse from "./Pages/Analyse/Analyse";
 import HomePage from "./Pages/Home/HomePage";
 import LoginPage from "./Pages/Login/Login";

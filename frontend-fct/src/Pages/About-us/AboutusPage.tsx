@@ -1,4 +1,3 @@
-import DailyView from "../../Components/DailyView/DailyView"
 import NavBar from "../../Components/Navbar/NavBar"
 import "./AboutusPage.css"
 

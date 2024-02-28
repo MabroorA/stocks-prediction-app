@@ -1,8 +1,8 @@
 import "./HomePage.css";
-import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
 import NavBar from "../../Components/Navbar/NavBar";
-import Top_5 from "../../Components/Top-5/Top_5";
 import Bottom_5 from "../../Components/Bottom-5/Bottom_5";
+// import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
+// import Top_5 from "../../Components/Top-5/Top_5";
 
 export default function HomePage() {
   return (

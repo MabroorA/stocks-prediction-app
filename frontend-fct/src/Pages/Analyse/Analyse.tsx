@@ -1,5 +1,4 @@
 import IntraData from '../../Components/IntraData_Given_ticker_&_timeframe/IntraData';
-import IntraData_without_ticker from '../../Components/IntraData_Given_ticker_&_timeframe/Intraday_without_ticker';
 import NavBar from '../../Components/Navbar/NavBar'
 import "./Analyse.css"
 export default function Analyse() {

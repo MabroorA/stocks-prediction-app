@@ -1,5 +1,3 @@
-import MovingAverageView from "../MovingAverageView/MovingAverageView";
-
 
 
 export default function SearchStock() {
