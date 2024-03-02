@@ -1,6 +1,7 @@
 import "./HomePage.css";
 import NavBar from "../../Components/Navbar/NavBar";
 import Bottom_5 from "../../Components/Bottom-5/Bottom_5";
+import Top_5 from "../../Components/Top-5/Top_5";
 // import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
 // import Top_5 from "../../Components/Top-5/Top_5";
 
@@ -23,7 +24,7 @@ export default function HomePage() {
         <div className="right-container">
           <h1 className="title-stock">Top 5 Gainers</h1>
           <div className="top-stocks">
-            <Bottom_5/>
+            <Top_5/>
           </div>
         </div>
       </div>
@@ -53,8 +54,7 @@ export default function HomePage() {
       </div>
       <div className="Graphs-container">
         <div className="bottom-right-graph-container">
-        {/* <MovingAverageView/> */}
-          <h1>text will go here</h1>
+          <h1>Bottom 5</h1>
         </div>
         <div className="bottom-right-graph-container">
           <h1>text will go here</h1>

@@ -11,12 +11,28 @@
 .navbar a {
   text-decoration: none;
   color: black;
-  border-bottom: 2px #de6e4b solid;
+  animation: border 0.5s;
 }
+
 .navbar a:hover {
-  background-color: #7fd1b9;
-  border-radius: 24px;
+  position: relative; /* Ensure relative positioning for pseudo-element */
+  color: black;
 }
+
+.navbar a::after {
+  content: ''; /* Add pseudo-element for the bottom border */
+  position: absolute;
+  left: 0; /* Start the border from the left side */
+  bottom: -2px; /* Position it just below the text */
+  width: 0; /* Start with no border width */
+  height: 2px; /* Height of the border */
+  background-color: #de6e4b; /* Color of the border */
+  transition: width 0.7s; /* Apply transition to width property */
+}
+.navbar a:hover::after {
+  width: 100%; /* Full width on hover */
+}
+
 .login-button {
   padding: 5px;
 }
