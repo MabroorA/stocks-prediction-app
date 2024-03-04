@@ -82,11 +82,32 @@ body {
   width: 500px;
   box-shadow: 4px 4px 6px 0px #00000040;
 }
+.right-container-header{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.toggle-button {
+  background-color: #7fd1b9;
+  color: #fff;
+  border:2px white solid;
+  border-radius: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #5aa493;
+  color: black;
+  border:2px #de6e4b solid;
+}
 .title-stock {
   font-size: 20px;
   font-weight: bold;
-  padding-bottom: 0px;
-  margin-bottom: 6px;
+
 }
 
 .bottom-container {
