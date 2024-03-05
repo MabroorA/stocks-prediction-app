@@ -92,8 +92,8 @@ body {
   transition:  background-color 0.3s ease,border 0.3s ease;
 }
 .toggle-button.top-toggle {
-  background-color:  #de6e4b; 
-  box-shadow: 2px 2px #de6e4b;
+  background-color:  #f0a578; 
+  box-shadow: 2px 2px #f0a578;
 }
 
 .toggle-button.bottom-toggle {
