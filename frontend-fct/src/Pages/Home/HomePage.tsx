@@ -32,20 +32,24 @@ export default function HomePage() {
         <div className="right-container">
           <div className="right-container-header">
             <div className="toggle-button-container">
-                <button className="toggle-button" onClick={toggleSection}>
-                  {showTop5 ? "Show Bottom 5" : "Show Top 5"}
-                </button>
+              <button
+                className={`toggle-button ${
+                  showTop5 ? "top-toggle" : "bottom-toggle"
+                }`}
+                onClick={toggleSection}
+              >
+                {showTop5 ? "Show Bottom 5" : "Show Top 5"}
+              </button>
             </div>
             <div>
               <h1 className="title-stock">
                 {showTop5 ? "Top 5 Gainers" : "Bottom 5 Losers"}
               </h1>
-            </div>  
-          </div>    
+            </div>
+          </div>
           <div className="top-stocks">
             {showTop5 ? <Top_5 /> : <Bottom_5 />}
           </div>
-          
         </div>
       </div>
       <div className="bottom-container">

@@ -74,14 +74,7 @@ body {
   background: -webkit-linear-gradient(left, #7fd1b9, #de6e4b);
   border: 2px #7fd1b9 double;
 }
-/* .top-stocks {
-  background-color: lightGray;
-  border: 3px #de6e4b solid;
-  border-radius: 24px;
-  height: 365px;
-  width: 500px;
-  box-shadow: 4px 4px 6px 0px #00000040;
-} */
+
 .right-container-header{
   display: flex;
   flex-direction: row-reverse;
@@ -91,18 +84,24 @@ body {
 .toggle-button {
   background-color: #7fd1b9;
   color: #fff;
-  border:2px white solid;
+  border:1px white solid;
   border-radius: 16px;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
-  transition: border 0.3s ease;
+  transition:  background-color 0.3s ease,border 0.3s ease;
+}
+.toggle-button.top-toggle {
+  background-color:  #de6e4b; 
+  box-shadow: 2px 2px #de6e4b;
 }
 
+.toggle-button.bottom-toggle {
+  background-color:#7fd1b9;
+  box-shadow: 2px 2px #7fd1b9; 
+}
 .toggle-button:hover {
   background-color: #7fd1b9;
-  color: white;
-  border:2px #de6e4b solid;
 }
 .title-stock {
   font-size: 20px;
