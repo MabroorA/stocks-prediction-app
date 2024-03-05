@@ -89,7 +89,8 @@ body {
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
-  transition:  background-color 0.3s ease,border 0.3s ease;
+  transition:  background-color 0.3s ease,border 0.3s ease ,box-shadow 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .toggle-button.top-toggle {
   background-color:  #f0a578; 
@@ -101,7 +102,7 @@ body {
   box-shadow: 2px 2px #7fd1b9; 
 }
 .toggle-button:hover {
-  background-color: #7fd1b9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 .title-stock {
   font-size: 20px;
