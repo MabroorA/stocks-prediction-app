@@ -8,15 +8,15 @@
     color: green;
 }
   
-.stock-bar {
+.top-5-stock-bar {
     display: flex;
     align-items: center;
     padding: 10px;
-    /* border: 1px solid gray; */
+    border: 1px solid #7fd1b9;
     border-radius: 8px;
     background-color: white;
     font-weight: bolder;
-    box-shadow: 0px 0px 4px 0px #7fd1b9;
+    box-shadow: 3px 3px #7fd1b9;
 }
 .stock-change{
     font-size: large;

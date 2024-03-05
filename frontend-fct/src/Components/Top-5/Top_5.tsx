@@ -34,9 +34,11 @@ function Top_5() {
   return (
     <div className="top-5">
       {topStocks.map((stock, index) => (
-        <div key={index} className="stock-bar"> 
+        <div key={index} className="top-5-stock-bar">
           <div className="stock-name">{stock.name}</div>
-          <div className="stock-change">{stock.change.toFixed(2)} ({stock.changesPercentage.toFixed(2)}%)</div>
+          <div className="stock-change">
+            {stock.change.toFixed(2)} ({stock.changesPercentage.toFixed(2)}%)
+          </div>
         </div>
       ))}
     </div>

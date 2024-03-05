@@ -8,26 +8,23 @@
     color: red;
 }
   
-.stock-bar {
+.bottom-5-stock-bar {
     display: flex;
     align-items: center;
-    padding: 15px;
-    /* height: 30px; */
-    border: 1px solid #ccc;
+    padding: 10px;
+    border: 1px solid #de6e4b;
     border-radius: 8px;
     background-color: white;
-
-    size: xx-large;
     font-weight: bolder;
-    box-shadow: 0 4px 6px white;
+    box-shadow: 3px 3px #de6e4b;
 }
 
 .stock-name {
-flex: 1;
-padding: 0 0;
-color: black;
-font-weight: bolder;
-size: xx-large;
+    flex: 1;
+    padding: 0 0;
+    color: black;
+    font-weight: bolder;
+    size: xx-large;
 }
   
   
