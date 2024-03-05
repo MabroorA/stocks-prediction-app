@@ -100,8 +100,8 @@ body {
 }
 
 .toggle-button:hover {
-  background-color: #5aa493;
-  color: black;
+  background-color: #7fd1b9;
+  color: white;
   border:2px #de6e4b solid;
 }
 .title-stock {
