@@ -25,12 +25,13 @@
   left: 0; /* Start the border from the left side */
   bottom: -2px; /* Position it just below the text */
   width: 0; /* Start with no border width */
-  height: 2px; /* Height of the border */
+  height: 0; /* Height of the border */
   background-color: #de6e4b; /* Color of the border */
   transition: width 0.7s; /* Apply transition to width property */
 }
 .navbar a:hover::after {
   width: 100%; /* Full width on hover */
+  height: 3px; 
 }
 
 .login-button {
