@@ -9,6 +9,7 @@ export default function NavBar() {
         </a>
         <a href="/analyse">Analyse</a>
         <a href="/search">Search</a>
+        <a href="/predict">Predict</a>
       </div>
       <div>
         <a href="/news">News</a>
