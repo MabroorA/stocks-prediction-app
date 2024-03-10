@@ -78,13 +78,10 @@ export default function HomePage() {
       </div>
       <div className="Graphs-container">
         <div className="bottom-right-graph-container">
-          <h1>Bottom 5</h1>
         </div>
         <div className="bottom-right-graph-container">
-          <h1>text will go here</h1>
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }
