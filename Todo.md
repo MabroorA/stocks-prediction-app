@@ -21,13 +21,13 @@
 
 
 ### To do
-- #### Data preprocessing
-- #### Feature Engineering
-- #### Model Selection
- - Build a machine learning model (LSTM ?) 
-- #### Model Evaluation:
-- #### Deployment
-- #### login system
+-  Data preprocessing
+-  Feature Engineering
+-  Model Selection
+  - Build a machine learning model (LSTM ?) 
+-  Model Evaluation:
+-  Deployment
+-  login system
 - Simulation if possible
 
 
