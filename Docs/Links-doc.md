@@ -10,11 +10,16 @@
 
 # Machine learning 
 ### Data Collection (Currently on)
-
+- Gather historical stock data
 ### Data preprocessing
+- Clean the data by handling missing values, outliers and incosistencies.
+- convert to correct format for the machine learning model to be able to use.
+ - Normalisation or scalling?
 
 ### Feature Engineering:
-
+- extract relavent features from the raw data that might influebce stock price.
+ - technical indecators, sentiment analysis of news articles, economic indicators, etc.
+ 
 ### Model Selection:
 - current model to be used is LSTM
 
