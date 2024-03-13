@@ -1,5 +1,5 @@
 # Stocks Prediction Tool
-This project aims to develop a stocks investment decision tool through data analysis and simulation. It integrates various APIs for data collection and utilizes machine learning models for prediction. The tool provides insights into stock trends, moving averages, daily averages, news updates, top gainers, and top losers to assist investors in making informed decisions.
+This project aims to develop a stocks investment decision tool through data analysis and simulation. It integrates various APIs for data collection and utilizes machine learning models for prediction. The tool provides allows investors to generate buy / sell signals by analysing historical data and/or enabling to play what if games: what if I had invested £1000 how much I would have been well or worse off? in short, we would like to devise investment strategies and then evaluate them.
 
 ## To-Do
 Complete integration with LSTM machine learning model.
