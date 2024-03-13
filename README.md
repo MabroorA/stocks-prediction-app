@@ -15,9 +15,9 @@ To run Server
 - Run the application using npm run dev in /frontend folder
 
 ## APIs Used
-- Twelve Data API
-- Provides daily average price data for specific stocks.
-- Polygon.io API
+- [Twelve Data](https://twelvedata.com/)
+- [Polygon.io ](https://polygon.io/)
+- [financialmodelingprep.com](https://site.financialmodelingprep.com/)
 
 ### Visualization Libraries
 The project utilizes Recharts and Charts.js libraries for visualizing data, enabling users to interpret trends and patterns effectively.

@@ -6,7 +6,10 @@
 # Back-end 
 ### libraries used
 
-
+# Data APIs 
+[financialmodelingprep.com](https://site.financialmodelingprep.com/)
+[Twelve Data](https://twelvedata.com/)
+[Polygon.io ](https://polygon.io/)
 
 # Machine learning 
 ### Data Collection (Currently on)
