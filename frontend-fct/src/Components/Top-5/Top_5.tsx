@@ -37,7 +37,7 @@ function Top_5() {
         <div key={index} className="top-5-stock-bar">
           <div className="stock-name">{stock.name}</div>
           <div className="stock-change">
-            {stock.change.toFixed(2)} ({stock.changesPercentage.toFixed(2)}%)
+            {stock.change.toFixed(2)} (+{stock.changesPercentage.toFixed(2)}%)
           </div>
         </div>
       ))}
