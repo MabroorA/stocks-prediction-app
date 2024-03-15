@@ -14,6 +14,10 @@
 # Machine learning 
 ### Data Collection (Currently on)
 - Gather historical stock data
+ - What intervals should be used for the historical data that is the best for prediction?
+  - (Daily intervals) Provides a good balance between granualrity and efficieny
+   - daily api point "https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1"
+  - (monthly intervals) used for long term investments
 ### Data preprocessing
 - Clean the data by handling missing values, outliers and incosistencies.
 - convert to correct format for the machine learning model to be able to use.
