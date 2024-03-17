@@ -3,6 +3,7 @@ import NavBar from "../../Components/Navbar/NavBar";
 import Bottom_5 from "../../Components/Bottom-5/Bottom_5";
 import Top_5 from "../../Components/Top-5/Top_5";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
 // import Top_5 from "../../Components/Top-5/Top_5";
 
@@ -13,7 +14,6 @@ export default function HomePage() {
   const toggleSection = () => {
     setShowTop5(!showTop5);
   };
-  
   return (
     <>
       <NavBar />
@@ -27,7 +27,9 @@ export default function HomePage() {
             better decisions.
           </p>
 
-          <button className="predict-button">Start Predicting</button>
+          <button className="predict-button" >
+            <Link to="/predict">Start Predicting</Link>
+          </button>
         </div>
         <div className="right-container">
           <div className="right-container-header">
@@ -77,10 +79,8 @@ export default function HomePage() {
         </div>
       </div>
       <div className="Graphs-container">
-        <div className="bottom-right-graph-container">
-        </div>
-        <div className="bottom-right-graph-container">
-        </div>
+        <div className="bottom-right-graph-container"></div>
+        <div className="bottom-right-graph-container"></div>
       </div>
     </>
   );
