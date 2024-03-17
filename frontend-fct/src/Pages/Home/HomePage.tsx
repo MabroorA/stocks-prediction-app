@@ -27,9 +27,9 @@ export default function HomePage() {
             better decisions.
           </p>
 
-          <button className="predict-button" >
-            <Link to="/predict">Start Predicting</Link>
-          </button>
+          <Link to="/predict" className="predict-button">
+            Start Predicting
+          </Link>
         </div>
         <div className="right-container">
           <div className="right-container-header">
