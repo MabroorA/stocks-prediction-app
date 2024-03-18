@@ -167,3 +167,22 @@ export async function Losers() {
     throw error; // Re-throw the error to be handled by the caller
   }
 }
+
+// Full historical daily data (to be implemented)
+export async function Historical_Daily_By_Ticker(ticker: string) {
+  try {
+    const request = await fetch(
+      `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+    );
+    if (!request.ok) {
+      throw new Error(
+        `Failed to fetch data for ${ticker} Qoute From FMP, Status: ${request.status}`
+      );
+    }
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching Grouped Daily data:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
+}
