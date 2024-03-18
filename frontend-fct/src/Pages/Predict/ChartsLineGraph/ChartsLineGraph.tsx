@@ -1,6 +1,8 @@
-import { useState } from "react";
-// import { Line } from "react-chartjs-2";
-// import { getAquisitionsByYear } from "./api";
+import { useEffect, useState } from "react";
+import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, 
+Legend, Filler} from "chart.js"
+import { Line } from "react-chartjs-2";
+
 
 interface TickerHistoricalData {
   date: string;
@@ -18,16 +20,29 @@ interface TickerHistoricalData {
   changeOverTime: number;
 }
 
+ChartJS.register(
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+)
+
 export default function ChartsLineGraph() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<TickerHistoricalData[]>(
     []
   );
+
+  const [chartData, setChartData] = useState<any>({});
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
-
 
   // performing ticker search
   const searchTicker = async () => {
@@ -38,14 +53,38 @@ export default function ChartsLineGraph() {
       const data = await response.json();
       setSearchResults(data.historical.slice(0, 5).reverse());
       console.log(data);
+      setChartData({
+        labels: data.historical.map(
+          (result: TickerHistoricalData) => result.date
+        ),
+        datasets: [
+          {
+            label: "high",
+            data: data.historical.map(
+              (result: TickerHistoricalData) => result.high
+            ),
+            borderColor: "rgba(75,192,192,1)",
+            borderWidth: 1,
+          },
+        ],
+      });
     } catch (error) {
       console.error("Error searching ticker:", error);
     }
+
+    // setting chart data
   };
+
   // on search button click
   const handleSearchButtonClick = () => {
     searchTicker();
   };
+
+  useEffect(() => {
+    if (searchQuery !== "") {
+      searchTicker();
+    }
+  }, [searchQuery]);
 
   return (
     <>
@@ -59,48 +98,31 @@ export default function ChartsLineGraph() {
         <button onClick={handleSearchButtonClick}>Search</button>
       </div>
       <div className="search-result">
-        <h3>Last 5 Days Historical Data</h3>
-        <ul>
-          {searchResults.map((result, index) => (
-            <li key={index} className="search-result">
-              <div>Date: {result.date}</div>
-              <div>Open: {result.open}</div>
-              <div>High: {result.high}</div>
-              <div>Low: {result.low}</div>
-              <div>Close: {result.close}</div>
-              <div>Adj Close: {result.adjClose}</div>
-              <div>Volume: {result.volume}</div>
-              <div>Unadjusted Volume: {result.unadjustedVolume}</div>
-              <div>Change: {result.change}</div>
-              <div>Change Percent: {result.changePercent}</div>
-              <div>VWAP: {result.vwap}</div>
-              <div>Label: {result.label}</div>
-              <div>Change Over Time: {result.changeOverTime}</div>
-            </li>
-          ))}
-        </ul>
+        {searchResults.length > 0 && (
+          <div className="search-result">
+            <h3 style= {{color:"Green"}}>{searchQuery}'s Historical Data in the Last 5 Days</h3>
+            <Line
+              data={chartData }
+              options={{
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "Date",
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: "High Value",
+                    },
+                  },
+                },
+              }}
+            />
+          </div>
+        )}
       </div>
-      {/* <Line
-            data={chartData}
-            options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                title: {
-                    display: true,
-                    text: "Year",
-                },
-                },
-                y: {
-                title: {
-                    display: true,
-                    text: "Number of Artworks",
-                },
-                },
-            },
-            }}
-        /> */}
     </>
   );
 }
