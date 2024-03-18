@@ -168,7 +168,7 @@ export async function Losers() {
   }
 }
 
-// Full historical daily data (to be implemented)
+// Full historical daily data 
 export async function Historical_Daily_By_Ticker(ticker: string) {
   try {
     const request = await fetch(
