@@ -66,6 +66,14 @@ export default function ChartsLineGraph() {
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 1,
           },
+          {
+            label: "low",
+            data: data.historical.map(
+              (result: TickerHistoricalData) => result.low
+            ),
+            borderColor: "red",
+            borderWidth: 1,
+          },
         ],
       });
     } catch (error) {
