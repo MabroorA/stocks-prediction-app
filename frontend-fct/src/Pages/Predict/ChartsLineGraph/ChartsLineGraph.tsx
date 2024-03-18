@@ -51,7 +51,7 @@ export default function ChartsLineGraph() {
         `http://localhost:3000/daily-historical?ticker=${searchQuery}`
       );
       const data = await response.json();
-      setSearchResults(data.historical.slice(0, 5).reverse());
+      setSearchResults(data.historical.reverse());
       console.log(data);
       setChartData({
         labels: data.historical.map(
@@ -100,7 +100,7 @@ export default function ChartsLineGraph() {
       <div className="search-result">
         {searchResults.length > 0 && (
           <div className="search-result">
-            <h3 style= {{color:"Green"}}>{searchQuery}'s Historical Data in the Last 5 Days</h3>
+            <h3 style= {{color:"lightcoral",fontSize:"20px", display:"flex", flexDirection:"row", justifyContent:"center" }}>{searchQuery}'s Historical Data of 5 years </h3>
             <Line
               data={chartData }
               options={{
@@ -114,7 +114,7 @@ export default function ChartsLineGraph() {
                   y: {
                     title: {
                       display: true,
-                      text: "High Value",
+                      text: "Daily High",
                     },
                   },
                 },
