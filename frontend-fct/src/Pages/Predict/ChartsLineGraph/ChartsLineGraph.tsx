@@ -79,6 +79,17 @@ export default function ChartsLineGraph() {
   const handleSearchButtonClick = () => {
     searchTicker();
   };
+  const downloadData = () => {
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      searchResults.map((row) => Object.values(row).join(",")).join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "chart_data.csv");
+    document.body.appendChild(link);
+    link.click();
+  };
 
   useEffect(() => {
     if (searchQuery !== "") {
@@ -100,9 +111,19 @@ export default function ChartsLineGraph() {
       <div className="search-result">
         {searchResults.length > 0 && (
           <div className="search-result">
-            <h3 style= {{color:"lightcoral",fontSize:"20px", display:"flex", flexDirection:"row", justifyContent:"center" }}>{searchQuery}'s Historical Data of 5 years </h3>
+            <h3
+              style={{
+                color: "lightcoral",
+                fontSize: "20px",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              {searchQuery}'s Historical Data of 5 years{" "}
+            </h3>
             <Line
-              data={chartData }
+              data={chartData}
               options={{
                 scales: {
                   x: {
@@ -120,6 +141,7 @@ export default function ChartsLineGraph() {
                 },
               }}
             />
+            <button onClick={downloadData}>Download Chart</button>
           </div>
         )}
       </div>
