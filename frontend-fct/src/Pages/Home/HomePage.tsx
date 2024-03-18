@@ -5,7 +5,7 @@ import Top_5 from "../../Components/Top-5/Top_5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 // import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
-// import Top_5 from "../../Components/Top-5/Top_5";
+
 
 export default function HomePage() {
 

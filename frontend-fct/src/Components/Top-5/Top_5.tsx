@@ -18,9 +18,10 @@ function Top_5() {
 
   const fetchTopStocks = async () => {
     try {
-      const response = await fetch("http://localhost:3000/top5"); // Assuming "/top5" is the correct backend endpoint
+      const response = await fetch("http://localhost:3000/top5"); 
       const data = await response.json();
       setTopStocks(data); // Set top stocks data
+
       // Sort the data based on changesPercentage in descending order
       data.sort((a: Stock, b: Stock) => b.changesPercentage - a.changesPercentage);
       // Take the top 5 stocks

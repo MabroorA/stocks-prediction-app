@@ -1,4 +1,5 @@
 import NavBar from '../../Components/Navbar/NavBar'
+import ChartsLineGraph from './ChartsLineGraph/ChartsLineGraph'
 import "./Predict.css"
 
 
@@ -8,6 +9,7 @@ export default function PredictPage() {
     <NavBar/>
     <div>
         <h1 className='predict-title'>Predict Page</h1>
+        <ChartsLineGraph/>
     </div>    
     </>
   )
