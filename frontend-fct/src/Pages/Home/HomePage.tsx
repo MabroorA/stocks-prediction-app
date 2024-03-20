@@ -4,6 +4,7 @@ import Bottom_5 from "../../Components/Bottom-5/Bottom_5";
 import Top_5 from "../../Components/Top-5/Top_5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ChartsLineGraph from "../Predict/ChartsLineGraph/ChartsLineGraph";
 // import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
 
 
@@ -55,7 +56,8 @@ export default function HomePage() {
         </div>
       </div>
       <div className="bottom-container">
-        <div className="bottom-left-text-container">
+        <ChartsLineGraph/>
+        {/* <div className="bottom-left-text-container">
           <h1 className="text-titles">Why Choose Us?</h1>
           <div className="text-lists">
             <li>Proven track record of accurate predictions</li>
@@ -66,8 +68,8 @@ export default function HomePage() {
             </li>
             <li>Responsive and dedicated customer support </li>
           </div>
-        </div>
-        <div className="bottom-right-text-container">
+        </div> */}
+        {/* <div className="bottom-right-text-container">
           <h1 className="text-titles">Informed Decision-Making</h1>
           <div className="text-lists">
             <li>Access to detailed market insights and trends</li>
@@ -76,7 +78,7 @@ export default function HomePage() {
             <li>Real-time updates on market news and events </li>
             <li>Customizable alerts for timely decision-making</li>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="Graphs-container">
         <div className="bottom-right-graph-container"></div>

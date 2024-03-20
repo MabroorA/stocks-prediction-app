@@ -149,9 +149,11 @@ export default function ChartsLineGraph() {
                 },
               }}
             />
+            
             <button onClick={() => downloadData(searchQuery)}>
               Download Raw Chart
             </button>
+            
           </div>
         )}
       </div>
