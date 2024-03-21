@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, 
 Legend, Filler} from "chart.js"
 import { Line } from "react-chartjs-2";
+import "./ChartsLineGraph.css"
 
 
 interface TickerHistoricalData {
@@ -107,55 +108,56 @@ export default function ChartsLineGraph() {
 
   return (
     <>
-      <div className="search-box">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearchQueryChange}
-          placeholder="Enter Ticker To Predict"
-        />
-        <button onClick={handleSearchButtonClick}>Search</button>
-      </div>
-      <div className="search-result">
-        {searchResults.length > 0 && (
-          <div className="search-result">
-            <h3
-              style={{
-                color: "lightcoral",
-                fontSize: "20px",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-              }}
-            >
-              {searchQuery}'s Historical Data of 5 years{" "}
-            </h3>
-            <Line
-              data={chartData}
-              options={{
-                scales: {
-                  x: {
-                    title: {
-                      display: true,
-                      text: "Date",
+      <div className="line-graph">
+        <div className="search">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchQueryChange}
+            placeholder="Enter Ticker To Predict"
+          />
+          {/* <button className="search-button" onClick={handleSearchButtonClick}>Search</button> */}
+        </div>
+        <div className="search-line-graph-result">
+          {searchResults.length > 0 && (
+            <div className="search-result">
+              <h3
+                style={{
+                  color: "lightcoral",
+                  fontSize: "20px",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+              >
+                {searchQuery}'s Historical Data of 5 years{" "}
+              </h3>
+              <Line
+                data={chartData}
+                options={{
+                  scales: {
+                    x: {
+                      title: {
+                        display: true,
+                        text: "Date",
+                      },
+                    },
+                    y: {
+                      title: {
+                        display: true,
+                        text: "Daily High",
+                      },
                     },
                   },
-                  y: {
-                    title: {
-                      display: true,
-                      text: "Daily High",
-                    },
-                  },
-                },
-              }}
-            />
-            
-            <button onClick={() => downloadData(searchQuery)}>
-              Download Raw Chart
-            </button>
-            
-          </div>
-        )}
+                }}
+              />
+
+              <button onClick={() => downloadData(searchQuery)}>
+                Download Raw Chart
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
