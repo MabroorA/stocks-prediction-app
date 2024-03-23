@@ -88,14 +88,17 @@ export default function ChartsLineGraph() {
   const handleSearchButtonClick = () => {
     searchTicker();
   };
-  const downloadData = (ticker: string) => {
+  const downloadData = () => {
+    const columnNames = Object.keys(searchResults[0]); // Extract column names from the first row
     const csvContent =
       "data:text/csv;charset=utf-8," +
+      columnNames.join(",") + "\n" +
       searchResults.map((row) => Object.values(row).join(",")).join("\n");
+
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `${ticker}_5_year_data.csv`);
+    link.setAttribute("download", `${searchQuery}_5_year_data.csv`);
     document.body.appendChild(link);
     link.click();
   };
@@ -152,7 +155,7 @@ export default function ChartsLineGraph() {
                 }}
               />
 
-              <button onClick={() => downloadData(searchQuery)}>
+              <button onClick={ downloadData}>
                 Download Raw Chart
               </button>
             </div>
