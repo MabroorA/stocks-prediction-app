@@ -38,11 +38,13 @@ export default function ChartsLineGraph() {
   const [searchResults, setSearchResults] = useState<TickerHistoricalData[]>(
     []
   );
-
   const [chartData, setChartData] = useState<any>({});
+  const [searchButtonClicked, setSearchButtonClicked] = useState<boolean>(false); // Track if search button is clicked
+
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
+    setSearchResults([]); // Reset searchResults when search query changes
   };
 
   // performing ticker search
@@ -53,39 +55,33 @@ export default function ChartsLineGraph() {
       );
       const data = await response.json();
       setSearchResults(data.historical.reverse());
-      console.log(data);
       setChartData({
-        labels: data.historical.map(
-          (result: TickerHistoricalData) => result.date
-        ),
+        labels: data.historical.map((result: TickerHistoricalData) => result.date),
         datasets: [
           {
             label: "high",
-            data: data.historical.map(
-              (result: TickerHistoricalData) => result.high
-            ),
+            data: data.historical.map((result: TickerHistoricalData) => result.high),
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 1,
           },
           {
             label: "low",
-            data: data.historical.map(
-              (result: TickerHistoricalData) => result.low
-            ),
+            data: data.historical.map((result: TickerHistoricalData) => result.low),
             borderColor: "red",
             borderWidth: 1,
           },
         ],
       });
+      console.log(data);
     } catch (error) {
       console.error("Error searching ticker:", error);
     }
 
-    // setting chart data
   };
 
   // on search button click
   const handleSearchButtonClick = () => {
+    setSearchButtonClicked(true);
     searchTicker();
   };
   const downloadData = () => {
@@ -103,11 +99,7 @@ export default function ChartsLineGraph() {
     link.click();
   };
 
-  useEffect(() => {
-    if (searchQuery !== "") {
-      searchTicker();
-    }
-  }, [searchQuery]);
+
 
   return (
     <>
@@ -119,45 +111,49 @@ export default function ChartsLineGraph() {
             onChange={handleSearchQueryChange}
             placeholder="Enter Ticker To Predict"
           />
-          {/* <button className="search-button" onClick={handleSearchButtonClick}>Search</button> */}
+          <button className="search-button" onClick={handleSearchButtonClick}>Search</button>
         </div>
         <div className="search-line-graph-result">
-          {searchResults.length > 0 && (
+          {searchButtonClicked && (
             <div className="search-result">
-              <h3
-                style={{
-                  color: "lightcoral",
-                  fontSize: "20px",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                }}
-              >
-                {searchQuery}'s Historical Data of 5 years{" "}
-              </h3>
-              <Line
-                data={chartData}
-                options={{
-                  scales: {
-                    x: {
-                      title: {
-                        display: true,
-                        text: "Date",
+              {chartData.labels && (
+                <>
+                  <h3
+                    style={{
+                      color: "lightcoral",
+                      fontSize: "20px",
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {searchQuery}'s Historical Data of 5 years{" "}
+                  </h3>
+                  <Line
+                    data={chartData}
+                    options={{
+                      scales: {
+                        x: {
+                          title: {
+                            display: true,
+                            text: "Date",
+                          },
+                        },
+                        y: {
+                          title: {
+                            display: true,
+                            text: "Daily High",
+                          },
+                        },
                       },
-                    },
-                    y: {
-                      title: {
-                        display: true,
-                        text: "Daily High",
-                      },
-                    },
-                  },
-                }}
-              />
+                    }}
+                  />
 
-              <button onClick={ downloadData}>
-                Download Raw Chart
-              </button>
+                  <button onClick={downloadData}>
+                    Download Raw Chart
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>
