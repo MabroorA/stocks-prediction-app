@@ -154,7 +154,7 @@ export async function top5() {
     throw error; // Re-throw the error to be handled by the caller
   }
 }
-// Top-5 
+// Bottom-5 
 export async function Losers() {
   try {
     const request = await fetch(
@@ -168,7 +168,7 @@ export async function Losers() {
   }
 }
 
-// Full historical daily data 
+// Full historical daily data for last 5 years
 export async function Historical_Daily_By_Ticker(ticker: string) {
   try {
     const request = await fetch(
