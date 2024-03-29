@@ -11,6 +11,12 @@
 [Twelve Data](https://twelvedata.com/)
 [Polygon.io ](https://polygon.io/)
 
+# Integrating Frontend to Machine learning
+- The live data from frontend which has been loaded by the users ticker input should be the data used for the dataset of the machine learning model
+- This should dynamically change everytime a user wants to predict a stocks price as they might want to predict different stocks price.
+
+
+
 # Machine learning 
 ### Data Collection (Currently on)
 - Gather historical stock data (Done)
