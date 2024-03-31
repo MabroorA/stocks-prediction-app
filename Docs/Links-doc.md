@@ -18,23 +18,23 @@
 
 
 # Machine learning 
-### Data Collection (Currently on)
+### Data Collection 
 - Gather historical stock data (Done)
  - What intervals should be used for the historical data that is the best for prediction?(Daily used)
   - (Daily intervals) Provides a good balance between granualrity and efficieny
    - daily api point "https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1"
   - (monthly intervals) used for long term investments
 - Data should be able to be downloaded for selected stock (Done)
-### Data preprocessing
+### Data preprocessing (Currently on)
 - Clean the data by handling missing values, outliers and incosistencies.
 - convert to correct format for the machine learning model to be able to use.
- - Normalisation or scalling?
+ - Normalisation or scalling? 
 
 ### Feature Engineering:
 - extract relavent features from the raw data that might influebce stock price.
  - technical indecators, sentiment analysis of news articles, economic indicators, etc.
  
-### Model Selection:
+### Model Selection: 
 - current model to be used is LSTM
 
 ### Model Evaluation:
