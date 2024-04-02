@@ -39,7 +39,8 @@ To run Server
 
 ### Visualization Libraries
 The project utilizes Recharts and Charts.js libraries for visualizing data, enabling users to interpret trends and patterns effectively.
-
+- [Recharts](https://recharts.org/en-US/)
+- [Charts.js](https://www.chartjs.org/)
 
 
 
