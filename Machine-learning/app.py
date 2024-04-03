@@ -1,6 +1,6 @@
 from flask import Flask,request, render_template, jsonify
 
-
+from ml_model import predict
 
 
 application = Flask(__name__)
@@ -12,12 +12,15 @@ app=application
 def index():
     return render_template("index.html")
 
-# @app.route('/predict', methods=['GET','POST'])
-# def predict():
-#     data = request.get_json()
-#     ticker = data['ticker']
-#     prediction = ml_model.predict(ticker)
-#     return jsonify({'prediction': prediction})
-
+@app.route('/predict', methods=['POST'])
+def get_prediction():
+    # Get ticker data from the request sent by the frontend
+    ticker_data = request.json['ticker_data']
+    
+    # Call the predict function from ml_model.py to make predictions
+    prediction = predict(ticker_data)
+    
+    # Return the prediction in JSON format
+    return prediction
 if __name__=="__main__":
     app.run(host="0.0.0.0",debug=True)
