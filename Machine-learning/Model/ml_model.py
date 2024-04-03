@@ -1,10 +1,9 @@
+from flask.json import jsonify
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 
-
-app = Flask(__name__)
 
 
 # Define the model architecture
@@ -42,16 +41,23 @@ def create_dataset(dataset, time_step=1):
         dataY.append(dataset[i + time_step, 0])
     return np.array(dataX), np.array(dataY)
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    # data = request.get_json()
-    # input_data = preprocess_data(data['input_data'])
-    # input_data = input_data.reshape(1, -1, 1)  # Reshape data for LSTM model
-    # # For now, return a random prediction
-    # prediction = np.random.rand()
-    # return jsonify({'prediction': prediction})
-    prediction = np.random.rand()
-    return prediction
+def predict(ticker_data):
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+    ## preprocess
+    processed_data = preprocess_data(ticker_data)
+
+    # dataset creation
+    time_step = 100
+    X, y = create_dataset(processed_data, time_step)
+
+    # reshape for lstm
+    X = X.reshape((X.shape[0], X.shape[1], 1))
+    
+    model = define_model()
+
+    input_data = preprocess_data(data['input_data'])
+    input_data = input_data.reshape(1, -1, 1)  # Reshape data for LSTM model
+    # For now, return a random prediction
+    prediction = np.random.rand()  
+    # For now, return a random prediction
+    return jsonify({'prediction': prediction})
