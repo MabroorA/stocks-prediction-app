@@ -17,9 +17,10 @@ def index():
 def test_ticker_data():
     # Get ticker data from the request sent by the frontend
     ticker_data = request.json['ticker_data']
-    print("Received ticker data in test route:", ticker_data)
+    print("Received ticker data in test route:")
     # Send a response back to the frontend indicating success
     return jsonify({"message": "Data received successfully"})
+
 
 # @app.route('/predict', methods=['POST'])
 # def get_prediction():
