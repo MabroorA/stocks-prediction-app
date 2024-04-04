@@ -12,6 +12,7 @@ import {
   Single_Stock_Qoute,
   top5,
 } from "../src/data-fetching/fetch-stocks-data";
+
 const express = require('express')
 
 const router = Router();
@@ -151,6 +152,29 @@ router.get("/daily-historical", async (req: Request, res: Response) => {
     res.status(500).send("Failed to get daily historical");
   }
 });
+
+router.post("/send-data-to-flask", async (req: Request, res: Response) => {
+  try {
+    const data = req.body; // Get the data from the request body
+    // Send the data to Flask backend using an HTTP request
+    const flaskResponse = await fetch("http://192.168.0.17:5000/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ticker_data: data }), // Send the fetched data to Flask
+    });
+    const prediction = await flaskResponse.json(); // Get the prediction from Flask response
+    res.json(prediction); // Send the prediction back to the client
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Failed to send data to Flask backend");
+  }
+});
+
+
+
+
 
 // Not implemented Yet
 router.get("/qoute", async (req: Request, res: Response) => {
