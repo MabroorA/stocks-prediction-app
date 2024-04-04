@@ -72,13 +72,33 @@ export default function ChartsLineGraph() {
           },
         ],
       });
+
       console.log(data);
+      await sendDataToFlask(data);
     } catch (error) {
       console.error("Error searching ticker:", error);
     }
-
   };
 
+  // sending data to flask after recieveing from node
+  const sendDataToFlask = async (data: TickerHistoricalData[]) => {
+    try {
+      const response = await fetch(
+        "http://192.168.0.17:5000/test-ticker-data",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ticker_data: data }),
+        }
+      );
+      const responseData = await response.json();
+      console.log("Response from Flask:", responseData);
+    } catch (error) {
+      console.error("Error sending data to Flask:", error);
+    }
+  };
   // on search button click
   const handleSearchButtonClick = () => {
     setSearchButtonClicked(true);
