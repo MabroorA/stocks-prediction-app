@@ -1,6 +1,27 @@
 # Stocks Prediction Tool
 This project aims to develop a stocks investment decision tool through data analysis and simulation. It integrates various APIs for data collection and utilizes machine learning models for prediction. The tool provides allows investors to generate buy / sell signals by analysing historical data and/or enabling to play what if games: what if I had invested £1000 how much I would have been well or worse off? in short, we would like to devise investment strategies and then evaluate them.
+
 <details>
+<summary>Tech Stack</summary>
+  
+## Languages
+- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="TypeScript Logo" width="20" height="20"> TypeScript
+- <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo" width="20" height="20"> Python
+
+
+## **Front End**
+- React (Typescript)
+
+## **Back End**
+- Node.js (Typescript)
+
+## To Transfer API data from **frontend** to **Machine learning model**
+- Flask (Python) was used to receive data from React 
+
+</details>
+
+<details>
+
 <summary>Current Kanban board</summary>
 
 ![image](https://github.com/MabroorA/Stocks-Prediction-App/assets/109113298/7df090e5-763e-424d-ad74-eb60def700a8)
@@ -27,11 +48,6 @@ Currently, the project is in the process of integrating the fetched data into a 
 
 ![image](https://github.com/MabroorA/Stocks-Prediction-App/assets/109113298/24f86da0-dbb7-4a64-b88b-96c11c141e09)
 
-
-## To-Do
-Complete integration with LSTM machine learning model.
-Enhance visualization capabilities for better data interpretation.
-Implement additional features for stock analysis.
 
 ## Installation
 - Clone the repository.
