@@ -2,7 +2,7 @@
 This project aims to develop a stocks investment decision tool through data analysis and simulation. It integrates various APIs for data collection and utilizes machine learning models for prediction. The tool provides allows investors to generate buy / sell signals by analysing historical data and/or enabling to play what if games: what if I had invested £1000 how much I would have been well or worse off? in short, we would like to devise investment strategies and then evaluate them.
 
 <details>
-<summary>Tech Stack & Libraries used</summary>
+<summary> <strong>Tech Stack & Libraries used <strong></summary>
   
 ## Languages
 - <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="TypeScript Logo" width="20" height="20"> TypeScript
@@ -33,7 +33,7 @@ The project utilizes Recharts and Charts.js libraries for visualizing data, enab
 
 <details>
 
-<summary>Current Kanban board</summary>
+<summary> <strong>Current Kanban Board <strong></summary>
 
 ![image](https://github.com/MabroorA/Stocks-Prediction-App/assets/109113298/7df090e5-763e-424d-ad74-eb60def700a8)
 
