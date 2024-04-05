@@ -27,7 +27,7 @@ def test_ticker_data():
         ticker_data = request.json['ticker_data']
         print("Received TICKER DATA in test route:")
         
-        # Send a response back to the frontend indicating success
+        # Send a response back to the frontend 
         return jsonify({"message": "Data received successfully"})
     
 # getting data after recieved from frontend
