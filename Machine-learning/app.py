@@ -32,15 +32,17 @@ def test_ticker_data():
         # Send a response back to the frontend indicating success
         return jsonify({"message": "Data received successfully"})
     
-    elif request.method == 'GET':
+# getting data after recieved from frontend
+@app.route('/get-ticker-data', methods=['GET'])
+def get_ticker_data():
+    global ticker_data
+    if ticker_data is not None:
+        
 
-        # Return the ticker data as JSON 
-        if ticker_data is not None:
-            return jsonify(ticker_data)
-        else:
-            # If ticker_data is None, return an appropriate message
-            return jsonify({"message": "No data received yet"})
-    
+        return jsonify(ticker_data)
+    else:
+        # If ticker_data is Nonn
+        return jsonify({"message": "No data received yet"})    
     
 
 
