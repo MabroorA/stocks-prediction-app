@@ -9,13 +9,11 @@ app=application
 CORS(app)
 
 
-
 ticker_data = None
 
 @app.route('/')
 def index():
     return "hello"
-
 
 
 @app.route('/test-ticker-data', methods=['GET','POST'])
@@ -44,19 +42,6 @@ def get_ticker_data():
         # If ticker_data is Nonn
         return jsonify({"message": "No data received yet"})    
     
-
-
-
-# @app.route('/predict', methods=['POST'])
-# def get_prediction():
-#     # Get ticker data from the request sent by the frontend
-#     ticker_data = request.json['ticker_data']
-#     print("Received ticker data:", ticker_data)
-#     # Call the predict function from ml_model.py to make predictions
-#     prediction = predict(ticker_data)
-    
-#     # Return the prediction in JSON format
-#     return prediction
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",debug=True)
