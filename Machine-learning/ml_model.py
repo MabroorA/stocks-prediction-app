@@ -31,7 +31,7 @@ def preprocess_data(data):
     scaler = MinMaxScaler(feature_range=(0, 1))
     data_scaled = scaler.fit_transform(np.array(data).reshape(-1, 1))
 
-    return data_scaled
+    return data_scaled,scaler
 
 
 # dataset creation
@@ -46,7 +46,7 @@ def create_dataset(dataset, time_step=1):
 def predict(ticker_data):
 
     ## preprocess
-    processed_data = preprocess_data(ticker_data)
+    processed_data, scaler  = preprocess_data(ticker_data)
 
     # dataset creation
     time_step = 100
@@ -60,8 +60,24 @@ def predict(ticker_data):
     prediction = model.predict(X)
 
     # return as a list it doesnt need to be json format
+    # turn result into original scale
+    prediction_original_scale = inverse_transform_predictions(prediction, scaler)
+    return prediction_original_scale
 
-    return prediction.tolist()
+# function to turn data to its original form
+def inverse_transform_predictions(predictions, scaler ):
+
+    # Ensure predictions is a numpy array
+    predictions = np.array(predictions)
+
+    # Reshape predictions if it's a 1D array
+    if predictions.ndim == 1:
+        predictions = predictions.reshape(-1, 1)
+
+    # Inverse transform the predictions
+    predictions_original_scale = scaler.inverse_transform(predictions)
+
+    return predictions_original_scale.tolist()
 
 def test_function(ticker_data):
     return "TEST FUNCTION WORKING"
