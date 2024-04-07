@@ -35,3 +35,7 @@
     background-color: #de6e4b;
     font-size: x-larger;
 }
+.prediction-response{
+    max-height: 200px;
+    overflow-y: scroll;
+}

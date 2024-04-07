@@ -186,7 +186,7 @@ export default function ChartsLineGraph() {
                       Predict {searchQuery.toUpperCase()} Future Price
                     </button>
                   </div>
-                  {/* Render the prediction response */}
+                  {/*  prediction response */}
                   {predictionResponse && (
                     <div className="prediction-response">
                       <h3>Prediction Response:</h3>
