@@ -55,9 +55,6 @@ def predict(ticker_data):
     
     model = define_model()
 
-    input_data = preprocess_data(data['input_data'])
-    input_data = input_data.reshape(1, -1, 1)  # Reshape data for LSTM model
+    prediction = model.predict(X)  
     # For now, return a random prediction
-    prediction = np.random.rand()  
-    # For now, return a random prediction
-    return jsonify({'prediction': prediction})
+    return prediction.tolist() # turn predictions to list and return as json

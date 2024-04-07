@@ -35,12 +35,21 @@ def test_ticker_data():
 def get_ticker_data():
     global ticker_data
     if ticker_data is not None:
-        
-
         return jsonify(ticker_data)
     else:
         # If ticker_data is Nonn
         return jsonify({"message": "No data received yet"})    
+    
+@app.route('/predict', methods=['POST','GET'])
+def get_prediction():
+    global ticker_data
+    if ticker_data is not None:
+        prediction = predict(ticker_data)
+        return jsonify({"prediction": prediction})
+    else:
+        return jsonify({"error": "No ticker data received yet"})
+       
+
     
 
 if __name__=="__main__":
