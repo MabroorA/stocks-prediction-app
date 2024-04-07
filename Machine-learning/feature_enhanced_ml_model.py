@@ -26,7 +26,7 @@ def preprocess_data(data):
         df['date'] = pd.to_datetime(df['date'])
         df.set_index('date', inplace=True)
         
-        # Select only 'close' column for prediction
+        # Select 1 feature  'close' column for prediction
         df = df[['close']]
         
         # Scale the data
@@ -45,6 +45,7 @@ def create_dataset(dataset, time_step=1):
         dataX.append(a)
         dataY.append(dataset[i + time_step, 0])
     return np.array(dataX), np.array(dataY)
+
 
 def predict(ticker_data):
     try:
@@ -68,29 +69,39 @@ def inverse_transform_predictions(predictions, scaler):
     if predictions.ndim == 1:
         predictions = predictions.reshape(-1, 1)
     predictions_original_scale = scaler.inverse_transform(predictions)
-    return predictions_original_scale.tolist()
+    return predictions_original_scale
 
-def test_model(csv_file_path):
+## predict with correct output
+def predict_with_date_and_column(ticker_data):
     try:
-        # Read the CSV file
-        df = pd.read_csv(csv_file_path)
+        processed_data, scaler = preprocess_data(ticker_data)
 
-        # Convert 'date' column to datetime
-        df['date'] = pd.to_datetime(df['date'])
+        time_step = 100
+        X, y = create_dataset(processed_data, time_step)
 
-        # Sort dataframe by date
-        df = df.sort_values(by='date')
+        X = X.reshape((X.shape[0], X.shape[1], 1))
+        
+        prediction = model.predict(X)
 
-        # Extract 'date' and 'close' columns
-        ticker_data = df[['date', 'close']].to_dict('records')
+        prediction_original_scale = inverse_transform_predictions(prediction, scaler)
+        
+        # Get the original dates from the ticker_data
+        dates = [data['date'] for data in ticker_data['historical']]
+        
+        # Get the original close prices
+        original_close_prices = [data['close'] for data in ticker_data['historical']]
 
-        # Define the model
-        model = define_model()
-
-        # Make predictions
-        prediction = predict(ticker_data)
-
-        return {"prediction": prediction}
+        # DataFrame with dates and predictions
+        df_predictions = pd.DataFrame({
+            'date': dates[time_step:],  # Exclude initial rows used for prediction
+            'original_close': original_close_prices[time_step:],  # Exclude initial rows used for prediction
+            'predicted_close': prediction_original_scale.flatten()  # Flatten the predictions
+        })
+        
+        # Rename the 'prediction' column with the original column name ('close')
+        df_predictions.rename(columns={'prediction': 'close_prediction'}, inplace=True)
+        
+        return df_predictions
     except Exception as e:
-        print("Error during model testing:", e)
+        print("Error during prediction:", e)
         return None
