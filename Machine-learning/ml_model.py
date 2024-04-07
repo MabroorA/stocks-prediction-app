@@ -1,4 +1,5 @@
 from flask.json import jsonify
+
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 from tensorflow.keras.models import Sequential
@@ -55,6 +56,9 @@ def predict(ticker_data):
     
     model = define_model()
 
-    prediction = model.predict(X)  
+    prediction = jsonify({"prediction": prediction.tolist()})
     # For now, return a random prediction
-    return prediction.tolist() # turn predictions to list and return as json
+    return prediction
+
+def test_function(ticker_data):
+    return "TEST FUNCTION WORKING"

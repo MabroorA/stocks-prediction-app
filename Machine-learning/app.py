@@ -1,12 +1,11 @@
-from flask import Flask,request, render_template, jsonify
+from flask import Flask,request, jsonify
 from flask_cors import CORS
-from ml_model import predict
+from ml_model import predict,test_function
 
 
-application = Flask(__name__)
+app = Flask(__name__)
 
-app=application
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 
 ticker_data = None
@@ -40,14 +39,31 @@ def get_ticker_data():
         # If ticker_data is Nonn
         return jsonify({"message": "No data received yet"})    
     
+# route to handle CORS preflight OPTIONS request
+@app.route('/predict', methods=['OPTIONS'])
+def handle_options():
+    # Return the CORS headers
+    headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type'
+    }
+    return ('', 204, headers)
+
+
 @app.route('/predict', methods=['POST','GET'])
 def get_prediction():
     global ticker_data
-    if ticker_data is not None:
-        prediction = predict(ticker_data)
-        return jsonify({"prediction": prediction})
-    else:
-        return jsonify({"error": "No ticker data received yet"})
+    try:
+        ticker_data = request.json['ticker_data']
+        print("DATA RECIEVED FOR PREDICTION:")
+        # prediction = predict(ticker_data)
+        # return jsonify({"message": "Data received for PREDICTION"})
+        test_prediction = test_function(ticker_data)
+        return jsonify({"test_prediction": test_prediction})
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": "Internal Server Error"}), 500
        
 
     
