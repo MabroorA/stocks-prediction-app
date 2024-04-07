@@ -54,7 +54,7 @@ export default function ChartsLineGraph() {
         `http://localhost:3000/daily-historical?ticker=${searchQuery}`
       );
       const data = await response.json();
-      setSearchResults(data);
+      setSearchResults(data.historical.reverse());
       setChartData({
         labels: data.historical.map((result: TickerHistoricalData) => result.date),
         datasets: [
