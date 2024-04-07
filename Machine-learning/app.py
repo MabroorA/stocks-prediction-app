@@ -1,6 +1,6 @@
 from flask import Flask,request, jsonify
 from flask_cors import CORS
-from ml_model import predict,test_function
+from ml_model import predict,test_function, test_model
 
 
 app = Flask(__name__)
@@ -64,6 +64,14 @@ def get_prediction():
     except Exception as e:
         print("Error:", e)
         return jsonify({"error": "Internal Server Error"}), 500
+    
+@app.route('/model_testing', methods=['GET'])
+def model_testing():
+    try:
+        result = test_model('ticker_data.csv')
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
        
 
     

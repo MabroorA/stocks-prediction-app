@@ -59,9 +59,9 @@ def predict(ticker_data):
     # Make the prediction
     prediction = model.predict(X)
 
-    prediction = jsonify({"prediction": prediction.tolist()})
+    # return as a list it doesnt need to be json format
 
-    return prediction
+    return prediction.tolist()
 
 def test_function(ticker_data):
     return "TEST FUNCTION WORKING"
@@ -77,4 +77,4 @@ def test_model(csv_file_path):
     # Call the predict function to make predictions on the ticker data
     prediction = predict(ticker_data)
     
-    return prediction
+    return {"prediction": prediction}
