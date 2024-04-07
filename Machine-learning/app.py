@@ -47,8 +47,7 @@ def get_prediction_input():
     global ticker_data
     if ticker_data is not None:
         # ticker_data = request.json['ticker_data']
-        close_prices = [data['close'] for data in ticker_data['historical']]
-        return jsonify({"close": close_prices})
+        return jsonify(ticker_data)
     else:
         # If ticker_data is Nonn
         return jsonify({"message": "No data received yet"}) 
