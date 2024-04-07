@@ -54,7 +54,7 @@ export default function ChartsLineGraph() {
         `http://localhost:3000/daily-historical?ticker=${searchQuery}`
       );
       const data = await response.json();
-      setSearchResults(data.historical.reverse());
+      setSearchResults(data);
       setChartData({
         labels: data.historical.map((result: TickerHistoricalData) => result.date),
         datasets: [
@@ -130,7 +130,9 @@ export default function ChartsLineGraph() {
             onChange={handleSearchQueryChange}
             placeholder="Enter Ticker To Predict"
           />
-          <button className="search-button" onClick={handleSearchButtonClick}>Search</button>
+          <button className="search-button" onClick={handleSearchButtonClick}>
+            Search
+          </button>
         </div>
         <div className="search-line-graph-result">
           {searchButtonClicked && (
@@ -167,10 +169,18 @@ export default function ChartsLineGraph() {
                       },
                     }}
                   />
+                  <div className="line-graph-buttons">
+                    <button className="download-button" onClick={downloadData}>
+                      Download Raw Chart
+                    </button>
 
-                  <button onClick={downloadData}>
-                    Download Raw Chart
-                  </button>
+                    <button
+                      className="predict-stock-button"
+                      onClick={downloadData}
+                    >
+                      Predict {searchQuery.toUpperCase()} Future Price
+                    </button>
+                  </div>
                 </>
               )}
             </div>

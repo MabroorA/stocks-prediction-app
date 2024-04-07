@@ -7,7 +7,7 @@
 }
 
 .search{
-     display: flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
     justify-self: center;
@@ -18,4 +18,20 @@
 }
 .search-button:hover{
     background-color: lightcoral;
+}
+.line-graph-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+.download-button{
+    border-radius: 8px;
+    font-size: xx-larger;
+}
+.predict-stock-button{
+    border-radius: 8px;
+    color: white;
+    background-color: #de6e4b;
+    font-size: x-larger;
 }
