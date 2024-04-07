@@ -39,7 +39,9 @@ export default function ChartsLineGraph() {
     []
   );
   const [chartData, setChartData] = useState<any>({});
-  const [searchButtonClicked, setSearchButtonClicked] = useState<boolean>(false); // Track if search button is clicked
+  const [searchButtonClicked, setSearchButtonClicked] =
+    useState<boolean>(false); // Track if search button is clicked
+  const [predictionResponse, setPredictionResponse] = useState<any>(null); // State to hold the response from Flask
 
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,17 +58,23 @@ export default function ChartsLineGraph() {
       const data = await response.json();
       setSearchResults(data.historical.reverse());
       setChartData({
-        labels: data.historical.map((result: TickerHistoricalData) => result.date),
+        labels: data.historical.map(
+          (result: TickerHistoricalData) => result.date
+        ),
         datasets: [
           {
             label: "high",
-            data: data.historical.map((result: TickerHistoricalData) => result.high),
+            data: data.historical.map(
+              (result: TickerHistoricalData) => result.high
+            ),
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 1,
           },
           {
             label: "low",
-            data: data.historical.map((result: TickerHistoricalData) => result.low),
+            data: data.historical.map(
+              (result: TickerHistoricalData) => result.low
+            ),
             borderColor: "red",
             borderWidth: 1,
           },
@@ -82,18 +90,16 @@ export default function ChartsLineGraph() {
   // sending data to flask after recieveing from node
   const sendDataToFlask = async (data: TickerHistoricalData[]) => {
     try {
-      const response = await fetch(
-        "http://192.168.0.17:5000/predict",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ticker_data: data }),
-        }
-      );
+      const response = await fetch("http://192.168.0.17:5000/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ticker_data: data }),
+      });
       const responseData = await response.json();
       console.log("Response from Flask:", responseData);
+      setPredictionResponse(responseData);
     } catch (error) {
       console.error("Error sending data to Flask:", error);
     }
@@ -107,7 +113,8 @@ export default function ChartsLineGraph() {
     const columnNames = Object.keys(searchResults[0]); // Extract column names from the first row
     const csvContent =
       "data:text/csv;charset=utf-8," +
-      columnNames.join(",") + "\n" +
+      columnNames.join(",") +
+      "\n" +
       searchResults.map((row) => Object.values(row).join(",")).join("\n");
 
     const encodedUri = encodeURI(csvContent);
@@ -117,8 +124,6 @@ export default function ChartsLineGraph() {
     document.body.appendChild(link);
     link.click();
   };
-
-
 
   return (
     <>
@@ -181,6 +186,13 @@ export default function ChartsLineGraph() {
                       Predict {searchQuery.toUpperCase()} Future Price
                     </button>
                   </div>
+                  {/* Render the prediction response */}
+                  {predictionResponse && (
+                    <div className="prediction-response">
+                      <h3>Prediction Response:</h3>
+                      <pre>{JSON.stringify(predictionResponse, null, 2)}</pre>
+                    </div>
+                  )}
                 </>
               )}
             </div>
