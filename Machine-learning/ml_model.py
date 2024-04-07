@@ -1,5 +1,6 @@
 from flask.json import jsonify
 
+import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 from tensorflow.keras.models import Sequential
@@ -55,10 +56,25 @@ def predict(ticker_data):
     X = X.reshape((X.shape[0], X.shape[1], 1))
     
     model = define_model()
+    # Make the prediction
+    prediction = model.predict(X)
 
     prediction = jsonify({"prediction": prediction.tolist()})
-    # For now, return a random prediction
+
     return prediction
 
 def test_function(ticker_data):
     return "TEST FUNCTION WORKING"
+
+def test_model(csv_file_path):
+    
+    # csv to dataframe
+    df = pd.read_csv(csv_file_path)
+    
+    # Extract the 'close' column  for prediction)
+    ticker_data = df['close'].values.tolist()  # currently its only 'close' clomn to be used for prediction 
+    
+    # Call the predict function to make predictions on the ticker data
+    prediction = predict(ticker_data)
+    
+    return prediction
