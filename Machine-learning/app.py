@@ -1,5 +1,6 @@
 from flask import Flask,request, jsonify
 from flask_cors import CORS
+import pandas as pd
 from ml_model import predict,test_function, test_model
 
 
@@ -24,7 +25,7 @@ def test_ticker_data():
 
         # Get ticker data from the request sent by the frontend
         ticker_data = request.json['ticker_data']
-        print("Received TICKER DATA in test route:")
+        print("Received TICKER DATA in test route:",ticker_data)
         
         # Send a response back to the frontend 
         return jsonify({"message": "Data received successfully"})
@@ -39,32 +40,57 @@ def get_ticker_data():
         # If ticker_data is Nonn
         return jsonify({"message": "No data received yet"})    
     
-# route to handle CORS preflight OPTIONS request
-@app.route('/predict', methods=['OPTIONS'])
-def handle_options():
-    # Return the CORS headers
-    headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers': 'Content-Type'
-    }
-    return ('', 204, headers)
+# # route to handle CORS preflight OPTIONS request
+# @app.route('/predict', methods=['OPTIONS'])
+# def handle_options():
+#     # Return the CORS headers
+#     headers = {
+#         'Access-Control-Allow-Origin': '*',
+#         'Access-Control-Allow-Methods': 'POST',
+#         'Access-Control-Allow-Headers': 'Content-Type'
+#     }
+#     return ('', 204, headers)
+
+# getting data after recieved from frontend for prediction
+@app.route('/get-predict', methods=['GET'])
+def get_prediction_input():
+    global ticker_data
+    if ticker_data is not None:
+        # ticker_data = request.json['ticker_data']
+        close_prices = [data['close'] for data in ticker_data['historical']]
+        return jsonify({"close": close_prices})
+    else:
+        # If ticker_data is Nonn
+        return jsonify({"message": "No data received yet"}) 
 
 
 @app.route('/predict', methods=['POST','GET'])
 def get_prediction():
     global ticker_data
-    try:
+
+    if request.method == 'POST':
+        # Get ticker data from the request sent by the frontend
         ticker_data = request.json['ticker_data']
-        print("DATA RECIEVED FOR PREDICTION:")
-        # prediction = predict(ticker_data)
-        # return jsonify({"message": "Data received for PREDICTION"})
-        test_prediction = test_function(ticker_data)
-        return jsonify({"test_prediction": test_prediction})
-    except Exception as e:
-        print("Error:", e)
-        return jsonify({"error": "Internal Server Error"}), 500
-    
+
+        print("Received TICKER DATA in PREDICT route:")
+
+        prediction = predict(ticker_data["historical"])
+        return  jsonify({"predictions": prediction})
+    # try:
+    #     print("DATA RECIEVED FOR PREDICTION:")
+    #     # Print the received data
+    #     ticker_data = request.json["historical"]
+    #     print(ticker_data)
+    #     # only "high" price is sent from frontend
+
+    #     # prediction = predict(ticker_data)
+    #     return jsonify(ticker_data)
+    # except Exception as e:
+    #     print("Error:", e)
+    #     return jsonify({"error": "Internal Server Error"}), 500
+
+
+# !WORKS and returns predicted "close" price
 @app.route('/model_testing', methods=['GET'])
 def model_testing():
     try:

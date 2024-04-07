@@ -27,12 +27,25 @@ model = define_model()
 
 # preprocessing 
 def preprocess_data(data):
-    
-    scaler = MinMaxScaler(feature_range=(0, 1))
-    data_scaled = scaler.fit_transform(np.array(data).reshape(-1, 1))
+    try:    
+        
 
-    return data_scaled,scaler
+        #Convert the historical data to a DataFrame 
+        df = pd.DataFrame(data)
+        # feature selecttion 
+        selected_feature = df['close']
+        print(selected_feature)
+        
+        # reshape the selected feature
 
+        scaler = MinMaxScaler(feature_range=(0, 1))
+        data_scaled = scaler.fit_transform(selected_feature.values.reshape(-1, 1))
+
+        return data_scaled,scaler
+
+    except Exception as e:
+            print("Error during data preprocessing:", e)
+            return None, None  # Return None values in case of error
 
 # dataset creation
 def create_dataset(dataset, time_step=1):
@@ -55,7 +68,6 @@ def predict(ticker_data):
     # reshape for lstm
     X = X.reshape((X.shape[0], X.shape[1], 1))
     
-    model = define_model()
     # Make the prediction
     prediction = model.predict(X)
 
