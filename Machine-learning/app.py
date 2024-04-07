@@ -73,9 +73,15 @@ def get_prediction():
         ticker_data = request.json['ticker_data']
 
         print("Received TICKER DATA in PREDICT route:")
+        close_prices = [data['close'] for data in ticker_data['historical']]
+        prediction = predict(close_prices)
+        return  jsonify(prediction)
+    if request.method == 'GET':
+       
 
-        prediction = predict(ticker_data["historical"])
-        return  jsonify({"predictions": prediction})
+       close_prices = [data['close'] for data in ticker_data['historical']]
+       prediction = predict(close_prices)
+       return  jsonify(prediction) 
     # try:
     #     print("DATA RECIEVED FOR PREDICTION:")
     #     # Print the received data

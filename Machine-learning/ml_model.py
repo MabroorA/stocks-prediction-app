@@ -30,16 +30,8 @@ def preprocess_data(data):
     try:    
         
 
-        #Convert the historical data to a DataFrame 
-        df = pd.DataFrame(data)
-        # feature selecttion 
-        selected_feature = df['close']
-        print(selected_feature)
-        
-        # reshape the selected feature
-
         scaler = MinMaxScaler(feature_range=(0, 1))
-        data_scaled = scaler.fit_transform(selected_feature.values.reshape(-1, 1))
+        data_scaled = scaler.fit_transform(np.array(data).reshape(-1, 1))
 
         return data_scaled,scaler
 
