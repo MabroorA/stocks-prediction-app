@@ -1,7 +1,7 @@
 from flask import Flask,request, jsonify
 from flask_cors import CORS
 import pandas as pd
-from ml_model import predict,test_function, test_model
+from feature_enhanced_ml_model import predict
 
 
 app = Flask(__name__)
@@ -71,6 +71,34 @@ def get_prediction():
             close_prices = [data['close'] for data in ticker_data['historical']]
             prediction = predict(close_prices)
             return  jsonify(prediction) 
+    
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": "Frontend to flask data transfer error"}), 500
+
+# Predicting with enhanced model ticker_data 
+@app.route('/predict-with-enhanced-model', methods=['POST','GET'])
+def get_enhanced_model_prediction():
+    global ticker_data
+
+    try:
+        if request.method == 'POST':
+            # Get ticker data from the request sent by the frontend
+            # ticker_data = request.json
+            ticker_data = request.json['ticker_data']
+
+            print("Received TICKER DATA in ENHANCED PREDICT route:")
+
+            prediction = predict(ticker_data)
+            return  jsonify(prediction)
+        
+        elif request.method == 'GET':
+        
+            # ticker_data = request.json
+            
+            print("GETTING ENHANCED PREDICT RESULTS:")
+            prediction = predict(ticker_data)
+            return  jsonify(prediction)
     
     except Exception as e:
         print("Error:", e)

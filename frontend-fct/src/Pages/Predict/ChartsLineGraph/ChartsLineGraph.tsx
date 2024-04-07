@@ -90,7 +90,7 @@ export default function ChartsLineGraph() {
   // sending data to flask after recieveing from node
   const sendDataToFlask = async (data: TickerHistoricalData[]) => {
     try {
-      const response = await fetch("http://192.168.0.17:5000/predict", {
+      const response = await fetch("http://192.168.0.17:5000/predict-with-enhanced-model", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -69,7 +69,7 @@ def inverse_transform_predictions(predictions, scaler):
     if predictions.ndim == 1:
         predictions = predictions.reshape(-1, 1)
     predictions_original_scale = scaler.inverse_transform(predictions)
-    return predictions_original_scale
+    return predictions_original_scale.tolist()
 
 ## predict with correct output
 def predict_with_date_and_column(ticker_data):
