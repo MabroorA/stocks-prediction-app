@@ -6,7 +6,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 
 def define_model():
-    # Define and compile the model architecture
+    #  model architecture
     model = Sequential()
     model.add(LSTM(50, return_sequences=True, input_shape=(100, 1)))
     model.add(LSTM(50, return_sequences=True))
@@ -19,17 +19,17 @@ model = define_model()
 
 def preprocess_data(data):
     try:
-        # Convert JSON data to DataFrame
+        # JSON to DataFrame
         df = pd.DataFrame(data['historical'])
         
-        # Set 'date' column as index
+        # 'date' column as index after formating
         df['date'] = pd.to_datetime(df['date'])
         df.set_index('date', inplace=True)
         
-        # Select 1 feature  'close' column for prediction
+        #  'close' column for prediction
         df = df[['close']]
         
-        # Scale the data
+        # Scale the data for model to understand
         scaler = MinMaxScaler(feature_range=(0, 1))
         data_scaled = scaler.fit_transform(df)
         
@@ -46,7 +46,7 @@ def create_dataset(dataset, time_step=1):
         dataY.append(dataset[i + time_step, 0])
     return np.array(dataX), np.array(dataY)
 
-
+# predicting without outputformt
 def predict(ticker_data):
     try:
         processed_data, scaler = preprocess_data(ticker_data)
@@ -63,7 +63,8 @@ def predict(ticker_data):
     except Exception as e:
         print("Error during prediction:", e)
         return None
-
+    
+# turning data back to original form
 def inverse_transform_predictions(predictions, scaler):
     predictions = np.array(predictions)
     if predictions.ndim == 1:
@@ -73,7 +74,7 @@ def inverse_transform_predictions(predictions, scaler):
 
 
 
-## predict with correct output
+## predicting with correct output (date:selected feature prediction, feature original)
 def predict_with_date_and_column(ticker_data):
     try:
         processed_data, scaler = preprocess_data(ticker_data)
@@ -87,16 +88,16 @@ def predict_with_date_and_column(ticker_data):
 
         prediction_original_scale = inverse_transform_predictions(prediction, scaler)
         
-        # Get the original dates from the ticker_data
+        # original dates from the ticker_data
         dates = [data['date'] for data in ticker_data['historical']]
         
-        # Get the original close prices
+        # original close prices
         original_close_prices = [data['close'] for data in ticker_data['historical']]
         
-        # Convert prediction ndarray to list
+        # prediction ndarray to list
         prediction_list = prediction_original_scale.flatten().tolist()
 
-        # DataFrame with dates and predictions
+        # dict with dates and predictions
         predictions_dict  = {
             'date': dates[time_step:],  # Exclude initial rows used for prediction
             'original_close': original_close_prices[time_step:],  # Exclude initial rows used for prediction
