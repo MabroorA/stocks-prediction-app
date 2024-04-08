@@ -21,6 +21,12 @@ interface TickerHistoricalData {
   changeOverTime: number;
 }
 
+interface PredictionResponse {
+  date: string[];
+  original_close: number[];
+  predicted_close: number[];
+}
+
 ChartJS.register(
   ArcElement,
   CategoryScale,
@@ -39,9 +45,8 @@ export default function ChartsLineGraph() {
     []
   );
   const [chartData, setChartData] = useState<any>({});
-  const [searchButtonClicked, setSearchButtonClicked] =
-    useState<boolean>(false); // Track if search button is clicked
-  const [predictionResponse, setPredictionResponse] = useState<any>(null); // State to hold the response from Flask
+  const [searchButtonClicked, setSearchButtonClicked] = useState<boolean>(false); // Track if search button is clicked
+  const [predictionResponse, setPredictionResponse] = useState<PredictionResponse | null>(null);
 
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -190,7 +195,19 @@ export default function ChartsLineGraph() {
                   {predictionResponse && (
                     <div className="prediction-response">
                       <h3>Prediction Response:</h3>
-                      <pre>{JSON.stringify(predictionResponse, null, 3)}</pre>
+                      {predictionResponse.date.map((date, index) => (
+                        <div key={index}>
+                          <p>Date: {date}</p>
+                          <p>
+                            Original Close:{" "}
+                            {predictionResponse.original_close[index]}
+                          </p>
+                          <p>
+                            Predicted Close:{" "}
+                            {predictionResponse.predicted_close[index]}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </>
