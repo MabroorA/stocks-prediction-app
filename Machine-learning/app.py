@@ -1,7 +1,7 @@
 from flask import Flask,request, jsonify
 from flask_cors import CORS
 import pandas as pd
-from feature_enhanced_ml_model import predict
+from feature_enhanced_ml_model import predict,predict_with_date_and_column
 
 
 app = Flask(__name__)
@@ -89,8 +89,8 @@ def get_enhanced_model_prediction():
 
             print("Received TICKER DATA in ENHANCED PREDICT route:")
 
-            prediction = predict(ticker_data)
-            return  jsonify(prediction)
+            predictions_with_date_format = predict_with_date_and_column(ticker_data)
+            return  jsonify(predictions_with_date_format)
         
         elif request.method == 'GET':
         

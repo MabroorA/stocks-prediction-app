@@ -69,7 +69,9 @@ def inverse_transform_predictions(predictions, scaler):
     if predictions.ndim == 1:
         predictions = predictions.reshape(-1, 1)
     predictions_original_scale = scaler.inverse_transform(predictions)
-    return predictions_original_scale.tolist()
+    return predictions_original_scale # tolist() has to be removed when using (predict_with_date_and_column) function
+
+
 
 ## predict with correct output
 def predict_with_date_and_column(ticker_data):
@@ -90,18 +92,19 @@ def predict_with_date_and_column(ticker_data):
         
         # Get the original close prices
         original_close_prices = [data['close'] for data in ticker_data['historical']]
+        
+        # Convert prediction ndarray to list
+        prediction_list = prediction_original_scale.flatten().tolist()
 
         # DataFrame with dates and predictions
-        df_predictions = pd.DataFrame({
+        predictions_dict  = {
             'date': dates[time_step:],  # Exclude initial rows used for prediction
             'original_close': original_close_prices[time_step:],  # Exclude initial rows used for prediction
-            'predicted_close': prediction_original_scale.flatten()  # Flatten the predictions
-        })
+            'predicted_close': prediction_list# Flatten the predictions
+        }
         
-        # Rename the 'prediction' column with the original column name ('close')
-        df_predictions.rename(columns={'prediction': 'close_prediction'}, inplace=True)
-        
-        return df_predictions
+        return predictions_dict
+    
     except Exception as e:
         print("Error during prediction:", e)
         return None
