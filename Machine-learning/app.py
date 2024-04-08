@@ -97,8 +97,8 @@ def get_enhanced_model_prediction():
             # ticker_data = request.json
             
             print("GETTING ENHANCED PREDICT RESULTS:")
-            prediction = predict(ticker_data)
-            return  jsonify(prediction)
+            predictions_with_date_format = predict_with_date_and_column(ticker_data)
+            return  jsonify(predictions_with_date_format)
     
     except Exception as e:
         print("Error:", e)

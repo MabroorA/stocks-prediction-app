@@ -190,7 +190,7 @@ export default function ChartsLineGraph() {
                   {predictionResponse && (
                     <div className="prediction-response">
                       <h3>Prediction Response:</h3>
-                      <pre>{JSON.stringify(predictionResponse, null, 2)}</pre>
+                      <pre>{JSON.stringify(predictionResponse, null, 3)}</pre>
                     </div>
                   )}
                 </>
