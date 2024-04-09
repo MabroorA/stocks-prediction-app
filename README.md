@@ -9,11 +9,6 @@ This project aims to develop a stocks investment decision tool through data anal
 - <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo" width="20" height="20"> Python
 
 
-## **Front End**
-- React (Typescript)
-
-## **Back End**
-- Node.js (Typescript)
 
 ## To Transfer API data from **frontend** to **Machine learning model**
 - Flask (Python) was used to receive data from React 
