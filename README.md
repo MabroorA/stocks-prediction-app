@@ -8,7 +8,6 @@ This project aims to develop a stocks investment decision tool through data anal
 - <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="TypeScript Logo" width="20" height="20"> TypeScript
 - <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo" width="20" height="20"> Python
 
-
 ## **Front End**
 - React (Typescript)
 
