@@ -31,16 +31,17 @@
 - convert to correct format for the machine learning model to be able to use.
  - Normalisation or scalling? 
 
-### Feature Engineering:(Currently on)
-- extract relavent features from the raw data that might influebce stock price.
+### Feature Engineering: (Done)
+- extract relavent features from the raw data that might influebce stock price.(Done)
+- Current feature being used is ["close"] price
  - technical indecators, sentiment analysis of news articles, economic indicators, etc.
  
-### Model Selection: 
+### Model Selection: ((Currently on))
 - current model to be used is LSTM
 
 ### Model Evaluation:
 
 
-### Deployment:
+### Deployment: (Optional if there is time)
 - One models performance is usable, it needs to be integrated to the wep app.
 - api endpint to be exposed allowing users to input a ticker symbol and recieve stock prediction
