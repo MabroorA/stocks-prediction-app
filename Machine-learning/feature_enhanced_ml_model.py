@@ -73,6 +73,28 @@ def inverse_transform_predictions(predictions, scaler):
     return predictions_original_scale # tolist() has to be removed when using (predict_with_date_and_column) function
 
 
+def calculate_accuracy(original_close_prices, predicted_close_prices):
+    try:
+       
+        original_close = np.array(original_close_prices)
+        predicted_close = np.array(predicted_close_prices)
+
+        # absolute error between original and predicted close prices
+        absolute_errors = np.abs(original_close - predicted_close)
+
+        # mean absolute error (MAE)
+        mae = np.mean(absolute_errors)
+
+        # Calculate the accuracy as 1 - MAE (since lower MAE is better)
+        accuracy = 1 - mae
+
+        return accuracy
+    
+    except Exception as e:
+        print("Error calculating accuracy:", e)
+        return None
+
+
 
 ## predicting with correct output (date:selected feature prediction, feature original)
 def predict_with_date_and_column(ticker_data):
@@ -97,11 +119,14 @@ def predict_with_date_and_column(ticker_data):
         # prediction ndarray to list
         prediction_list = prediction_original_scale.flatten().tolist()
 
+        # Calculate accuracy
+        accuracy = calculate_accuracy(original_close_prices[time_step:], prediction_list)
         # dict with dates and predictions
         predictions_dict  = {
             'date': dates[time_step:],  # Exclude initial rows used for prediction
             'original_close': original_close_prices[time_step:],  # Exclude initial rows used for prediction
-            'predicted_close': prediction_list# Flatten the predictions
+            'predicted_close': prediction_list , # Flatten the predictions
+            'accuracy': accuracy
         }
         
         return predictions_dict

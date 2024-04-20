@@ -25,6 +25,7 @@ interface PredictionResponse {
   date: string[];
   original_close: number[];
   predicted_close: number[];
+  accuracy: number;
 }
 
 ChartJS.register(
@@ -191,61 +192,55 @@ export default function ChartsLineGraph() {
                       Predict {searchQuery.toUpperCase()} Future Price
                     </button>
                   </div>
-                  <h3>Predicted vs Actual Close Prices</h3>
+                  
+                  {predictionResponse ? (
+                <>
+                  <h3 style={{ textAlign: "center" }}>
+                    Predicted vs Actual Close Prices
+                  </h3>
+                  <p style={{ textAlign: "center" }}>
+                    Accuracy: {predictionResponse.accuracy?.toFixed(2) ?? 0}
+                  </p>
                   <Line
-                  data={{
-                    labels: predictionResponse ? predictionResponse.date : [],
-                    datasets: [
-                      {
-                        label: "Actual Close",
-                        data: predictionResponse ? predictionResponse.original_close : [],
-                        borderColor: "blue",
-                        borderWidth: 1,
-                      },
-                      {
-                        label: "Predicted Close",
-                        data: predictionResponse ? predictionResponse.predicted_close : [],
-                        borderColor: "green",
-                        borderWidth: 1,
-                      },
-                    ],
-                  }}
-                  options={{
-                    scales: {
-                      x: {
-                        title: {
-                          display: true,
-                          text: "Date",
+                    data={{
+                      labels: predictionResponse.date,
+                      datasets: [
+                        {
+                          label: "Actual Close",
+                          data: predictionResponse.original_close,
+                          borderColor: "blue",
+                          borderWidth: 1,
+                        },
+                        {
+                          label: "Predicted Close",
+                          data: predictionResponse.predicted_close,
+                          borderColor: "green",
+                          borderWidth: 1,
+                        },
+                      ],
+                    }}
+                    options={{
+                      scales: {
+                        x: {
+                          title: {
+                            display: true,
+                            text: "Date",
+                          },
+                        },
+                        y: {
+                          title: {
+                            display: true,
+                            text: "Price",
+                          },
                         },
                       },
-                      y: {
-                        title: {
-                          display: true,
-                          text: "Price",
-                        },
-                      },
-                    },
-                  }}
-                />
-                  {/*  prediction response */}
-                  {/* {predictionResponse && (
-                    <div className="prediction-response">
-                      <h3>Prediction Response:</h3>
-                      {predictionResponse.date.map((date, index) => (
-                        <div key={index}>
-                          <p>Date: {date}</p>
-                          <p>
-                            Original Close:{" "}
-                            {predictionResponse.original_close[index]}
-                          </p>
-                          <p>
-                            Predicted Close:{" "}
-                            {predictionResponse.predicted_close[index]}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  )} */}
+                    }}
+                  />
+                </>
+              ) : (
+                <p style={{ textAlign: "center" }}>Loading...</p>
+              )}
+                  
                 </>
               )}
             </div>
