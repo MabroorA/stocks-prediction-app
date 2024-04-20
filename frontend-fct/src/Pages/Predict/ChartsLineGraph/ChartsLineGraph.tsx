@@ -238,7 +238,7 @@ export default function ChartsLineGraph() {
                   />
                 </>
               ) : (
-                <p style={{ textAlign: "center" }}>Loading...</p>
+                <p style={{ textAlign: "center" }}>Predicting...</p>
               )}
                   
                 </>
