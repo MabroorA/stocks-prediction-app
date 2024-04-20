@@ -191,8 +191,44 @@ export default function ChartsLineGraph() {
                       Predict {searchQuery.toUpperCase()} Future Price
                     </button>
                   </div>
+                  <h3>Predicted vs Actual Close Prices</h3>
+                  <Line
+                  data={{
+                    labels: predictionResponse ? predictionResponse.date : [],
+                    datasets: [
+                      {
+                        label: "Actual Close",
+                        data: predictionResponse ? predictionResponse.original_close : [],
+                        borderColor: "blue",
+                        borderWidth: 1,
+                      },
+                      {
+                        label: "Predicted Close",
+                        data: predictionResponse ? predictionResponse.predicted_close : [],
+                        borderColor: "green",
+                        borderWidth: 1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    scales: {
+                      x: {
+                        title: {
+                          display: true,
+                          text: "Date",
+                        },
+                      },
+                      y: {
+                        title: {
+                          display: true,
+                          text: "Price",
+                        },
+                      },
+                    },
+                  }}
+                />
                   {/*  prediction response */}
-                  {predictionResponse && (
+                  {/* {predictionResponse && (
                     <div className="prediction-response">
                       <h3>Prediction Response:</h3>
                       {predictionResponse.date.map((date, index) => (
@@ -209,7 +245,7 @@ export default function ChartsLineGraph() {
                         </div>
                       ))}
                     </div>
-                  )}
+                  )} */}
                 </>
               )}
             </div>
