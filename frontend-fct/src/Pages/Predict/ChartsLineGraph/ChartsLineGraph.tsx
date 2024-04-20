@@ -95,7 +95,7 @@ export default function ChartsLineGraph() {
   // sending data to flask after recieveing from node
   const sendDataToFlask = async (data: TickerHistoricalData[]) => {
     try {
-      const response = await fetch("http://192.168.0.17:5000/predict-with-enhanced-model", {
+      const response = await fetch("http://127.0.0.1:5000/predict-with-enhanced-model", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -186,7 +186,7 @@ export default function ChartsLineGraph() {
 
                     <button
                       className="predict-stock-button"
-                      onClick={downloadData}
+                      // onClick={console.log(predict)}
                     >
                       Predict {searchQuery.toUpperCase()} Future Price
                     </button>
