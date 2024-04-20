@@ -48,7 +48,10 @@ The project utilizes Recharts and Charts.js libraries for visualizing data, enab
 
 ## Predict Page
 
-<img src="https://github.com/MabroorA/Stocks-Prediction-App/assets/109113298/0bc3506f-9285-4ebb-83b7-da5970a280ef" alt="Predict Page" width="600" height="400">
+| ![Predict Page 1](https://github.com/MabroorA/Stocks-Prediction-App/assets/109113298/0bc3506f-9285-4ebb-83b7-da5970a280ef) | ![Predict Page 2](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/d6fd662a-7126-428a-b9f3-68c04cd242d9) |
+|---|---|
+
+
 
 ## Search Page
 
