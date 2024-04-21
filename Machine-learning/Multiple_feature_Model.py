@@ -5,7 +5,6 @@ import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 
 def define_model():
     #  model architecture
@@ -40,7 +39,7 @@ def preprocess_data(data):
         print("Error during data preprocessing:", e)
         return None, None
 
-def create_dataset(dataset, time_step=1):
+def create_dataset(dataset, time_step=100):
     dataX, dataY = [], []
     for i in range(len(dataset)-time_step):
         a = dataset[i:(i + time_step), 0]
@@ -48,13 +47,17 @@ def create_dataset(dataset, time_step=1):
         dataY.append(dataset[i + time_step, 0])
     return np.array(dataX), np.array(dataY)
 
+def split_data(X, y, test_size=0.2):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
+    return X_train, X_test, y_train, y_test
+
 # predicting without outputformt
 def predict(ticker_data):
     try:
         processed_data, scaler = preprocess_data(ticker_data)
 
         time_step = 100
-        X, y = create_dataset(processed_data, time_step)
+        X, time_step = create_dataset(processed_data, time_step)
 
         X = X.reshape((X.shape[0], X.shape[1], 1))
         
@@ -123,53 +126,37 @@ def train_model(ticker_data):
         print("Error during training:", e)
         return None, None
 
+
 ## predicting with correct output (date:selected feature prediction, feature original)
 def predict_with_date_and_column(ticker_data ,plot=False):
     try:
-        global model, scaler
-        # Check if the model is already trained
-        if 'model' not in globals() or 'scaler' not in globals():
-            # Train the model if not already trained
-            model, scaler = train_model(ticker_data)
-            if model is None or scaler is None:
-                print("Error: Model training failed.")
-                return None
-
         processed_data, scaler = preprocess_data(ticker_data)
 
-        print(type(scaler))
         time_step = 100
         X, time_step = create_dataset(processed_data, time_step)
 
         X = X.reshape((X.shape[0], X.shape[1], 1))
-
-        # If the data wasn't split, split it now
-        if 'X_train' not in globals() or 'y_train' not in globals() or 'X_test' not in globals() or 'y_test' not in globals():
-            X_train, X_test, y_train, y_test = split_data(X, np.zeros(len(X)))  # Dummy y values, not used
-        else:
-            # If the data was already split, use the existing split
-            X_train, X_test, y_train, y_test = globals()['X_train'], globals()['X_test'], globals()['y_train'], globals()['y_test']
-
-        # Train the model
-        model.fit(X_train, y_train, batch_size=64, epochs=1, validation_data=(X_test, y_test), verbose=1)
-
-        # Predict
+        
         prediction = model.predict(X)
-        print("Shape of prediction array:", prediction.shape)
+
         prediction_original_scale = inverse_transform_predictions(prediction, scaler)
-        print(prediction_original_scale)
+        
+        # original dates from the ticker_data
         dates = [data['date'] for data in ticker_data['historical']]
         
+        # original close prices
         original_close_prices = [data['close'] for data in ticker_data['historical']]
         
+        # prediction ndarray to list
         prediction_list = prediction_original_scale.flatten().tolist()
-        # print(prediction_list)
-        accuracy = 5 
-        # calculate_accuracy(original_close_prices[time_step:], prediction_list)
-        predictions_dict = {
-            'date': dates[time_step:],
-            'original_close': original_close_prices[time_step:],
-            'predicted_close': prediction_list,
+
+        # Calculate accuracy
+        accuracy = calculate_accuracy(original_close_prices[time_step:], prediction_list)
+        # dict with dates and predictions
+        predictions_dict  = {
+            'date': dates[time_step:],  # Exclude initial rows used for prediction
+            'original_close': original_close_prices[time_step:],  # Exclude initial rows used for prediction
+            'predicted_close': prediction_list , # Flatten the predictions
             'accuracy': accuracy
         }
         if plot:
@@ -180,7 +167,7 @@ def predict_with_date_and_column(ticker_data ,plot=False):
             plt.title("Original vs Predicted Close Prices")
             plt.legend()
             plt.show()
-
+        
         return predictions_dict
     
     except Exception as e:
