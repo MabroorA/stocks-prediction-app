@@ -23,8 +23,8 @@ interface TickerHistoricalData {
 
 interface PredictionResponse {
   date: string[];
-  actualClose: number[];
-  predictedClose: number[];
+  original_close: number[];
+  predicted_close: number[];
   accuracy: number;
 }
 
@@ -42,12 +42,10 @@ ChartJS.register(
 
 export default function ChartsLineGraph() {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<TickerHistoricalData[]>(
-    []
-  );
+  const [searchResults, setSearchResults] = useState<TickerHistoricalData[]>([]);
   const [chartData, setChartData] = useState<any>({});
   const [searchButtonClicked, setSearchButtonClicked] = useState<boolean>(false); // Track if search button is clicked
-  const [predictionResponse, setPredictionResponse] = useState<PredictionResponse | null>(null);
+  const [predictionResponse, setPredictionResponse] = useState<PredictionResponse[]>([]);
 
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,73 +128,124 @@ export default function ChartsLineGraph() {
     document.body.appendChild(link);
     link.click();
   };
-
+  // if (predictionResponse) {
+  //   console.log("Prediction Response:", predictionResponse);
+  // } else {
+  //   console.log("Prediction Response is null or undefined");
+  // }
   return (
     <>
-      <div className="line-graph">
-        <div className="search">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchQueryChange}
-            placeholder="Enter Ticker To Predict"
-          />
-          <button className="search-button" onClick={handleSearchButtonClick}>
-            Search
-          </button>
+        <div className="line-graph">
+            <div className="search">
+                <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={handleSearchQueryChange}
+                    placeholder="Enter Ticker To Predict"
+                />
+                <button className="search-button" onClick={handleSearchButtonClick}>
+                    Search
+                </button>
+            </div>
+            <div className="search-line-graph-result">
+                {searchButtonClicked && (
+                    <div className="search-result">
+                        {chartData.labels ? (
+                            <>
+                                <div className="table">
+                                    <h3 className="table-title">
+                                        {searchQuery}'s Historical Data of 5 years
+                                    </h3>
+                                    <Line
+                                        data={chartData}
+                                        options={{
+                                            scales: {
+                                                x: {
+                                                    title: {
+                                                        display: true,
+                                                        text: "Date",
+                                                    },
+                                                },
+                                                y: {
+                                                    title: {
+                                                        display: true,
+                                                        text: "Daily High",
+                                                    },
+                                                },
+                                            },
+                                        }}
+                                    />
+                                    <div className="line-graph-buttons">
+                                        <button className="download-button" onClick={downloadData}>
+                                            Download Raw Chart
+                                        </button>
+                                        <button
+                                            className="predict-stock-button"
+                                            // onClick={console.log(predict)}
+                                        >
+                                            Predict {searchQuery.toUpperCase()} Future Price
+                                        </button>
+                                    </div>
+                                </div>
+                                {predictionResponse ? (
+                                    predictionResponse.map((prediction, index) => (
+                                        <div key={index} className="table">
+                                            <h3 className="table-title">
+                                                Predicted vs Actual Close Prices
+                                            </h3>
+                                            <Line
+                                                data={{
+                                                    labels: prediction.date,
+                                                    datasets: [
+                                                        {
+                                                            label: "Actual Close",
+                                                            data: prediction.original_close,
+                                                            borderColor: "blue",
+                                                            borderWidth: 1,
+                                                        },
+                                                        {
+                                                            label: "Predicted Close",
+                                                            data: prediction.predicted_close,
+                                                            borderColor: "green",
+                                                            borderWidth: 1,
+                                                        },
+                                                    ],
+                                                }}
+                                                options={{
+                                                    scales: {
+                                                        x: {
+                                                            title: {
+                                                                display: true,
+                                                                text: "Date",
+                                                            },
+                                                        },
+                                                        y: {
+                                                            title: {
+                                                                display: true,
+                                                                text: "Price",
+                                                            },
+                                                        },
+                                                    },
+                                                }}
+                                            />
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p style={{ textAlign: "center" }}>Predicting...</p>
+                                )}
+                            </>
+                        ) : (
+                            <p style={{ textAlign: "center" }}>Getting Historical data</p>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
-        <div className="search-line-graph-result">
-          {searchButtonClicked && (
-            <div className="search-result">
-              {chartData.labels && (
-                <>
-                <div className="table">
-                  <h3 className="table-title">
-                    {searchQuery}'s Historical Data of 5 years{" "}
-                  </h3>
-                  <Line
-                    data={chartData}
-                    options={{
-                      scales: {
-                        x: {
-                          title: {
-                            display: true,
-                            text: "Date",
-                          },
-                        },
-                        y: {
-                          title: {
-                            display: true,
-                            text: "Daily High",
-                          },
-                        },
-                      },
-                    }}
-                  />
-                  <div className="line-graph-buttons">
-                    <button className="download-button" onClick={downloadData}>
-                      Download Raw Chart
-                    </button>
+    </>
+);
+}
 
-                    <button
-                      className="predict-stock-button"
-                      // onClick={console.log(predict)}
-                    >
-                      Predict {searchQuery.toUpperCase()} Future Price
-                    </button>
-                  </div>
-                </div>
-                  
-                  {predictionResponse ? (
-                <>
-                <div className="table">
-                  <h3 className="table-title">
-                    Predicted vs Actual Close Prices
-                  </h3>
-                  <p style={{ textAlign: "center" }}>
-                    Accuracy: {predictionResponse.accuracy?.toFixed(2) ?? 0}
-                  </p>
-                  <Line
+/* <Line
                     data={{
                       labels: predictionResponse.date,
                       datasets: [
@@ -230,18 +279,4 @@ export default function ChartsLineGraph() {
                         },
                       },
                     }}
-                  />
-                </div>
-                </>
-              ) : (
-                <p style={{ textAlign: "center" }}>Predicting...</p>
-              )}
-                </>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-    </>
-  );
-}
+                  /> */
