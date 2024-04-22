@@ -23,8 +23,8 @@ interface TickerHistoricalData {
 
 interface PredictionResponse {
   date: string[];
-  original_close: number[];
-  predicted_close: number[];
+  actualClose: number[];
+  predictedClose: number[];
   accuracy: number;
 }
 
@@ -202,13 +202,13 @@ export default function ChartsLineGraph() {
                       datasets: [
                         {
                           label: "Actual Close",
-                          data: predictionResponse.original_close,
+                          data: predictionResponse.actualClose,
                           borderColor: "blue",
                           borderWidth: 1,
                         },
                         {
                           label: "Predicted Close",
-                          data: predictionResponse.predicted_close,
+                          data: predictionResponse.predictedClose,
                           borderColor: "green",
                           borderWidth: 1,
                         },
