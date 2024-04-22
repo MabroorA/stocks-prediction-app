@@ -150,15 +150,8 @@ export default function ChartsLineGraph() {
             <div className="search-result">
               {chartData.labels && (
                 <>
-                  <h3
-                    style={{
-                      color: "lightcoral",
-                      fontSize: "20px",
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                    }}
-                  >
+                <div className="table">
+                  <h3 className="table-title">
                     {searchQuery}'s Historical Data of 5 years{" "}
                   </h3>
                   <Line
@@ -192,10 +185,12 @@ export default function ChartsLineGraph() {
                       Predict {searchQuery.toUpperCase()} Future Price
                     </button>
                   </div>
+                </div>
                   
                   {predictionResponse ? (
                 <>
-                  <h3 style={{ textAlign: "center" }}>
+                <div className="table">
+                  <h3 className="table-title">
                     Predicted vs Actual Close Prices
                   </h3>
                   <p style={{ textAlign: "center" }}>
@@ -236,11 +231,11 @@ export default function ChartsLineGraph() {
                       },
                     }}
                   />
+                </div>
                 </>
               ) : (
                 <p style={{ textAlign: "center" }}>Predicting...</p>
               )}
-                  
                 </>
               )}
             </div>

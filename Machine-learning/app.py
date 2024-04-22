@@ -89,7 +89,7 @@ def get_enhanced_model_prediction():
 
             print("Received TICKER DATA in ENHANCED PREDICT route:")
 
-            predictions_with_date_format = predict_with_date_and_column(ticker_data)
+            predictions_with_date_format = predict_with_date_and_column(ticker_data,plot=True)
             return  jsonify(predictions_with_date_format)
         
         elif request.method == 'GET':
