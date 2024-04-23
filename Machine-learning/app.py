@@ -2,7 +2,8 @@ from flask import Flask,request, jsonify
 from flask_cors import CORS
 import pandas as pd
 # from feature_enhanced_ml_model import predict,predict_with_date_and_column
-from Multiple_feature_Model import run_workflow
+# from Multiple_feature_Model import run_workflow
+from Best_model_pipeline import run_workflow
 
 
 app = Flask(__name__)
