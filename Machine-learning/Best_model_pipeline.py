@@ -122,10 +122,16 @@ def run_workflow(data):
         # Get original close prices
         original_prices = df_close_rolling_avg[-30:]
         
-        # Plotting
+        # Plot original vs predicted prices
         plot_original_vs_predicted(original_prices, predicted_prices)
         
-        return original_prices, predicted_prices
+        # Convert DataFrame to list of dictionaries for serialization
+        original_prices_dict = original_prices.reset_index().to_dict(orient='records')
+        
+        # Return a dictionary with both original and predicted prices
+        return {'original_prices': original_prices_dict, 'predicted_prices': predicted_prices}
     except Exception as e:
         print("Error during workflow execution:", e)
-        return None, None
+        return None
+
+

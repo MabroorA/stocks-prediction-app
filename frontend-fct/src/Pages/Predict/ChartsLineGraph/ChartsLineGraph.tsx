@@ -22,11 +22,13 @@ interface TickerHistoricalData {
 }
 
 interface PredictionResponse {
-  date: string[];
-  original_close: number[];
-  predicted_close: number[];
-  accuracy: number;
+  original_prices: {
+    close: number;
+    date: string;
+  }[];
+  predicted_prices: number[];
 }
+
 
 ChartJS.register(
   ArcElement,
@@ -45,7 +47,7 @@ export default function ChartsLineGraph() {
   const [searchResults, setSearchResults] = useState<TickerHistoricalData[]>([]);
   const [chartData, setChartData] = useState<any>({});
   const [searchButtonClicked, setSearchButtonClicked] = useState<boolean>(false); // Track if search button is clicked
-  const [predictionResponse, setPredictionResponse] = useState<PredictionResponse[]>([]);
+  const [predictionResponse, setPredictionResponse] = useState<PredictionResponse| null>(null);
 
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -188,50 +190,48 @@ export default function ChartsLineGraph() {
                                     </div>
                                 </div>
                                 {predictionResponse ? (
-                                    predictionResponse.map((prediction, index) => (
-                                        <div key={index} className="table">
-                                            <h3 className="table-title">
-                                                Predicted vs Actual Close Prices
-                                            </h3>
-                                            <Line
-                                                data={{
-                                                    labels: prediction.date,
-                                                    datasets: [
-                                                        {
-                                                            label: "Actual Close",
-                                                            data: prediction.original_close,
-                                                            borderColor: "blue",
-                                                            borderWidth: 1,
-                                                        },
-                                                        {
-                                                            label: "Predicted Close",
-                                                            data: prediction.predicted_close,
-                                                            borderColor: "green",
-                                                            borderWidth: 1,
-                                                        },
-                                                    ],
-                                                }}
-                                                options={{
-                                                    scales: {
-                                                        x: {
-                                                            title: {
-                                                                display: true,
-                                                                text: "Date",
-                                                            },
-                                                        },
-                                                        y: {
-                                                            title: {
-                                                                display: true,
-                                                                text: "Price",
-                                                            },
-                                                        },
-                                                    },
-                                                }}
-                                            />
-                                        </div>
-                                    ))
+                                  <div className="table">
+                                    <h3 className="table-title">
+                                      Predicted vs Actual Close Prices
+                                    </h3>
+                                    <Line
+                                      data={{
+                                        labels: predictionResponse.original_prices.map(item => item.date),
+                                        datasets: [
+                                          {
+                                            label: "Actual Close",
+                                            data: predictionResponse.original_prices.map(item => item.close),
+                                            borderColor: "blue",
+                                            borderWidth: 1,
+                                          },
+                                          {
+                                            label: "Predicted Close",
+                                            data: predictionResponse.predicted_prices,
+                                            borderColor: "green",
+                                            borderWidth: 1,
+                                          },
+                                        ],
+                                      }}
+                                      options={{
+                                        scales: {
+                                          x: {
+                                            title: {
+                                              display: true,
+                                              text: "Date",
+                                            },
+                                          },
+                                          y: {
+                                            title: {
+                                              display: true,
+                                              text: "Price",
+                                            },
+                                          },
+                                        },
+                                      }}
+                                    />
+                                  </div>
                                 ) : (
-                                    <p style={{ textAlign: "center" }}>Predicting...</p>
+                                  <p style={{ textAlign: "center" }}>Predicting...</p>
                                 )}
                             </>
                         ) : (
@@ -244,39 +244,3 @@ export default function ChartsLineGraph() {
     </>
 );
 }
-
-/* <Line
-                    data={{
-                      labels: predictionResponse.date,
-                      datasets: [
-                        {
-                          label: "Actual Close",
-                          data: predictionResponse.actualClose,
-                          borderColor: "blue",
-                          borderWidth: 1,
-                        },
-                        {
-                          label: "Predicted Close",
-                          data: predictionResponse.predictedClose,
-                          borderColor: "green",
-                          borderWidth: 1,
-                        },
-                      ],
-                    }}
-                    options={{
-                      scales: {
-                        x: {
-                          title: {
-                            display: true,
-                            text: "Date",
-                          },
-                        },
-                        y: {
-                          title: {
-                            display: true,
-                            text: "Price",
-                          },
-                        },
-                      },
-                    }}
-                  /> */
