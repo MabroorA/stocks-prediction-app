@@ -5,7 +5,6 @@ import Top_5 from "../../Components/Top-5/Top_5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ChartsLineGraph from "../Predict/ChartsLineGraph/ChartsLineGraph";
-// import MovingAverageView from "../../Components/MovingAverageView/MovingAverageView";
 
 
 export default function HomePage() {
@@ -56,8 +55,7 @@ export default function HomePage() {
         </div>
       </div>
       <div className="bottom-container">
-        <ChartsLineGraph/>
-        {/* <div className="bottom-left-text-container">
+        <div className="bottom-left-text-container">
           <h1 className="text-titles">Why Choose Us?</h1>
           <div className="text-lists">
             <li>Proven track record of accurate predictions</li>
@@ -68,8 +66,8 @@ export default function HomePage() {
             </li>
             <li>Responsive and dedicated customer support </li>
           </div>
-        </div> */}
-        {/* <div className="bottom-right-text-container">
+        </div>
+        <div className="bottom-right-text-container">
           <h1 className="text-titles">Informed Decision-Making</h1>
           <div className="text-lists">
             <li>Access to detailed market insights and trends</li>
@@ -78,11 +76,29 @@ export default function HomePage() {
             <li>Real-time updates on market news and events </li>
             <li>Customizable alerts for timely decision-making</li>
           </div>
-        </div> */}
+        </div>
       </div>
       <div className="Graphs-container">
-        <div className="bottom-right-graph-container"></div>
-        <div className="bottom-right-graph-container"></div>
+        <div className="bottom-right-graph-container">
+        <h1 className="text-titles">Machine learning</h1>
+          <div className="text-lists">
+            <li>Access to detailed market insights and trends</li>
+            <li>Historical performance data for informed comparisons</li>
+            <li>Risk analysis tools to evaluate potential outcomes</li>
+            <li>Real-time updates on market news and events </li>
+            <li>Customizable alerts for timely decision-making</li>
+          </div>
+        </div>
+        <div className="bottom-right-graph-container">
+        <h1 className="text-titles">Live data used</h1>
+          <div className="text-lists">
+            <li>from this api blah blaj</li>
+            <li>Historical performance data for informed comparisons</li>
+            <li>Risk analysis tools to evaluate potential outcomes</li>
+            <li>Real-time updates on market news and events </li>
+            <li>Customizable alerts for timely decision-making</li>
+          </div>
+        </div>
       </div>
     </>
   );

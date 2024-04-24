@@ -8,7 +8,7 @@ body {
 
 .container {
   display: flex;
-  justify-content: space-between; /* Creates space between the containers */
+  justify-content: space-between; 
   border-radius: 24px;
   /* border: 1px black solid; */
   margin: 5px 0px;
@@ -136,13 +136,12 @@ body {
   /* border: 1px black solid; */
   width: 624px;
   height: 320px;
-  background-color: #de6e4b;
+  background-color: #7fd1b9;
   margin: 5px 20px;
   color: white;
   box-shadow: 4px 4px 6px 0px #00000040;
 }
-.text-titles {
-}
+
 .text-lists {
   font-size: 18px;
   line-height: 22px;
