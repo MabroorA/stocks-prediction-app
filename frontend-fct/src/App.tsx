@@ -1,8 +1,7 @@
 
 import "./App.css";
-import Analyse from "./Pages/Analyse/Analyse";
+import FinancialSummary from "./Pages/About-us/FinancialSummary";
 import HomePage from "./Pages/Home/HomePage";
-import LoginPage from "./Pages/Login/Login";
 import NewsPage from "./Pages/News/NewsPage";
 import PredictPage from "./Pages/Predict/Predict";
 import SearchPage from "./Pages/SearchStocksPage/SearchPage";
@@ -15,8 +14,8 @@ const router = createBrowserRouter(
         element:<HomePage/>
       },
       {
-        path:'/analyse',
-        element:<Analyse/>
+        path:'/financial-summary',
+        element:<FinancialSummary/>
       },
       {
         path:'/news',
@@ -30,10 +29,7 @@ const router = createBrowserRouter(
         path:'/predict',
         element:<PredictPage/>
       },
-      {
-        path:'/account',
-        element:<LoginPage/>
-      }
+
     ]
 );
 
