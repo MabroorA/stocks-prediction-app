@@ -6,34 +6,60 @@
   font-weight: 700;
   font-size: large;
   font-family: monospace;
+}
+.menu-search-bar{
+  border: 0px;
+  border-radius: 4px;
+  background-color: #F6F6F6;
   
 }
-.navbar a {
+.menu-search-bar:focus {
+
+  background-color: 	whitesmoke;
+  border: 0px white solid;
+  border-radius: 0px;
+}
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 30px; 
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.navbar div {
+  display: flex; 
+  align-items: center; 
+}
+
+.navbar a, .navbar input {
   text-decoration: none;
   color: black;
   animation: border 0.5s;
 }
 
 .navbar a:hover {
-  position: relative; /* Ensure relative positioning for pseudo-element */
+  position: relative;
   color: black;
 }
 
 .navbar a::after {
-  content: ''; /* Add pseudo-element for the bottom border */
+  content: '';
   position: absolute;
-  left: 0; /* Start the border from the left side */
-  bottom: -2px; /* Position it just below the text */
-  width: 0; /* Start with no border width */
-  height: 0; /* Height of the border */
-  background-color: #de6e4b; /* Color of the border */
-  transition: width 0.7s; /* Apply transition to width property */
-}
-.navbar a:hover::after {
-  width: 100%; /* Full width on hover */
-  height: 3px; 
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 0;
+  background-color: #de6e4b;
+  transition: width 0.7s;
 }
 
-.login-button {
-  padding: 5px;
+.navbar a:hover::after {
+  width: 100%;
+  height: 3px; 
 }
