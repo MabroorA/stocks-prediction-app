@@ -1,6 +1,6 @@
 
 import "./App.css";
-import FinancialSummary from "./Pages/About-us/FinancialSummary";
+import FinancialSummary from "./Pages/FinancialSummary/FinancialSummary";
 import HomePage from "./Pages/Home/HomePage";
 import NewsPage from "./Pages/News/NewsPage";
 import PredictPage from "./Pages/Predict/Predict";
