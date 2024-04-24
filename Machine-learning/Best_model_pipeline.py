@@ -11,6 +11,7 @@ def preprocess_data(data):
         # JSON to DataFrame
         df = pd.DataFrame(data['historical'])
         # 'date' column as index after formatting
+        
         df['date'] = pd.to_datetime(df['date'])
         df.set_index('date', inplace=True)
         # Selected feature
@@ -130,18 +131,19 @@ def run_workflow(data):
         plot_original_vs_predicted(original_prices, predicted_prices)
         
 
-         # Convert original prices to dictionary with date as index
+        # Convert original prices to dictionary with date as index
         original_prices_dict = original_prices.reset_index().to_dict(orient='records')
+        formatted_original_prices = [{'date': date.strftime('%d-%m-%Y'), 'close': price} for date, price in zip([item['date'] for item in original_prices_dict], [item['close'] for item in original_prices_dict])]
         
         # Convert predicted prices to dictionary with dates starting from the next day after the last date in original prices
         last_date = original_prices.index[-1]
         next_30_days = pd.date_range(start=last_date + pd.Timedelta(days=1), periods=30)
         predicted_prices_dict = [{'date': date.strftime('%d-%m-%Y'), 'close': price} for date, price in zip(next_30_days, predicted_prices)]
         
-        print(original_prices_dict)
+        print(formatted_original_prices)
         print(predicted_prices_dict)
         
-        return {'original_prices': original_prices_dict, 'predicted_prices': predicted_prices_dict}
+        return {'original_prices': formatted_original_prices, 'predicted_prices': predicted_prices_dict}
     except Exception as e:
         print("Error during workflow execution:", e)
         return None
