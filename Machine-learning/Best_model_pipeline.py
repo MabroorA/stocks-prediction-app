@@ -118,18 +118,30 @@ def run_workflow(data):
         # Predict Future
         recent_data = df_close_values[-21:]
         predicted_prices = predict_future(model, recent_data, scaler, periods=30)
-        
+
+
+
+
+
         # Get original close prices
         original_prices = df_close_rolling_avg[-30:]
         
         # Plot original vs predicted prices
         plot_original_vs_predicted(original_prices, predicted_prices)
         
-        # Convert DataFrame to list of dictionaries for serialization
+
+         # Convert original prices to dictionary with date as index
         original_prices_dict = original_prices.reset_index().to_dict(orient='records')
         
-        # Return a dictionary with both original and predicted prices
-        return {'original_prices': original_prices_dict, 'predicted_prices': predicted_prices}
+        # Convert predicted prices to dictionary with dates starting from the next day after the last date in original prices
+        last_date = original_prices.index[-1]
+        next_30_days = pd.date_range(start=last_date + pd.Timedelta(days=1), periods=30)
+        predicted_prices_dict = [{'date': date.strftime('%d-%m-%Y'), 'close': price} for date, price in zip(next_30_days, predicted_prices)]
+        
+        print(original_prices_dict)
+        print(predicted_prices_dict)
+        
+        return {'original_prices': original_prices_dict, 'predicted_prices': predicted_prices_dict}
     except Exception as e:
         print("Error during workflow execution:", e)
         return None

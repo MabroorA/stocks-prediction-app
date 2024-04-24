@@ -26,7 +26,10 @@ interface PredictionResponse {
     close: number;
     date: string;
   }[];
-  predicted_prices: number[];
+  predicted_prices: {
+    close: number;
+    date: string;
+  }[];
 }
 
 
@@ -196,7 +199,7 @@ export default function ChartsLineGraph() {
                                     </h3>
                                     <Line
                                       data={{
-                                        labels: predictionResponse.original_prices.map(item => item.date),
+                                        labels: [...predictionResponse.original_prices.map(item => item.date), ...predictionResponse.predicted_prices.map(item => item.date)],
                                         datasets: [
                                           {
                                             label: "Actual Close",
@@ -206,7 +209,7 @@ export default function ChartsLineGraph() {
                                           },
                                           {
                                             label: "Predicted Close",
-                                            data: predictionResponse.predicted_prices,
+                                            data: [...Array(predictionResponse.original_prices.length).fill(null), ...predictionResponse.predicted_prices.map(item => item.close)],
                                             borderColor: "green",
                                             borderWidth: 1,
                                           },
