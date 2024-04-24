@@ -1,13 +1,18 @@
 import "./NavBar.css";
 import { CiSearch } from "react-icons/ci";
+import { AiOutlineStock } from "react-icons/ai";
 
 
 export default function NavBar() {
   return (
     <nav className="navbar">
       <div>
-        <a className="Logo" href="/">
-          Home
+        <a className="logo" href="/">
+          <span className="logo-icon">
+            <span className="colored-part">
+              <AiOutlineStock />
+            </span>
+          </span>
         </a>
 
         <div className="search-container">
@@ -18,8 +23,8 @@ export default function NavBar() {
         </div>
       </div>
       <div>
-        <a href="/analyse">Blog</a>
         <a href="/predict">Predict</a>
+        <a href="/analyse">Blog</a>
         <a href="/news">News</a>
       </div>
     </nav>
