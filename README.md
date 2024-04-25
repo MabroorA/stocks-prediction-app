@@ -70,7 +70,8 @@ The project utilizes Recharts and Charts.js libraries for visualizing data, enab
 - Prediction is done using a LSTM machine learning model with live data to display data for the next 30 days. 
 ## UI
 Currently, the project is in the process of redesigning the User interface to simplify stock research for user.
-![image](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/c1dc135c-7f97-483c-aefb-8591031456d6)
+
+![image](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/06ac4713-0988-4c52-8eab-9dcc9fec4804)
 ## ML model
 ![image](https://github.com/MabroorA/Stocks-Prediction-App/assets/109113298/24f86da0-dbb7-4a64-b88b-96c11c141e09)
 
