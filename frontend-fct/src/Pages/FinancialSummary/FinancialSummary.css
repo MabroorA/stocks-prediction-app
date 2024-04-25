@@ -102,6 +102,44 @@
     height: 300px;
 
 }
+.stock-about-headers{
+    display: flex;
+    flex-direction: row;
+
+    padding: 0 0;
+
+}
+.about-sections{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px;
+    margin-left: -10px;
+}
+.about-sidebar{
+    padding: 0px 10px;
+    
+}
+.about-sidebar-sections{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    padding: 0px 10px;
+    height: 100%;
+    
+}
+.about-sidebar-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: max-content;
+}
+.about-description{
+    padding: 0;
+}
+.about-header-section{
+    padding: 0px;
+}
 .stock-summary-section{
 
     width: 390px;
