@@ -3,34 +3,8 @@ import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement,
 Legend, Filler} from "chart.js"
 import { Line } from "react-chartjs-2";
 import "./ChartsLineGraph.css"
+import { PredictionResponse, TickerHistoricalData } from "../../../types";
 
-
-interface TickerHistoricalData {
-  date: string;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  adjClose: number;
-  volume: number;
-  unadjustedVolume: number;
-  change: number;
-  changePercent: number;
-  vwap: number;
-  label: string;
-  changeOverTime: number;
-}
-
-interface PredictionResponse {
-  original_prices: {
-    close: number;
-    date: string;
-  }[];
-  predicted_prices: {
-    close: number;
-    date: string;
-  }[];
-}
 
 
 ChartJS.register(
