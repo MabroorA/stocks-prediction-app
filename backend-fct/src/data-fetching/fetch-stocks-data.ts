@@ -31,24 +31,6 @@ export async function News_latest() {
 }
 
 
-// withouth params
-// Stock data every 15min intervals in a day
-export async function IntraDay() {
-  try {
-    const request = await fetch(
-      `https://financialmodelingprep.com/api/v3/historical-chart/45min/AAPL?from=2024-02-21&to=2024-02-21&apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
-    );
-    if (!request.ok) {
-      throw new Error(`Failed to fetch IntraDay data , Status: ${request.status}`);
-    }
-    const response = await request.json();
-    return response;
-  } catch (error) {
-    console.error("Error fetching Grouped IntraDay data:", error);
-    throw error; // Re-throw the error to be handled by the caller
-  }
-}
-
 // Top-5 
 export async function top5() {
   try {

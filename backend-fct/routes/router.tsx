@@ -1,6 +1,5 @@
 import {Router ,Request, Response} from "express";
 import Historical_Daily_By_Ticker, {
-  IntraDay,
   Losers,
   News_latest,
   Search_ticker,
