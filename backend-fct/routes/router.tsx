@@ -38,9 +38,9 @@ try {
 
 // Latest News 
 router.get("/news", async (req: Request, res: Response) => {
-console.log("Getting Latest News");
+
 try {
-    console.log("Calling Latest News");
+    console.log("Latest News called");
     const response = await News_latest();
     res.send(response);
 } catch (error) {
@@ -64,7 +64,7 @@ router.get("/top5", async (req: Request, res: Response) => {
 // bottom 5 decreased in price stock
 router.get("/losers", async (req: Request, res: Response) => {
   try {
-    console.log("Calling Biggests Losers ");
+    console.log("Biggests market Losers Called");
     const response = await Losers();
     res.send(response);
 } catch (error) {
@@ -76,6 +76,7 @@ router.get("/losers", async (req: Request, res: Response) => {
 // daily historical data throughout the day
 router.get("/daily-historical", async (req: Request, res: Response) => {
   try {
+    console.log("Daily-historical Called");
     const { ticker } = req.query; // Get the ticker parameter from the request query
     if (!ticker || typeof ticker !== "string") {
         throw new Error("Ticker parameter is missing or invalid");
@@ -91,6 +92,7 @@ router.get("/daily-historical", async (req: Request, res: Response) => {
 // Stock profile
 router.get("/financial-summary", async (req: Request, res: Response) => {
   try {
+    console.log("financial-summary Called");
     const { ticker } = req.query; // Get the ticker parameter from the request query
     if (!ticker || typeof ticker !== "string") {
         throw new Error("Ticker parameter is missing or invalid");
