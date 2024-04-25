@@ -14,9 +14,8 @@ export default function NavBar() {
     // Check if search query is not empty
     if (searchQuery.trim() !== "") {
       // Navigate to FinancialSummary page with search query as URL parameter
-      // navigate(`/financial-summary?query=${encodeURIComponent(searchQuery)}`);
-    // hard coded to go to financial summary page
-      navigate("/financial-summary")
+      navigate(`/financial-summary?query=${encodeURIComponent(searchQuery)}`);
+
     }
   };
 
