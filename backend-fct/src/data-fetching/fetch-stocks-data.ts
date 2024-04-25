@@ -186,3 +186,21 @@ export async function Historical_Daily_By_Ticker(ticker: string) {
     throw error; // Re-throw the error to be handled by the caller
   }
 }
+// Full historical daily data for last 5 years
+export async function Stock_Company_Profile(ticker: string) {
+  try {
+    const request = await fetch(
+      `https://financialmodelingprep.com/api/v3/profile/${ticker}?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+    );
+    if (!request.ok) {
+      throw new Error(
+        `Failed to fetch ${ticker} Profile FMP, Status: ${request.status}`
+      );
+    }
+    const response = await request.json();
+    return response;
+  } catch (error) {
+    console.error("Error fetching Stock Profile:", error);
+    throw error; // Re-throw the error to be handled by the caller
+  }
+}

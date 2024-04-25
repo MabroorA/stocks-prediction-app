@@ -10,6 +10,7 @@ import {
   Search_ticker,
   Search_to_display_ticker,
   Single_Stock_Qoute,
+  Stock_Company_Profile,
   top5,
 } from "../src/data-fetching/fetch-stocks-data";
 
@@ -150,6 +151,21 @@ router.get("/daily-historical", async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
     res.status(500).send("Failed to get daily historical");
+  }
+});
+
+// Stock profile
+router.get("/financial-summary", async (req: Request, res: Response) => {
+  try {
+    const { ticker } = req.query; // Get the ticker parameter from the request query
+    if (!ticker || typeof ticker !== "string") {
+        throw new Error("Ticker parameter is missing or invalid");
+    }
+    const searchResult = await Stock_Company_Profile(ticker as string);
+    res.send(searchResult);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to get Stock profile ");
   }
 });
 
