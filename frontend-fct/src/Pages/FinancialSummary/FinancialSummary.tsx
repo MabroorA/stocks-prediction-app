@@ -146,10 +146,10 @@ return (
         </div>
 
         <div className="stock-news-section">
-          <h1>Latest {mockIBMSummary.symbol} News</h1>
+          <h1>Latest {stockSummary.symbol} News</h1>
           <div className="news-sections">
             <div className="news-card">
-              <img className="logo-img" src={ibmImage} alt="IBM Logo" />
+              <img className="logo-img" src={stockSummary.image} alt="IBM Logo" />
               <div className="news-card-text">
                 <h3>News title(IBM CAME OUT WITH NEW GPU) </h3>
                 <p style={{ color: "blue" }}>5 minutes ago</p>
