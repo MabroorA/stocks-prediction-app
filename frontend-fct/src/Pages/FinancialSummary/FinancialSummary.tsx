@@ -31,11 +31,9 @@ export default function FinancialSummary() {
           <div className="stock-sections">
             <div className="stocks-left-sections">
               
-                <div>
-                    <div className="stock-about-section">
-                          <h1>ceo</h1>
-                          <h3>description</h3>
-                    </div>
+                <div className="stock-about-section">
+                      <h1>ceo</h1>
+                      <h3>description</h3>
                 </div>
                 
                 <div className="stocks-left-half-blocks">
@@ -51,13 +49,12 @@ export default function FinancialSummary() {
                   </div>
                 </div>  
             </div>
-            <div>
-              <div className="stock-news-section">
-                    <h1>News</h1>
-                    <li>description</li>
 
-              </div>
-            </div>  
+            <div className="stock-news-section">
+                  <h1>News</h1>
+                  <li>description</li>
+
+            </div>
 
           </div>
       </div>

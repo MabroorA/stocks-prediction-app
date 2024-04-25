@@ -62,45 +62,68 @@
 .stock-sections{
     display: flex;
     flex-direction:row;
-    padding: 0;
-    
+    justify-content: space-between;
+    padding: 10px 0px;
+
 }
 .stocks-left-sections{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding: 0px ;
+    justify-content: space-between;
+    padding: 10px 0px;
+    
+    
+    
 }
 .stocks-left-half-blocks{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+ 
+    padding: inherit;
 }
 .stock-about-section,
 .stock-summary-section,
 .stock-historical-prices-section {
-    flex: 1; /* Each section takes up equal space */
+
     background-color: #F6F6F6;
-    padding: 0px;
-    border: 1px black solid;
+    padding: 10px;
+    border: 1px lightgray solid;
     border-radius: 8px;
-    padding-block: 2px;
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    box-sizing: border-box;
+
 }
 .stock-about-section{
     width: 800px;
+    height: 300px;
+
 }
 .stock-summary-section{
 
-    width: 400px;
+    width: 390px;
+    height: 400px;
 }
 .stock-historical-prices-section{
-    width: 400px;
+    width: 390px;
+    height: 400px;
+
 }
 
 .stock-news-section {
-    flex: 0 0 20%; /* Fixed width of 20% */
-    background-color: #F6F6F6;
-    padding: 0px; /* Add padding for spacing */
-    border: 1px black solid;
+    margin-top: 10px;
+    background-color: #F6F6F6;  
+    padding: 10px 0px;
+
+    border: 1px lightgray solid;
     border-radius: 8px;
-    width: 250px;
+    width: 380px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    height: inherit;
+    
+    
 }
