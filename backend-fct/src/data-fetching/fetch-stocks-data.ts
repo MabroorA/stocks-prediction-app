@@ -1,4 +1,4 @@
-
+const apikey = "wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1"
 // searching with Company/ticker name
 export async function Search_ticker(ticker: string) {
   const API_KEY = "UyzPkn5wTGhDq7aauKltPyTyNburS6FC";
@@ -52,8 +52,9 @@ export async function IntraDay() {
 // Top-5 
 export async function top5() {
   try {
+    
     const request = await fetch(
-      `https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+      `https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apikey}`
     );
     const response = await request.json();
     return response;
@@ -66,7 +67,7 @@ export async function top5() {
 export async function Losers() {
   try {
     const request = await fetch(
-      `https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+      `https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=${apikey}`
     );
     const response = await request.json();
     return response;
@@ -80,7 +81,7 @@ export async function Losers() {
 export default async function Historical_Daily_By_Ticker(ticker: string) {
   try {
     const request = await fetch(
-      `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+      `https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?apikey=${apikey}`
     );
     if (!request.ok) {
       throw new Error(
@@ -98,7 +99,7 @@ export default async function Historical_Daily_By_Ticker(ticker: string) {
 export async function Stock_Company_Profile(ticker: string) {
   try {
     const request = await fetch(
-      `https://financialmodelingprep.com/api/v3/profile/${ticker}?apikey=wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1`
+      `https://financialmodelingprep.com/api/v3/profile/${ticker}?apikey=${apikey}`
     );
     if (!request.ok) {
       throw new Error(

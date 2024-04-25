@@ -1,5 +1,5 @@
 import {Router ,Request, Response} from "express";
-import {
+import Historical_Daily_By_Ticker, {
   IntraDay,
   Losers,
   News_latest,
@@ -72,6 +72,21 @@ router.get("/losers", async (req: Request, res: Response) => {
     console.log(error);
     res.status(500).send("Failed to get Losers");
 }
+});
+
+// daily historical data throughout the day
+router.get("/daily-historical", async (req: Request, res: Response) => {
+  try {
+    const { ticker } = req.query; // Get the ticker parameter from the request query
+    if (!ticker || typeof ticker !== "string") {
+        throw new Error("Ticker parameter is missing or invalid");
+    }
+    const searchResult = await Historical_Daily_By_Ticker(ticker as string);
+    res.send(searchResult);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to get daily historical");
+  }
 });
 
 // Stock profile
