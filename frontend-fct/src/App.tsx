@@ -4,7 +4,6 @@ import FinancialSummary from "./Pages/FinancialSummary/FinancialSummary";
 import HomePage from "./Pages/Home/HomePage";
 import NewsPage from "./Pages/News/NewsPage";
 import PredictPage from "./Pages/Predict/Predict";
-import SearchPage from "./Pages/SearchStocksPage/SearchPage";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter(
@@ -20,10 +19,6 @@ const router = createBrowserRouter(
       {
         path:'/news',
         element:<NewsPage/>
-      },
-      {
-        path:'/search',
-        element:<SearchPage/>
       },
       {
         path:'/predict',
