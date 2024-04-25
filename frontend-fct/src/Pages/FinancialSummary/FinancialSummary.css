@@ -99,7 +99,7 @@
 }
 .stock-about-section{
     width: 800px;
-    height: 300px;
+    height: inherit;
 
 }
 .stock-about-headers{
@@ -139,6 +139,9 @@
 }
 .about-header-section{
     padding: 0px;
+    width: 110px;
+    overflow-wrap: break-word;
+
 }
 .stock-summary-section{
 
@@ -164,4 +167,18 @@
     height: inherit;
     
     
+}
+
+.news-sections{
+
+}
+.news-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.news-card-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

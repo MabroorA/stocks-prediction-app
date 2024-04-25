@@ -3,6 +3,7 @@ import NavBar from "../../Components/Navbar/NavBar"
 import { StockSummary } from "../../types";
 import "./FinancialSummary.css"
 import ibmImage from "./ibm.png"; 
+import { color } from "chart.js/helpers";
 
 const mockIBMSummary: StockSummary = {
   symbol: "IBM",
@@ -87,7 +88,7 @@ export default function FinancialSummary() {
                         </div>
                         <div className="about-header-section">
                           <h2>Website</h2>
-                          <a href={stockSummary.website}>{stockSummary.website}</a>
+                          <a href={stockSummary.website} title="{stockSummary.website}" >visit</a>
                         </div>
                         <div className="about-header-section">
                           <h2>Exchange</h2>
@@ -110,9 +111,12 @@ export default function FinancialSummary() {
                         </div>
                         <div className="about-sidebar-section">
                           <h3>Employee</h3>
+                          <p>{mockIBMSummary.fullTimeEmployees}</p>
+                          
                         </div>
                         <div className="about-sidebar-section">
                           <h3>Country</h3>
+                          <p>{mockIBMSummary.country}</p>
                         </div>
                       </div>
                   </div>
@@ -123,18 +127,28 @@ export default function FinancialSummary() {
             <div className="stocks-left-half-blocks">
               <div className="stock-summary-section">
                 <h1>Summary</h1>
-                <h3>{stockSummary.description}</h3> {/* Placeholder for now */}
+                <h3>2 rows with important Information</h3> {/* Placeholder for now */}
               </div>
               <div className="stock-historical-prices-section">
                 <h1>Historical Prices</h1>
-                <h3>Historical price data not yet implemented</h3> {/* Placeholder */}
+                <h3>A graph will go here</h3> {/* Placeholder */}
               </div>
             </div>
           </div>
 
           <div className="stock-news-section">
-            <h1>News</h1>
-            <li>News data not yet implemented</li> {/* Placeholder */}
+            <h1>Latest {mockIBMSummary.symbol} News</h1>
+            <div className="news-sections">
+              <div className="news-card">
+                <img className="logo-img" src={ibmImage} alt="IBM Logo" />
+                <div className="news-card-text">
+                <h3>News title(IBM CAME OUT WITH NEW GPU) </h3>
+                <p style={{color:"blue"}}>5 minutes ago</p>
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>
