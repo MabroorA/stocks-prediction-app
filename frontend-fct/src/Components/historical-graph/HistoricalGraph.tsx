@@ -30,8 +30,8 @@ function HistoricalGraph({ symbol, fromDate, toDate }: HistoricalGraphProps) {
       
       
       // Calculate minimum and maximum prices for y-axis
-      const minPrice = Math.min(...data.map((day) => day.low));
-      const maxPrice = Math.max(...data.map((day) => day.high));
+      const minPrice: number = Math.min(...data.map((day) => day.low));
+      const maxPrice: number = Math.max(...data.map((day) => day.high));
 
       const processedData: echarts.EChartsOption = {
         dataset: [
@@ -50,8 +50,10 @@ function HistoricalGraph({ symbol, fromDate, toDate }: HistoricalGraphProps) {
         tooltip: {
           trigger: 'axis',
           position: 'inside',
+          
         },
         xAxis: {
+            
             type: 'time', // Set the x-axis type to 'time'
             axisLabel: {
                 formatter: function (value, params) { // Function to format x-axis labels
@@ -66,10 +68,21 @@ function HistoricalGraph({ symbol, fromDate, toDate }: HistoricalGraphProps) {
               },
             },
         yAxis: {
-          name: 'Price',
           min: minPrice,
           max: maxPrice,
+          splitNumber: 6,
+          axisLabel: {
+            formatter: function (value: number) {
+              return value.toFixed(1); // Format y-axis labels with 1 decimal place
+            },
+          },
         },
+        grid: { 
+            left: 50, 
+            right: 19, 
+            top: 30, 
+            bottom: 35, 
+          },
         series: [
           {
             type: 'line',

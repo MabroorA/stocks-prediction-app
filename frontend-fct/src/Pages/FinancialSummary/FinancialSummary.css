@@ -71,6 +71,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 10px 0px;
+
     
     
     
@@ -98,8 +99,8 @@
 
 }
 .stock-about-section{
-    width: 800px;
-    height: inherit;
+    width: 825px;
+    max-height: 500px;
 
 }
 .stock-about-headers{
@@ -145,15 +146,18 @@
 }
 .stock-summary-section{
 
-    width: 390px;
+    width:auto;
     height: 400px;
 }
 .stock-historical-prices-section{
-    width: 390px;
-    height: 400px;
+    width: 500px;
+    height: 450px;
 
 }
-
+.graph-in-historical{
+    padding: 0;
+    margin-top: -20px;
+}
 .stock-news-section {
     margin-top: 10px;
     background-color: #F6F6F6;  
@@ -164,8 +168,9 @@
     width: 380px;
     flex-shrink: 0;
     box-sizing: border-box;
-    height: inherit;
+    height: 500px;
     
+    overflow-y: auto;
     
 }
 
