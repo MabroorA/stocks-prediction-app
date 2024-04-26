@@ -49,9 +49,20 @@ function HistoricalGraph({ symbol, fromDate, toDate }: HistoricalGraphProps) {
         
         tooltip: {
           trigger: 'axis',
-          position: 'inside',
+          axisPointer: {
+            type: 'cross'
+          },
+          position: function (pos, params, el, elRect, size) {
+            const rightMargin = 30; // Adjust for desired right-side buffer
+            const topMargin = 10; // Adjust for desired top buffer
+            return {
+              top: topMargin,
+              right: size.viewSize[0] - rightMargin // Place at right edge minus buffer
+            };
+          }
           
         },
+        
         xAxis: {
             
             type: 'time', // Set the x-axis type to 'time'
