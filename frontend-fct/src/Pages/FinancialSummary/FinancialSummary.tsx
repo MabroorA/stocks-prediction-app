@@ -55,6 +55,12 @@ export default function FinancialSummary() {
     fetchStockData();
   }, []);
 
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('1D'); // State to track selected period
+
+  const handleClick = (period: string) => {
+    setSelectedPeriod(period);
+  };
+
 
   return (
     <>
@@ -143,6 +149,18 @@ export default function FinancialSummary() {
               </div>
               <div className="stock-historical-prices-section">
                 <h1>Historical Prices</h1>
+                <div className="graph-selector">
+                {['1D', '5D', '1M', '3M', '6M', '1Y'].map((period) => (
+                  <button
+                    key={period}
+                    className={`graph-buttons ${selectedPeriod === period ? 'selected' : ''}`} // Add 'selected' class on click
+                    type="button"
+                    onClick={() => handleClick(period)}
+                  >
+                    <span className="graph-date-span">{period}</span>
+                  </button>
+                ))}
+                </div>
                 <div className="graph-in-historical">
                   <HistoricalGraph
                     symbol={stockSummary.symbol}

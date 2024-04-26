@@ -163,6 +163,22 @@
     padding: 0;
     margin-top: -20px;
 }
+.graph-buttons{
+    padding: 5px;
+
+    margin: 0;
+    width: 50px;
+    cursor: pointer;
+    border: none;
+}
+.graph-buttons.selected {
+    background-color: #0D084D;
+    color: white; 
+
+    border-radius: 4px;
+}
+
+
 .stock-news-section {
     margin-top: 10px;
     background-color: #F6F6F6;  
