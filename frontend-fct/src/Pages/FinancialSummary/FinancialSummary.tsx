@@ -156,14 +156,14 @@ export default function FinancialSummary() {
           <div className="stock-news-section">
             <h1>Latest {mockIBMSummary.symbol} News</h1>
             <div className="news-sections">
-              {/* <div className="news-card">
+              <div className="news-card">
                 <img className="logo-img" src={ibmImage} alt="IBM Logo" />
                 <div className="news-card-text">
                   <h3>News title(IBM CAME OUT WITH NEW GPU) </h3>
                   <p style={{color:"blue"}}>5 minutes ago</p>
                 </div>
-              </div> */}
-              <News/>
+              </div>
+              {/* <News/> */}
             </div>
           </div>
         </div>

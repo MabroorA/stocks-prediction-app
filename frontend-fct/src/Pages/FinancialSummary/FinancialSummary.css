@@ -100,7 +100,7 @@
 }
 .stock-about-section{
     width: 825px;
-    max-height: 500px;
+    max-height: 400px;
 
 }
 .stock-about-headers{
@@ -137,7 +137,12 @@
 }
 .about-description{
     padding: 0;
+    
+    height: 18.5em; /* Adjust height for desired number of lines (line-height * number of lines) */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .about-header-section{
     padding: 0px;
     width: 110px;

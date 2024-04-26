@@ -22,7 +22,7 @@ function HistoricalGraph({ symbol, fromDate, toDate }: HistoricalGraphProps) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const FINANCIAL_API_KEY = 'wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1';  
+      const FINANCIAL_API_KEY = 'updJZ6J5tMLEtqk4DCy86VTUoLaxg3xF';  
       const url = `https://financialmodelingprep.com/api/v3/historical-chart/1min/${symbol}?from=${fromDate}&to=${toDate}&apikey=${FINANCIAL_API_KEY}`;
       const response = await fetch(url);
       const data: DayData[] = await response.json(); // Type the response as DayData[]
