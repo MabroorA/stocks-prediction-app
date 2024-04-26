@@ -165,19 +165,28 @@
 }
 .graph-buttons{
     padding: 5px;
+    border-radius: 4px;
 
     margin: 0;
     width: 50px;
     cursor: pointer;
     border: none;
+    background-color: #f5f5f5; /* Light gray background */
+    transition: background-color 0.2s ease-in-out;
+    display: inline-block;
+    text-align: center;
 }
 .graph-buttons.selected {
     background-color: #0D084D;
     color: white; 
 
     border-radius: 4px;
+   
 }
 
+.graph-buttons:hover:not(.selected) {
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+  }
 
 .stock-news-section {
     margin-top: 10px;
