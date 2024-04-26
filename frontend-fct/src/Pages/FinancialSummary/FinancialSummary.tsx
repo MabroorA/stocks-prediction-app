@@ -4,6 +4,7 @@ import { StockSummary } from "../../types";
 import "./FinancialSummary.css"
 import ibmImage from "./ibm.png"; 
 import { color } from "chart.js/helpers";
+import HistoricalGraph from "../../Components/historical-graph/HistoricalGraph";
 
 const mockIBMSummary: StockSummary = {
   symbol: "IBM",
@@ -141,7 +142,11 @@ export default function FinancialSummary() {
               </div>
               <div className="stock-historical-prices-section">
                 <h1>Historical Prices</h1>
-                <h3>A graph will go here</h3> {/* Placeholder */}
+                <HistoricalGraph
+                  symbol={stockSummary.symbol}
+                  fromDate={"2024-04-25"} // yesterdays's date
+                  toDate={"2024-04-25"} // yesterdays's date
+                />
               </div>
             </div>
           </div>
