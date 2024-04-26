@@ -41,7 +41,7 @@
 .search-icon {
   position: absolute;
   top: 50%;
-  right: 30px; 
+  right: 0; 
   transform: translateY(-50%);
   pointer-events: none;
 }
