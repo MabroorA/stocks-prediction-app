@@ -1,4 +1,4 @@
-const apikey = "updJZ6J5tMLEtqk4DCy86VTUoLaxg3xF"
+const apikey = "bSWGKUmYf4CDKEVMHWjqdP9t2AjiHWpm"
 // searching with Company/ticker name
 export async function Search_ticker(ticker: string) {
   const API_KEY = "UyzPkn5wTGhDq7aauKltPyTyNburS6FC";
