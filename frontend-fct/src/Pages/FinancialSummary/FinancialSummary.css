@@ -124,7 +124,7 @@
 .about-sidebar-sections{
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
+    justify-content:flex-start;
     padding: 0px 10px;
     height: 100%;
     

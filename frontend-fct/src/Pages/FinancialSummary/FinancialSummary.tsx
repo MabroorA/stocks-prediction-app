@@ -116,7 +116,7 @@ export default function FinancialSummary() {
                         </div>
                         <div className="about-header-section">
                           <h2>Website</h2>
-                          <a href={stockSummary.website} title="{stockSummary.website}" >visit</a>
+                          <a style={{ textDecoration: "none", }} href={stockSummary.website} title="{stockSummary.website}" >visit</a>
                         </div>
                         <div className="about-header-section">
                           <h2>Exchange</h2>
@@ -133,19 +133,30 @@ export default function FinancialSummary() {
 
                   <div className="about-sidebar">
                       <div className="about-sidebar-sections">
+
                         <div className="about-sidebar-section">
-                          <h3>IPO Date</h3>
-                          <p>{mockIBMSummary.ipoDate}</p>
+                          <h3>Address</h3>
+                          <p>{mockIBMSummary.address}</p>
+                          
                         </div>
+
+                        <div className="about-sidebar-section">
+                          <h3>Country</h3>
+                          <p>{mockIBMSummary.country}</p>
+                        </div>
+
                         <div className="about-sidebar-section">
                           <h3>Employee</h3>
                           <p>{mockIBMSummary.fullTimeEmployees}</p>
                           
                         </div>
+
                         <div className="about-sidebar-section">
-                          <h3>Country</h3>
-                          <p>{mockIBMSummary.country}</p>
+                          <h3>IPO Date</h3>
+                          <p>{mockIBMSummary.ipoDate}</p>
                         </div>
+                        
+                        
                       </div>
                   </div>
 
@@ -154,7 +165,7 @@ export default function FinancialSummary() {
 
             <div className="stocks-left-half-blocks">
               <div className="stock-summary-section">
-                <h1>Summary</h1>
+                <h1>Financial Statement</h1>
                 <h3>2 rows with important Information</h3> {/* Placeholder for now */}
               </div>
               <div className="stock-historical-prices-section">
@@ -172,9 +183,9 @@ export default function FinancialSummary() {
                 ))}
                 </div>
                 <div className="graph-in-historical">
-                  <HistoricalGraph
+                  {/* <HistoricalGraph
                     symbol={stockSummary.symbol}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
