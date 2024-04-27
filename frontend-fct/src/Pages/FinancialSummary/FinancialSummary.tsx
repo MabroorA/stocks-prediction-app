@@ -55,7 +55,7 @@ export default function FinancialSummary() {
     fetchStockData();
   }, []);
 
-  const [selectedPeriod, setSelectedPeriod] = useState<string>('1D'); // State to track selected period
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('5Y'); // State to track selected period
 
   const handleClick = (period: string) => {
     setSelectedPeriod(period);
@@ -160,7 +160,7 @@ export default function FinancialSummary() {
               <div className="stock-historical-prices-section">
                 <h1>Historical Prices</h1>
                 <div className="graph-selector">
-                {['1D', '5D', '1M', '3M', '6M', '1Y'].map((period) => (
+                {[ '5Y','1Y', '6M', '3M', '1M','5D',].map((period) => (
                   <button
                     key={period}
                     className={`graph-buttons ${selectedPeriod === period ? 'selected' : ''}`} // Add 'selected' class on click
