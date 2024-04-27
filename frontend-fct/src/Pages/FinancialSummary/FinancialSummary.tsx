@@ -59,6 +59,16 @@ export default function FinancialSummary() {
 
   const handleClick = (period: string) => {
     setSelectedPeriod(period);
+
+    // Calculate fromDate and toDate based on period (e.g., subtract days for '5D')
+    const today = new Date();
+    let fromDate = today.toISOString().slice(0, 10);
+    if (period !== '1D') {
+      const days = parseInt(period.slice(0, -1));
+      const pastDate = new Date(today.setDate(today.getDate() - days));
+      fromDate = pastDate.toISOString().slice(0, 10);
+    }
+
   };
 
 
@@ -164,8 +174,6 @@ export default function FinancialSummary() {
                 <div className="graph-in-historical">
                   <HistoricalGraph
                     symbol={stockSummary.symbol}
-                    fromDate={"2024-04-25"} // yesterdays's date
-                    toDate={"2024-04-25"} // yesterdays's date
                   />
                 </div>
               </div>
