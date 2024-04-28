@@ -63,3 +63,8 @@ export interface StockSummary {
     isAdr?: boolean;
     isFund?: boolean;
   }
+export  interface MockDataPoint {
+    date: string;
+    high: number;
+    low: number;
+}
