@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as echarts from 'echarts'; // Assuming you have echarts imported
-import { MockDataPoint, TickerHistoricalData } from '../../types';
+import { TickerHistoricalData } from '../../types';
 
 
 interface MockLineGraphProps {

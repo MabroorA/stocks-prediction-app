@@ -3,7 +3,6 @@ import NavBar from "../../Components/Navbar/NavBar"
 import { StockSummary } from "../../types";
 import "./FinancialSummary.css"
 import ibmImage from "./ibm.png"; 
-import HistoricalGraph from "../../Components/historical-graph/HistoricalGraph";
 import FinancialStatement from "../../Components/financial-statement/FinancialStatement.tsx";
 
 

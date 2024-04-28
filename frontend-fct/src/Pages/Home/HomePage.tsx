@@ -4,7 +4,6 @@ import Bottom_5 from "../../Components/Bottom-5/Bottom_5";
 import Top_5 from "../../Components/Top-5/Top_5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ChartsLineGraph from "../Predict/ChartsLineGraph/ChartsLineGraph";
 
 
 export default function HomePage() {

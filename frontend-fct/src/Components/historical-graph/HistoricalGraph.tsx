@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import * as echarts from 'echarts'; // Assuming you have echarts imported
+import { useEffect, useState } from 'react';
 import { TickerHistoricalData } from '../../types';
 import MockLineGraph from '../../Pages/Predict/MockLineGraph';
 
@@ -10,7 +9,7 @@ interface HistoricalGraphProps {
 
 
 function HistoricalGraph({ symbol }: HistoricalGraphProps) {
-  const chartRef = useRef<HTMLDivElement>(null);
+
 
   const [historicalData, setHistoricalData] = useState<TickerHistoricalData[]>([]);
 
