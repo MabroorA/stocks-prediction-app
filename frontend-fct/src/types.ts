@@ -67,4 +67,4 @@ export  interface MockDataPoint {
     date: string;
     high: number;
     low: number;
-}
+  }

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, 
 Legend, Filler} from "chart.js"
 import { Line } from "react-chartjs-2";
 import "./ChartsLineGraph.css"
 import { PredictionResponse, TickerHistoricalData } from "../../../types";
+import HistoricalGraph from "../../../Components/historical-graph/HistoricalGraph";
 
 
 
@@ -29,17 +30,17 @@ export default function ChartsLineGraph() {
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    setSearchResults([]); // Reset searchResults when search query changes
   };
 
   // performing ticker search
   const searchTicker = async () => {
+    if (!searchButtonClicked) return;
     try {
       const response = await fetch(
         `http://localhost:3000/daily-historical?ticker=${searchQuery}`
       );
       const data = await response.json();
-      setSearchResults(data.historical.reverse());
+      setSearchResults(data.historical);
       setChartData({
         labels: data.historical.map(
           (result: TickerHistoricalData) => result.date
@@ -68,8 +69,9 @@ export default function ChartsLineGraph() {
     } catch (error) {
       console.error("Error searching ticker:", error);
     }
+  
   };
-
+  
   // sending data to flask after recieveing from node
   const sendDataToFlask = async (data: TickerHistoricalData[]) => {
     try {
@@ -107,11 +109,12 @@ export default function ChartsLineGraph() {
     document.body.appendChild(link);
     link.click();
   };
-  // if (predictionResponse) {
-  //   console.log("Prediction Response:", predictionResponse);
-  // } else {
-  //   console.log("Prediction Response is null or undefined");
-  // }
+
+  useEffect(() => {
+    if (searchButtonClicked) {
+      searchTicker();
+    }
+  }, [searchButtonClicked]);
   return (
     <>
         <div className="line-graph">
@@ -135,25 +138,7 @@ export default function ChartsLineGraph() {
                                     <h3 className="table-title">
                                         {searchQuery}'s Historical Data of 5 years
                                     </h3>
-                                    <Line
-                                        data={chartData}
-                                        options={{
-                                            scales: {
-                                                x: {
-                                                    title: {
-                                                        display: true,
-                                                        text: "Date",
-                                                    },
-                                                },
-                                                y: {
-                                                    title: {
-                                                        display: true,
-                                                        text: "Daily High",
-                                                    },
-                                                },
-                                            },
-                                        }}
-                                    />
+                                    <HistoricalGraph symbol={searchQuery} />
                                     <div className="line-graph-buttons">
                                         <button className="download-button" onClick={downloadData}>
                                             Download Raw Chart
