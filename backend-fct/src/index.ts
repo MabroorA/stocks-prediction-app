@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-// const router = require('./routes/router');
 
 import express from "express";
 import router from "../routes/router";

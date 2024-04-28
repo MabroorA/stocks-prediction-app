@@ -1,49 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Grouped_Daily = exports.Search_to_display_ticker = exports.Search_ticker = exports.Exponential_Moving_Avg = void 0;
-async function daily_AvgPrice() {
-    const API_KEY = process.env.API_KEY;
-    const request = await fetch("https://api.twelvedata.com/avgprice?apikey=0cedfa55583c4f2da1f7985dd27c48b1&interval=1day&symbol=NVDA&country=US&format=JSON");
-    const response = await request.json();
-    return response;
-}
-exports.default = daily_AvgPrice;
-async function Exponential_Moving_Avg() {
-    const API_KEY = process.env.Poly_API_KEY;
-    const request = await fetch("https://api.polygon.io/v1/indicators/ema/AAPL?timespan=hour&adjusted=true&window=50&series_type=close&order=desc&limit=5000&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC");
-    const response = await request.json();
-    return response;
-}
-exports.Exponential_Moving_Avg = Exponential_Moving_Avg;
+exports.Stock_Company_Profile = exports.Losers = exports.top5 = exports.News_latest = exports.Search_ticker = void 0;
+const apikey = "wc2bbHWhFBL7no45kaUlx2xLHI2z2wv1";
 // searching with Company/ticker name
 async function Search_ticker(ticker) {
-    const API_KEY = process.env.Poly_API_KEY;
+    const API_KEY = "UyzPkn5wTGhDq7aauKltPyTyNburS6FC";
     const request = await fetch(`https://api.polygon.io/v3/reference/tickers?active=true&apiKey=${API_KEY}&ticker=${ticker}`);
     const response = await request.json();
     return response;
 }
 exports.Search_ticker = Search_ticker;
-async function Search_to_display_ticker(ticker) {
-    try {
-        const API_KEY = process.env.Poly_API_KEY;
-        const request = await fetch(`https://api.polygon.io/v1/indicators/sma/${ticker}?timespan=day&adjusted=true&window=7&series_type=close&order=asc&limit=100&apiKey=${API_KEY}`);
-        if (!request.ok) {
-            throw new Error(`Failed to fetch data for ${ticker}. Status: ${request.status}`);
-        }
-        const response = await request.json();
-        return response;
-    }
-    catch (error) {
-        console.error("Error fetching ticker data:", error);
-        throw error; // Re-throw the error to be handled by the caller
-    }
-}
-exports.Search_to_display_ticker = Search_to_display_ticker;
-// Group Daily
-async function Grouped_Daily() {
+// Latest News 
+async function News_latest() {
     try {
         const API = process.env.Poly_API_KEY;
-        const request = await fetch(`https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`);
+        const request = await fetch(`https://api.polygon.io/v2/reference/news?limit=10&apiKey=UyzPkn5wTGhDq7aauKltPyTyNburS6FC`);
         if (!request.ok) {
             throw new Error(`Failed to fetch data , Status: ${request.status}`);
         }
@@ -55,4 +26,62 @@ async function Grouped_Daily() {
         throw error; // Re-throw the error to be handled by the caller
     }
 }
-exports.Grouped_Daily = Grouped_Daily;
+exports.News_latest = News_latest;
+// Top-5 
+async function top5() {
+    try {
+        const request = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=${apikey}`);
+        const response = await request.json();
+        return response;
+    }
+    catch (error) {
+        console.error("Error fetching Top 5 stocks data:", error);
+        throw error; // Re-throw the error to be handled by the caller
+    }
+}
+exports.top5 = top5;
+// Bottom-5 
+async function Losers() {
+    try {
+        const request = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=${apikey}`);
+        const response = await request.json();
+        return response;
+    }
+    catch (error) {
+        console.error("Error fetching biggest Losers data:", error);
+        throw error; // Re-throw the error to be handled by the caller
+    }
+}
+exports.Losers = Losers;
+// Full historical daily data for last 5 years
+async function Historical_Daily_By_Ticker(ticker) {
+    try {
+        const request = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${ticker}?apikey=${apikey}`);
+        if (!request.ok) {
+            throw new Error(`Failed to fetch data for ${ticker} Qoute From FMP, Status: ${request.status}`);
+        }
+        const response = await request.json();
+        return response;
+    }
+    catch (error) {
+        console.error("Error fetching Grouped Daily data:", error);
+        throw error; // Re-throw the error to be handled by the caller
+    }
+}
+exports.default = Historical_Daily_By_Ticker;
+// Stock Company Profile
+async function Stock_Company_Profile(ticker) {
+    try {
+        const request = await fetch(`https://financialmodelingprep.com/api/v3/profile/${ticker}?apikey=${apikey}`);
+        if (!request.ok) {
+            throw new Error(`Failed to fetch ${ticker} Profile FMP, Status: ${request.status}`);
+        }
+        const response = await request.json();
+        return response;
+    }
+    catch (error) {
+        console.error("Error fetching Stock Profile:", error);
+        throw error; // Re-throw the error to be handled by the caller
+    }
+}
+exports.Stock_Company_Profile = Stock_Company_Profile;

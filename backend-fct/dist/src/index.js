@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const router = require('./routes/router');
+const router_1 = __importDefault(require("../routes/router"));
 // dotenv.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT ?? 3000;
@@ -14,7 +14,7 @@ app.use(cors({
     origin: "*",
     methods: ["GET", "POST"],
 }));
-app.use('/', router);
+app.use('/', router_1.default);
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
 });
