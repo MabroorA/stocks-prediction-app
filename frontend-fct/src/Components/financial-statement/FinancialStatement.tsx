@@ -55,7 +55,7 @@ export default function FinancialStatement({symbol}:financialStatement) {
             // const revenue = data.map(item => item.revenue);
             // const netIncome = data.map(item => item.netIncome);
             
-            const dates = mockData.map(item => item.date);
+            const dates = mockData.map(item => item.date).reverse();
             const revenue = mockData.map(item => item.revenue);
             const netIncome = mockData.map(item => item.netIncome);
             
@@ -76,6 +76,7 @@ export default function FinancialStatement({symbol}:financialStatement) {
                 color:["purple", "#63B7F1"],
                 legend: {
                     data: ["Revenue","Net Income"],
+                    inactiveColor: '#777'
                     
                 },
             tooltip: {

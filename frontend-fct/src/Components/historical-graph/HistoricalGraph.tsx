@@ -34,6 +34,14 @@ function HistoricalGraph({ symbol }: HistoricalGraphProps) {
 
        // Set up chart options
       const option: echarts.EChartsOption = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          },
+          padding:0,
+          
+        },
         xAxis: {
           type: 'category',
           data: uniqueYears.map(String),
@@ -46,16 +54,14 @@ function HistoricalGraph({ symbol }: HistoricalGraphProps) {
           axisLine: { lineStyle: { color: '#8392A5' } },
           splitLine: { show: false }
         },
-        grid: {
-          bottom: 20
-        },
         series: [
           {
             type: 'line',
             smooth: true,
+            showSymbol: false,
             data: prices,
             itemStyle: {
-              color: 'blue',
+              color: 'green',
             }
           }
         ]
@@ -69,7 +75,7 @@ function HistoricalGraph({ symbol }: HistoricalGraphProps) {
     fetchData();
   }, [symbol]);
 
-  return <div ref={chartRef} style={{ width: '400px', height: '400px' }} />;
+  return <div ref={chartRef} style={{ width: '550px', height: '360px' }} />;
 }
 
 export default HistoricalGraph;

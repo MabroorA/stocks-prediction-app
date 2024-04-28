@@ -4,8 +4,8 @@ import { StockSummary } from "../../types";
 import "./FinancialSummary.css"
 import ibmImage from "./ibm.png"; 
 import HistoricalGraph from "../../Components/historical-graph/HistoricalGraph";
-import News from "../../Components/News/News";
-import FinancialStatement from "../../Components/financial-statement/FinancialStatement";
+import FinancialStatement from "../../Components/financial-statement/FinancialStatement.tsx";
+
 
 
 const mockIBMSummary: StockSummary = {
@@ -136,10 +136,18 @@ export default function FinancialSummary() {
                       <div className="about-sidebar-sections">
 
                         <div className="about-sidebar-section">
+                          <h3>Trading Status</h3>
+                          <p>{mockIBMSummary.isActivelyTrading}</p>
+                          
+                        </div>
+
+                        <div className="about-sidebar-section">
                           <h3>Address</h3>
                           <p>{mockIBMSummary.address}</p>
                           
                         </div>
+
+                        
 
                         <div className="about-sidebar-section">
                           <h3>Country</h3>
@@ -184,27 +192,18 @@ export default function FinancialSummary() {
                 ))}
                 </div>
                 <div className="graph-in-historical">
-                  {/* <HistoricalGraph
+                  <HistoricalGraph
                     symbol={stockSummary.symbol}
-                  /> */}
+                  />
                 </div>
               </div>
             </div>
           </div>
-          <div className="stock-news-section">
-            <h1>Latest {mockIBMSummary.symbol} News</h1>
-            <div className="news-sections">
-              <div className="news-card">
-                <img className="logo-img" src={ibmImage} alt="IBM Logo" />
-                <div className="news-card-text">
-                  <h3>News title(IBM CAME OUT WITH NEW GPU) </h3>
-                  <p style={{color:"blue"}}>5 minutes ago</p>
-                </div>
-              </div>
-              {/* <News/> */}
-            </div>
-          </div>
+          
+          
         </div>
+
+
       </div>
     </>
   );
