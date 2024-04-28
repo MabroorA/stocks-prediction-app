@@ -3,9 +3,10 @@ import NavBar from "../../Components/Navbar/NavBar"
 import { StockSummary } from "../../types";
 import "./FinancialSummary.css"
 import ibmImage from "./ibm.png"; 
-import { color } from "chart.js/helpers";
 import HistoricalGraph from "../../Components/historical-graph/HistoricalGraph";
 import News from "../../Components/News/News";
+import FinancialStatement from "../../Components/financial-statement/FinancialStatement";
+
 
 const mockIBMSummary: StockSummary = {
   symbol: "IBM",
@@ -166,7 +167,7 @@ export default function FinancialSummary() {
             <div className="stocks-left-half-blocks">
               <div className="stock-summary-section">
                 <h1>Financial Statement</h1>
-                <h3>2 rows with important Information</h3> {/* Placeholder for now */}
+                <FinancialStatement symbol={stockSummary.symbol}/>
               </div>
               <div className="stock-historical-prices-section">
                 <h1>Historical Prices</h1>
