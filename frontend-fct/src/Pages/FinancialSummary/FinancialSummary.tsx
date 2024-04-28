@@ -192,9 +192,9 @@ export default function FinancialSummary() {
                 ))}
                 </div>
                 <div className="graph-in-historical">
-                  <HistoricalGraph
+                  {/* <HistoricalGraph
                     symbol={stockSummary.symbol}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
