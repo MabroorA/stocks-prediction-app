@@ -73,37 +73,81 @@ export default function FinancialStatement({symbol}:financialStatement) {
 
             // Set up chart options
             const option: echarts.EChartsOption = {
-            legend: {
-                data: ['Revenue', 'Net Income']
+                color:["purple", "#63B7F1"],
+                legend: {
+                    data: ["Revenue","Net Income"],
+                    
+                },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                  type: 'cross'
+                }
+                
             },
             xAxis: {
                 type: 'category',
-                data: dates
+                data: dates,
+                axisLine: { lineStyle: { color: '#8392A5' } }
+                
+
             },
             yAxis: {
                 scale: true,
                 min: minYAxisValue,
                 max: maxYAxisValue,
                 axisLine: { lineStyle: { color: '#8392A5' } },
+                splitLine: { show: false },
                 axisLabel: {
                     formatter: (value: number) => (value / 1e9).toFixed(0) + 'B' // Format to billions
                 }
             },
-
             series: [
                 {
                 name: 'Revenue',
                 type: 'line',
                 smooth:true,
                 showSymbol: false,
-                data: revenue
+                data: revenue,
+                lineStyle: {
+                    width: 0
                 },
+                areaStyle: {
+                    opacity: 0.4,
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        {
+                            offset: 0,
+                            color: '#7C5EEE' 
+                        },
+                        {
+                            offset: 1,
+                            color: '#F5F5F6' 
+                        }
+                    ])
+                },
+            },
                 {
                 name: 'Net Income',
                 type: 'line',
                 smooth:true,
                 showSymbol: false,
-                data: netIncome
+                data: netIncome,
+                lineStyle: {
+                    width: 0
+                },
+                areaStyle: {
+                    opacity: 0.4,
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        {
+                            offset: 0,
+                            color: '#63B7F1' // Dark Green color gradient start
+                        },
+                        {
+                            offset: 1,
+                            color: '#E2EDF6' // Light Green color gradient end
+                        }
+                    ])
+                },
                 }
             ]
             };
@@ -122,10 +166,7 @@ export default function FinancialStatement({symbol}:financialStatement) {
 
   return (
     <>
-        
-    
-        <h3>financialStatement for {symbol}</h3>
-        <div ref={chartRef} style={{ width: '100%', height: '400px' }} />
+        <div ref={chartRef} style={{ width: '100%', height: '100%' }} />
     </>
   );
 };
