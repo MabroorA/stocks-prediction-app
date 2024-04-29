@@ -1,5 +1,6 @@
 import  { useState, useEffect } from "react";
 import "./Top_5.css"; 
+import { Backend_url } from "../../API/API_URL";
 
 interface Stock {
   symbol: string;
@@ -18,7 +19,7 @@ function Top_5() {
 
   const fetchTopStocks = async () => {
     try {
-      const response = await fetch("http://localhost:3000/top5"); 
+      const response = await fetch(`${Backend_url}/top5`); 
       const data = await response.json();
       setTopStocks(data); // Set top stocks data
 

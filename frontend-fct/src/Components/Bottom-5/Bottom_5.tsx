@@ -1,5 +1,6 @@
 import  { useState, useEffect } from "react";
 import "./Bottom_5.css"; 
+import { Backend_url } from "../../API/API_URL";
 
 interface Stock {
   symbol: string;
@@ -18,7 +19,7 @@ function Bottom_5() {
 
   const fetchTopStocks = async () => {
     try {
-      const response = await fetch("http://localhost:3000/losers"); // Assuming "/top5" is the correct backend endpoint
+      const response = await fetch(`${Backend_url}/losers`); // Assuming "/top5" is the correct backend endpoint
       const data = await response.json();
       setTopStocks(data); // Set top stocks data
       // Sort the data based on changesPercentage in descending order

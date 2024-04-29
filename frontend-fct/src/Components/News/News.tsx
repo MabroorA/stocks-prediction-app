@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import "./News.css"
+import { Backend_url } from '../../API/API_URL';
 
 interface Article {
   amp_url: string;
@@ -27,7 +28,7 @@ export default function News() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("http://localhost:3000/news");
+        const response = await fetch(`${Backend_url}/news`);
         const data = await response.json();
         setArticles(data.results);
       } catch (error) {

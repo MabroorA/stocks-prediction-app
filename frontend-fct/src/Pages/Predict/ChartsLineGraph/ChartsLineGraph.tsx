@@ -5,6 +5,7 @@ import { Line } from "react-chartjs-2";
 import "./ChartsLineGraph.css"
 import { PredictionResponse, TickerHistoricalData } from "../../../types";
 import HistoricalGraph from "../../../Components/historical-graph/HistoricalGraph";
+import { Backend_url } from "../../../API/API_URL";
 
 
 
@@ -37,7 +38,7 @@ export default function ChartsLineGraph() {
     if (!searchButtonClicked) return;
     try {
       const response = await fetch(
-        `http://localhost:3000/daily-historical?ticker=${searchQuery}`
+        `${Backend_url}/daily-historical?ticker=${searchQuery}`
       );
       const data = await response.json();
       setSearchResults(data.historical);

@@ -4,6 +4,7 @@ import { StockSummary } from "../../types";
 import "./FinancialSummary.css"
 import ibmImage from "./ibm.png"; 
 import FinancialStatement from "../../Components/financial-statement/FinancialStatement.tsx";
+import { Backend_url } from "../../API/API_URL.ts";
 
 
 
@@ -47,7 +48,7 @@ export default function FinancialSummary() {
 
   useEffect(() => {
     const fetchStockData = async () => {
-      const response = await fetch("http://localhost:3000/financial-summary?ticker=AAPL");
+      const response = await fetch(`${Backend_url}/financial-summary?ticker=AAPL`);
       const data = await response.json();
       setStockSummary(data[0]); // Assuming the API response is an array with one object
     };
