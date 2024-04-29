@@ -3,8 +3,15 @@ from flask_cors import CORS
 import pandas as pd
 # from feature_enhanced_ml_model import predict,predict_with_date_and_column
 # from Multiple_feature_Model import run_workflow
-from Best_model_pipeline import run_workflow
+from Best_model_pipeline import run_workflow, build_model
+import pickle
+from tensorflow.keras.models import model_from_json
+# Load the model from JSON file
+with open('best_model.json', 'r') as json_file:
+    model_json = json_file.read()
 
+# Reconstruct the model
+model = model_from_json(model_json)
 
 app = Flask(__name__)
 
@@ -86,12 +93,14 @@ def get_enhanced_model_prediction():
     try:
         if request.method == 'POST':
             # Get ticker data from the request sent by the frontend
-            # ticker_data = request.json
+
             ticker_data = request.json['ticker_data']
 
             print("Received TICKER DATA in ENHANCED PREDICT route:")
 
             predictions = run_workflow(ticker_data)
+            with open('best_model.pkl', 'wb') as f:
+                    pickle.dump(build_model, f)
             return  jsonify(predictions)
         
         elif request.method == 'GET':
@@ -120,6 +129,4 @@ def model_testing():
     
 
 if __name__=="__main__":
-    import waitress
-    waitress.serve(app)
     app.run(host="0.0.0.0",debug=True)

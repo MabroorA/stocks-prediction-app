@@ -5,6 +5,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
+import pickle
 
 def preprocess_data(data):
     try:
@@ -116,6 +117,12 @@ def run_workflow(data):
         # Model Training
         model = train_model(model, x_train, y_train)
         
+
+        # Save the trained model using pickle
+        model_json = model.to_json()
+        with open('best_model.json', 'w') as json_file:
+            json_file.write(model_json)
+
         # Predict Future
         recent_data = df_close_values[-21:]
         predicted_prices = predict_future(model, recent_data, scaler, periods=30)
