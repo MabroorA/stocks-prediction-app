@@ -1,1 +1,1 @@
-export const Backend_url = "https://stocks-prediction-app-backend.onrender.com"
+export const Backend_url = "https://stocks-prediction-backend.nw.r.appspot.com"
