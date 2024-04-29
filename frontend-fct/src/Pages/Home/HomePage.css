@@ -22,14 +22,14 @@ body {
 }
 
 .left-container {
-  width: 500px;
+  width: 50%;
   height: 420px;
 
   /* border: 1px black solid; */
 }
 
 .right-container {
-  width: calc(50% - 5px);
+  width:50% ;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@ body {
 }
 .introduction {
   font-size: 18px;
-  padding-left: 0px;
+  padding: 40px 0;
 }
 .predict-button {
   color: #fff;
