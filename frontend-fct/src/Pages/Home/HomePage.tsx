@@ -55,15 +55,14 @@ export default function HomePage() {
       </div>
       <div className="bottom-container">
         <div className="bottom-left-text-container">
-          <h1 className="text-titles">Why Choose Us?</h1>
+          <h1 className="text-titles">Prediction Using Machine learning </h1>
           <div className="text-lists">
             <li>Proven track record of accurate predictions</li>
-            <li>Intuitive and user-friendly platform interface</li>
-            <li>Comprehensive analysis incorporating various data sources</li>
-            <li>
-              Personalized recommendations based on individual investment goals
-            </li>
-            <li>Responsive and dedicated customer support </li>
+            <li>Utilizes Long Short-Term Memory (LSTM) Model on live data for predicting the next 30 days</li>
+            <li>Continuous model refinement through iterative training and user usage </li>
+            <li>Dynamic adaptation to market trends for enhanced predictive accuracy</li>
+            
+            
           </div>
         </div>
         <div className="bottom-right-text-container">
@@ -71,31 +70,8 @@ export default function HomePage() {
           <div className="text-lists">
             <li>Access to detailed market insights and trends</li>
             <li>Historical performance data for informed comparisons</li>
-            <li>Risk analysis tools to evaluate potential outcomes</li>
-            <li>Real-time updates on market news and events </li>
-            <li>Customizable alerts for timely decision-making</li>
-          </div>
-        </div>
-      </div>
-      <div className="Graphs-container">
-        <div className="bottom-right-graph-container">
-        <h1 className="text-titles">Machine learning</h1>
-          <div className="text-lists">
-            <li>Access to detailed market insights and trends</li>
-            <li>Historical performance data for informed comparisons</li>
-            <li>Risk analysis tools to evaluate potential outcomes</li>
-            <li>Real-time updates on market news and events </li>
-            <li>Customizable alerts for timely decision-making</li>
-          </div>
-        </div>
-        <div className="bottom-right-graph-container">
-        <h1 className="text-titles">Live data used</h1>
-          <div className="text-lists">
-            <li>from this api blah blaj</li>
-            <li>Historical performance data for informed comparisons</li>
-            <li>Risk analysis tools to evaluate potential outcomes</li>
-            <li>Real-time updates on market news and events </li>
-            <li>Customizable alerts for timely decision-making</li>
+            <li>Real-time updates on market news and events</li>
+            <li>Customizable graphs for timely decision-making</li>
           </div>
         </div>
       </div>
