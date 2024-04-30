@@ -36,7 +36,8 @@ The project utilizes Recharts and Charts.js libraries for visualizing data, enab
 
 <summary> <strong>Current Kanban Board <strong></summary>
 
-![image](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/6d2c1184-95d6-434d-8cfa-089f16fd315c)
+
+![image](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/015e1551-9fac-479a-8532-2b90b8f2817b)
 
 
 </details>
