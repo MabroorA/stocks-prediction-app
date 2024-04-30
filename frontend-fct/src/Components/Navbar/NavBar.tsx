@@ -1,13 +1,16 @@
 import  { useState } from "react";
-import { useNavigate  } from "react-router-dom"; // Import useHistory from react-router-dom
+import { useNavigate  } from "react-router-dom";
 import "./NavBar.css";
 import { CiSearch } from "react-icons/ci";
 
 
 export default function NavBar() {
 
-  const [searchQuery, setSearchQuery] = useState(""); // State to store search query
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const [error, setError] = useState<string>("");
+  
   const navigate = useNavigate (); // Access history object from react-router-dom
+  
 
   // Function to handle search
   const handleSearch = () => {
@@ -15,7 +18,11 @@ export default function NavBar() {
     if (searchQuery.trim() !== "") {
       // Navigate to FinancialSummary page with search query as URL parameter
       navigate(`/financial-summary?query=${encodeURIComponent(searchQuery)}`);
-
+      // Clear error message
+      setError("");
+    } else {
+      // If search query is empty, set error message
+      setError("Must Enter ticker");
     }
   };
 
@@ -26,11 +33,11 @@ export default function NavBar() {
           Home
         </a>
 
-        <div className="search-container">
+        <div className={`search-container ${error ? 'error' : ''}`}>
         <input
             className="menu-search-bar"
             type="text"
-            placeholder=" Search..."
+            placeholder={" Search..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={(e) => {
@@ -44,6 +51,7 @@ export default function NavBar() {
             <CiSearch />
           </div>
         </div>
+        {error && <div className="error-message">{error}</div>}
       </div>
       <div>
         <a href="/analyse">Blog</a>
