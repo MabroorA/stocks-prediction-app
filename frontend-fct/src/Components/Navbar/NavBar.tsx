@@ -54,7 +54,6 @@ export default function NavBar() {
         {error && <div className="error-message">{error}</div>}
       </div>
       <div>
-        <a href="/analyse">Blog</a>
         <a href="/predict">Predict</a>
         <a href="/news">News</a>
       </div>
