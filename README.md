@@ -3,6 +3,54 @@
 
 This project aims to develop a stocks investment decision tool through data analysis and simulation. It integrates various APIs for data collection and utilizes machine learning models for prediction. The tool provides allows investors to generate buy / sell signals by analysing historical data and/or enabling to play what if games: what if I had invested £1000 how much I would have been well or worse off? in short, we would like to devise investment strategies and then evaluate them.
 
+
+## Installation
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://campus.cs.le.ac.uk/gitlab/ug_project/23-24/ma942.git
+    ```
+
+2. **Install dependencies:**
+   - For Frontend:
+    ```bash
+    cd /frontend
+    npm install
+    ```
+
+   - For Backend:
+    ```bash
+    cd /backend-fct
+    npm install
+    ```
+
+   - For Machine Learning Model:
+    ```bash
+    cd /Deploy-ML
+    pip install -r requirements.txt
+    ```
+
+3. **Run the application:**
+
+   - To run Frontend:
+    ```bash
+    npm run dev
+    ```
+
+   - To run Backend:
+    ```bash
+    npm run server:dev
+    ```
+
+   - To start the Machine Learning model:
+    ```bash
+    python app.py
+    ```
+
+Now you should be able to access the application in your browser at `http://localhost:5173`.
+
+
+
 <details>
 <summary> <strong>Tech Stack & Libraries used <strong></summary>
   
@@ -75,16 +123,4 @@ Currently, the project is in the process of redesigning the User interface to si
 | ![search-bar](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/18f9aa5a-b420-4d62-9109-a4e5cd9b924c) | ![search-bar-2](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/9720c39b-dad9-489a-9f72-ee6af21f60b7) |
 |---|---|
 
-
-
-## Installation
-- Clone the repository.
-- Install dependencies using npm install.
-- Set up environment variables for API keys.
-To run Frontend  
-- execute "npm run dev" in /frontend folder.
-To run Server
-- execute "npm run server:dev" in /backend folder
-To run the Machine learning model  
-- execute "python app.py" in /Machine-learning folder for the flask app to be started.
 
