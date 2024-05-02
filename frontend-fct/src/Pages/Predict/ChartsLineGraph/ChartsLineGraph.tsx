@@ -154,30 +154,12 @@ export default function ChartsLineGraph() {
                     <h3 className="table-title">
                       {searchQuery}'s Historical Data of 5 years
                     </h3>
-
+                    <div className="main-graph">
                     <HistoricalGraph
                       symbol={searchQuery}
                       selectedGraph="line"
                     />
-                    <div className="line-graph-buttons">
-                       (
-                        <button
-                          className="download-button"
-                          style={{ cursor: "pointer" }}
-                          onClick={downloadData}
-                        >
-                          Buy Stock
-                        </button>
-                      ) : (
-                        <button
-                          className="download-button"
-                          onClick={downloadData}
-                        >
-                          Sell Stock
-                        </button>
-                      )
                     </div>
-
                     <div className="line-graph-buttons">
                       <button
                         className="download-button"
@@ -251,7 +233,7 @@ export default function ChartsLineGraph() {
                       />
                     </div>
                   ) : (
-                    <p style={{ textAlign: "center" }}>Predicting...</p>
+                    <p style={{ textAlign: "center" }}>Run model for Predictions </p>
                   )}
                 </>
               ) : (

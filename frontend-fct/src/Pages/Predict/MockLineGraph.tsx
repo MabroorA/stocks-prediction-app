@@ -81,12 +81,12 @@ function MockLineGraph({ data, selectedGraph }: MockLineGraphProps) {
         padding: 0,
       },
       grid: {
-        left: "0%",
         containLabel: true,
       },
       xAxis: {
         type: "category",
         data: dates,
+        
         axisLine: { lineStyle: { color: "#8392A5" } },
       },
       yAxis: {
