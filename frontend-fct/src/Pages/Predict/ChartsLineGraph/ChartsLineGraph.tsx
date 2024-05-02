@@ -39,7 +39,7 @@ export default function ChartsLineGraph() {
     useState<boolean>(false); // Track if search button is clicked
   const [predictionResponse, setPredictionResponse] =
     useState<PredictionResponse | null>(null);
-  const [isUpStock, setIsUpStock] = useState<boolean>(false); // Track if stock is up or down
+
 
   // handling search query change
   const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,7 +160,7 @@ export default function ChartsLineGraph() {
                       selectedGraph="line"
                     />
                     <div className="line-graph-buttons">
-                      {isUpStock ? (
+                       (
                         <button
                           className="download-button"
                           style={{ cursor: "pointer" }}
@@ -175,7 +175,7 @@ export default function ChartsLineGraph() {
                         >
                           Sell Stock
                         </button>
-                      )}
+                      )
                     </div>
 
                     <div className="line-graph-buttons">
