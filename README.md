@@ -120,7 +120,10 @@ The project utilizes Recharts and Charts.js libraries for visualizing data, enab
 ## UI
 Currently, the project is in the process of redesigning the User interface to simplify stock research for user.
 
-| ![search-bar](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/18f9aa5a-b420-4d62-9109-a4e5cd9b924c) | ![search-bar-2](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/9720c39b-dad9-489a-9f72-ee6af21f60b7) |
+| ![search-bar](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/9caa3e7f-5ae5-4673-8caf-d6b5615715b6) | ![search-bar-2](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/f09a39af-64ec-4048-b6d1-4848cdbf0e42)
+) |
 |---|---|
+
+
 
 
