@@ -5,12 +5,43 @@ import MockLineGraph from "../../Pages/Predict/MockLineGraph";
 interface HistoricalGraphProps {
   symbol: string;
   selectedGraph: string;
+  period?: string;
 }
 
-function HistoricalGraph({ symbol, selectedGraph }: HistoricalGraphProps) {
+function getStartDate(period: string): string {
+  const today = new Date(); // Get today's date
+
+  switch (period) {
+      case "5Y": // 5 years
+          return new Date(today.getFullYear() - 5, today.getMonth(), today.getDate()).toISOString();
+      
+      case "1Y": // 1 year
+          return new Date(today.getFullYear() - 1, today.getMonth(), today.getDate()).toISOString();
+
+      case "6M": // 6 months
+          return new Date(today.getFullYear(), today.getMonth() - 6, today.getDate()).toISOString();
+
+      case "3M": // 3 months
+          return new Date(today.getFullYear(), today.getMonth() - 3, today.getDate()).toISOString();
+
+      case "1M": // 1 month
+          return new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()).toISOString();
+
+      case "5D": // 5 days
+          return new Date(today.getFullYear(), today.getMonth(), today.getDate() - 5).toISOString();
+      
+      default:
+          return "2019-05-02Tabs"; // Invalid period
+  }
+}
+
+function HistoricalGraph({ symbol, selectedGraph, period = "5Y" }: HistoricalGraphProps) {
   const [historicalData, setHistoricalData] = useState<TickerHistoricalData[]>(
     []
   );
+
+  const formattedStartDate = getStartDate(period).split('T')[0]
+  console.log(formattedStartDate)
 
   useEffect(() => {
     const fetchData = async () => {

@@ -47,21 +47,22 @@ export default function FinancialStatement({symbol}:financialStatement) {
         const fetchData = async () => {
           try {
             // Fetch financial statement data for the given symbol
-            // const response = await fetch(`https://api.example.com/financial-statements/${symbol}`);
-            // const data: FinancialData[] = await response.json();
+            const response = await fetch(`https://financialmodelingprep.com/api/v3/income-statement/${symbol}?period=annual&apikey=updJZ6J5tMLEtqk4DCy86VTUoLaxg3xF`);
+            const data = await response.json();
+            console.log(data, 'is teh data')
     
             // Extract revenue and net income data
             // const dates = data.map(item => item.date);
             // const revenue = data.map(item => item.revenue);
             // const netIncome = data.map(item => item.netIncome);
             
-            const dates = mockData.map(item => item.date).reverse();
-            const revenue = mockData.map(item => item.revenue);
-            const netIncome = mockData.map(item => item.netIncome);
+            const dates = data.map((item: FinancialSummaryData) => item.date).reverse();
+            const revenue = data.map((item: FinancialSummaryData)  => item.revenue);
+            const netIncome = data.map((item: FinancialSummaryData)  => item.netIncome);
             
             // 
-            const revenues = mockData.map(item => item.revenue);
-            const netIncomes = mockData.map(item => item.netIncome);
+            const revenues = data.map((item: FinancialSummaryData)  => item.revenue);
+            const netIncomes = data.map((item: FinancialSummaryData)  => item.netIncome);
 
             const minValue  = Math.min(...revenues, ...netIncomes);
             const maxValue  = Math.max(...revenues, ...netIncomes);

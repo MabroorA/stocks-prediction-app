@@ -6,6 +6,7 @@ import ibmImage from "./ibm.png";
 import FinancialStatement from "../../Components/financial-statement/FinancialStatement.tsx";
 import { Backend_url } from "../../API/API_URL.ts";
 import HistoricalGraph from "../../Components/historical-graph/HistoricalGraph.tsx";
+import { useLocation } from "react-router-dom";
 
 const mockIBMSummary: StockSummary = {
   symbol: "IBM",
@@ -42,6 +43,7 @@ const mockIBMSummary: StockSummary = {
 };
 
 export default function FinancialSummary() {
+  const { search } = useLocation()
   // saving stock summary
   const [stockSummary, setStockSummary] =
     useState<StockSummary>(mockIBMSummary);
@@ -51,20 +53,16 @@ export default function FinancialSummary() {
   useEffect(() => {
     const fetchStockData = async () => {
       const response = await fetch(
-        `${Backend_url}/financial-summary?ticker=AAPL`
+        `${Backend_url}/financial-summary?ticker=${search.split("=")[1]}`
       );
       const data = await response.json();
       setStockSummary(data[0]); // Assuming the API response is an array with one object
     };
 
     fetchStockData();
-  }, []);
+  }, [search]);
 
   const [selectedPeriod, setSelectedPeriod] = useState<string>("5Y"); // State to track selected period
-
-  const handleClick = (period: string) => {
-    setSelectedPeriod(period);
-  };
 
   return (
     <>
@@ -72,7 +70,7 @@ export default function FinancialSummary() {
       <div className="financial-summary">
         <div className="financial-summary-banner">
           <div className="banner-left">
-            <img className="logo-img" src={ibmImage} alt="IBM Logo" />
+            <img className="logo-img" src={stockSummary.image} alt="IBM Logo" width={100} height={100}/>
           </div>
 
           <div className="banner-right">
@@ -137,27 +135,28 @@ export default function FinancialSummary() {
                   <div className="about-sidebar-sections">
                     <div className="about-sidebar-section">
                       <h3>Trading Status</h3>
-                      <p>{mockIBMSummary.isActivelyTrading}</p>
+                      {stockSummary.isActivelyTrading && <p>True</p>}
+                      {!stockSummary.isActivelyTrading && <p>False</p>}
                     </div>
 
                     <div className="about-sidebar-section">
                       <h3>Address</h3>
-                      <p>{mockIBMSummary.address}</p>
+                      <p>{stockSummary.address}</p>
                     </div>
 
                     <div className="about-sidebar-section">
                       <h3>Country</h3>
-                      <p>{mockIBMSummary.country}</p>
+                      <p>{stockSummary.country}</p>
                     </div>
 
                     <div className="about-sidebar-section">
                       <h3>Employee</h3>
-                      <p>{mockIBMSummary.fullTimeEmployees}</p>
+                      <p>{stockSummary.fullTimeEmployees}</p>
                     </div>
 
                     <div className="about-sidebar-section">
                       <h3>IPO Date</h3>
-                      <p>{mockIBMSummary.ipoDate}</p>
+                      <p>{stockSummary.ipoDate}</p>
                     </div>
                   </div>
                 </div>
@@ -183,14 +182,14 @@ export default function FinancialSummary() {
                           selectedPeriod === period ? "selected" : ""
                         }`} // Add 'selected' class on click
                         type="button"
-                        onClick={() => handleClick(period)}
+                        onClick={() => setSelectedPeriod(period)}
                       >
                         <span className="graph-date-span">{period}</span>
                       </button>
                     ))}
                   </div>
                   <div className="btn-graph-box">
-                    <button
+                    {/* <button
                       className={`btn-graph graph-buttons ${
                         selectedGraph === "candle" ? "selected" : ""
                       }`}
@@ -198,8 +197,8 @@ export default function FinancialSummary() {
                       type="button"
                     >
                       <span className="graph-date-span">Candle</span>
-                    </button>
-                    <button
+                    </button> */}
+                    {/* <button
                       className={`btn-graph graph-buttons ${
                         selectedGraph === "line" ? "selected" : ""
                       }`}
@@ -207,13 +206,14 @@ export default function FinancialSummary() {
                       type="button"
                     >
                       <span className="graph-date-span">line</span>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
                 <div className="graph-in-historical">
                   <HistoricalGraph
                     selectedGraph={selectedGraph}
                     symbol={stockSummary.symbol}
+                    period={selectedPeriod}
                   />
                 </div>
               </div>
