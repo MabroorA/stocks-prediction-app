@@ -59,3 +59,17 @@
   flex-direction: row;
   justify-content: center;
 }
+.sell-button{
+  background:red;
+  border-radius: 8px;
+  color: white;
+  font-size: large;
+  border: 0px;
+
+}
+.buy-button{
+  background: turquoise;
+  border-radius: 8px;
+  color: white;
+  font-size: large;
+}

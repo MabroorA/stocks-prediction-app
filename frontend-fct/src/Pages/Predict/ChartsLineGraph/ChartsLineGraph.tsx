@@ -196,6 +196,7 @@ export default function ChartsLineGraph() {
                     <div className="main-graph">
                       <HistoricalGraph
                         symbol={searchedQuery}
+                        
                       />
                     </div>
                     <div className="line-graph-buttons">
@@ -219,9 +220,71 @@ export default function ChartsLineGraph() {
                   </div>
                   {predictionResponse && !isPredictionLoading && !isPredictionError && (
                     <div className="table">
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          
+                        }}
+                      >
+                        {shouldBuyMore === true && (
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <h3>
+                              The prediction model shows that this stock will
+                              rise in value.
+                            </h3>
+                            <button className="buy-button"
+                              onClick={() => {
+                                console.log("clicked buying more stocks");
+                              }}
+                              style={{
+                                background: "green",
+                                color: "white",
+                              }}
+                            >
+                              Buy Stocks
+                            </button>
+                          </div>
+                        )}
+                        {shouldBuyMore === false && (
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <h2>
+                              The prediction model shows that this stock will
+                              drop in value.
+                            </h2>
+                            <button className="sell-button"
+                              onClick={() => {
+                                console.log("clicked selling stocks");
+                              }}
+
+                            >
+                              Sell Stocks
+                            </button>
+                          </div>
+                        )}
+                      </div>
+
+
                       <h3 className="table-title">
                         Predicted vs Actual Close Prices
                       </h3>
+
                       <Line
                         data={{
                           labels: [
@@ -273,67 +336,7 @@ export default function ChartsLineGraph() {
                           },
                         }}
                       />
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        {shouldBuyMore === true && (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <p>
-                              The prediction model shows that this stock will
-                              rise in value. Click below to buy more.
-                            </p>
-                            <button
-                              onClick={() => {
-                                console.log("clicked buying more stocks");
-                              }}
-                              style={{
-                                background: "green",
-                                color: "white",
-                              }}
-                            >
-                              Buy Stocks
-                            </button>
-                          </div>
-                        )}
-                        {shouldBuyMore === false && (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <p>
-                              The prediction model shows that this stock will
-                              drop in value. Click below to sell.
-                            </p>
-                            <button
-                              onClick={() => {
-                                console.log("clicked selling stocks");
-                              }}
-                              style={{
-                                background: "red",
-                                color: "white",
-                              }}
-                            >
-                              Sell Stocks
-                            </button>
-                          </div>
-                        )}
-                      </div>
+                      
                     </div>
                   )}
                   {!predictionResponse && !isPredictionLoading && !isPredictionError && (
