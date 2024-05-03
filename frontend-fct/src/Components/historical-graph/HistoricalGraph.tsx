@@ -63,7 +63,9 @@ function HistoricalGraph({ symbol, selectedGraph, period = "5Y" }: HistoricalGra
     fetchData();
   }, [symbol]);
 
-  return <MockLineGraph data={historicalData} selectedGraph={selectedGraph} />;
+  const formattedData = historicalData.filter(dataPoint => new Date(dataPoint.date) > new Date(formattedStartDate))
+
+  return <MockLineGraph data={formattedData} selectedGraph={selectedGraph} />;
 }
 
 export default HistoricalGraph;
