@@ -44,7 +44,7 @@ export default function HomePage() {
             </div>
             <div>
               <h1 className="title-stock">
-                {showTop5 ? "Top 5 Gainers" : "Bottom 5 Losers"}
+                {showTop5 ? "Todays Top 5 Gainers" : "Todays Bottom 5 Losers"}
               </h1>
             </div>
           </div>
