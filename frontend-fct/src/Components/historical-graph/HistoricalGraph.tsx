@@ -4,7 +4,6 @@ import MockLineGraph from "../../Pages/Predict/MockLineGraph";
 
 interface HistoricalGraphProps {
   symbol: string;
-  selectedGraph: string;
   period?: string;
 }
 
@@ -35,7 +34,7 @@ function getStartDate(period: string): string {
   }
 }
 
-function HistoricalGraph({ symbol, selectedGraph, period = "5Y" }: HistoricalGraphProps) {
+function HistoricalGraph({ symbol, period = "5Y" }: HistoricalGraphProps) {
   const [historicalData, setHistoricalData] = useState<TickerHistoricalData[]>(
     []
   );
@@ -65,7 +64,7 @@ function HistoricalGraph({ symbol, selectedGraph, period = "5Y" }: HistoricalGra
 
   const formattedData = historicalData.filter(dataPoint => new Date(dataPoint.date) > new Date(formattedStartDate))
 
-  return <MockLineGraph data={formattedData} selectedGraph={selectedGraph} />;
+  return <MockLineGraph data={formattedData}  />;
 }
 
 export default HistoricalGraph;

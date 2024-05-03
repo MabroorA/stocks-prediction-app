@@ -47,25 +47,25 @@ export default function NavBar() {
     // }
   };
 
-  const handleDropDownSearch = (val: any) => {
-    navigate(`/financial-summary?query=${encodeURIComponent(val)}`);
-  };
+  // const handleDropDownSearch = (val: any) => {
+  //   navigate(`/financial-summary?query=${encodeURIComponent(val)}`);
+  // };
 
-  const setSearchData = (val: String) => {
-    setLoading(true);
-    if (val === "") {
-      setSearchResults([]);
-      setLoading(false);
-      return;
-    }
+  // const setSearchData = (val: String) => {
+  //   setLoading(true);
+  //   if (val === "") {
+  //     setSearchResults([]);
+  //     setLoading(false);
+  //     return;
+  //   }
 
-    // Send api request instead of setTimeout
-    setTimeout(() => {
-      const data = ["IBM", "IBMQ", "IMBH", "IMBH", "IMBH"];
-      setSearchResults(data);
-      setLoading(false);
-    }, 1000);
-  };
+  //   // Send api request instead of setTimeout
+  //   setTimeout(() => {
+  //     const data = ["IBM", "IBMQ", "IMBH", "IMBH", "IMBH"];
+  //     setSearchResults(data);
+  //     setLoading(false);
+  //   }, 1000);
+  // };
 
   return (
     <nav className="navbar">

@@ -4,10 +4,9 @@ import { TickerHistoricalData } from "../../types";
 
 interface MockLineGraphProps {
   data: TickerHistoricalData[]; // Pass mock data as props
-  selectedGraph: string;
 }
 
-function MockLineGraph({ data, selectedGraph }: MockLineGraphProps) {
+function MockLineGraph({ data }: MockLineGraphProps) {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,50 +18,50 @@ function MockLineGraph({ data, selectedGraph }: MockLineGraphProps) {
 
     let series: any = [];
 
-    if (selectedGraph === "line") {
-      const highs = data.map((item) => item.high);
-      const lows = data.map((item) => item.low);
-      series = [
-        {
-          name: "High Price",
-          type: "line",
-          data: highs,
-          smooth: true,
-          itemStyle: {
-            color: "green",
-          },
-        },
-        {
-          name: "Low Price",
-          type: "line",
-          data: lows,
-          smooth: true,
-          itemStyle: {
-            color: "red",
-          },
-        },
-      ];
-    } else if (selectedGraph === "candlestick") {
-      const candlestickData = data.map((item) => [
-        item.open,
-        item.close,
-        item.low,
-        item.high,
-      ]);
-      series = [
-        {
-          name: "Stock Price",
-          type: "candlestick",
-          data: candlestickData,
-          itemStyle: {
-            color: "#ec0000",
-            color0: "#00da3c",
-            borderColor: "#8A0000",
-            borderColor0: "#008F28",
-          },
-        },
-      ];
-    }
+    // if (selectedGraph === "line") {
+    //   const highs = data.map((item) => item.high);
+    //   const lows = data.map((item) => item.low);
+    //   series = [
+    //     {
+    //       name: "High Price",
+    //       type: "line",
+    //       data: highs,
+    //       smooth: true,
+    //       itemStyle: {
+    //         color: "green",
+    //       },
+    //     },
+    //     {
+    //       name: "Low Price",
+    //       type: "line",
+    //       data: lows,
+    //       smooth: true,
+    //       itemStyle: {
+    //         color: "red",
+    //       },
+    //     },
+    //   ];
+    // } else if (selectedGraph === "candlestick") {
+    //   const candlestickData = data.map((item) => [
+    //     item.open,
+    //     item.close,
+    //     item.low,
+    //     item.high,
+    //   ]);
+    //   series = [
+    //     {
+    //       name: "Stock Price",
+    //       type: "candlestick",
+    //       data: candlestickData,
+    //       itemStyle: {
+    //         color: "#ec0000",
+    //         color0: "#00da3c",
+    //         borderColor: "#8A0000",
+    //         borderColor0: "#008F28",
+    //       },
+    //     },
+    //   ];
+    // }
 
     // Set up chart options
     const option: echarts.EChartsOption = {
@@ -106,7 +105,7 @@ function MockLineGraph({ data, selectedGraph }: MockLineGraphProps) {
     return () => {
       chart.dispose();
     };
-  }, [data, selectedGraph]);
+  }, [data]);
 
   return <div ref={chartRef} style={{ width: "100%", height: "400px" }} />;
 }

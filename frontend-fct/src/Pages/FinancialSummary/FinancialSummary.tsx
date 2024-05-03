@@ -48,8 +48,6 @@ export default function FinancialSummary() {
   const [stockSummary, setStockSummary] =
     useState<StockSummary>(mockIBMSummary);
 
-  const [selectedGraph, setSelectedGraph] = useState<any>("line");
-
   useEffect(() => {
     const fetchStockData = async () => {
       const response = await fetch(
@@ -211,7 +209,7 @@ export default function FinancialSummary() {
                 </div>
                 <div className="graph-in-historical">
                   <HistoricalGraph
-                    selectedGraph={selectedGraph}
+                    // selectedGraph={selectedGraph}
                     symbol={stockSummary.symbol}
                     period={selectedPeriod}
                   />

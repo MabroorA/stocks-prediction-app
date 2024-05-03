@@ -196,7 +196,6 @@ export default function ChartsLineGraph() {
                     <div className="main-graph">
                       <HistoricalGraph
                         symbol={searchedQuery}
-                        selectedGraph="line"
                       />
                     </div>
                     <div className="line-graph-buttons">

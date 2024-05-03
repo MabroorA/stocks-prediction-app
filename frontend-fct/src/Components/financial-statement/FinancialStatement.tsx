@@ -11,33 +11,6 @@ interface FinancialSummaryData {
     netIncome: number;
 }
 
-const mockData: FinancialSummaryData[] = [
-    {
-      date: "2023",
-      revenue: 383285000000,
-      netIncome: 96995000000
-    },
-    {
-      date: "2022",
-      revenue: 394328000000,
-      netIncome: 99803000000
-    },
-    {
-      date: "2021",
-      revenue: 365817000000,
-      netIncome: 94680000000
-    },
-    {
-      date: "2020",
-      revenue: 274515000000,
-      netIncome: 57411000000
-    },
-    {
-      date: "2019",
-      revenue: 260174000000,
-      netIncome: 55256000000
-    }
-  ];
 
 export default function FinancialStatement({symbol}:financialStatement) {
 
