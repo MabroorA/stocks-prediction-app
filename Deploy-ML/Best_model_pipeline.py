@@ -135,7 +135,7 @@ def run_workflow(data):
         original_prices = df_close_rolling_avg[-30:]
         
         # Plot original vs predicted prices
-        plot_original_vs_predicted(original_prices, predicted_prices)
+        # plot_original_vs_predicted(original_prices, predicted_prices)
         
 
         # Convert original prices to dictionary with date as index

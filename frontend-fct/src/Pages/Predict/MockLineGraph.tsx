@@ -82,27 +82,14 @@ function MockLineGraph({ data, selectedGraph }: MockLineGraphProps) {
       },
       grid: {
         containLabel: true,
-<<<<<<< HEAD
-        padding:0,
         
-=======
-        padding: 0,
-      },
-      grid: {
-        containLabel: true,
->>>>>>> 328c5328 (frontend rebuilt for production)
       },
       xAxis: {
         type: "category",
         data: dates,
         
         axisLine: { lineStyle: { color: "#8392A5" } },
-<<<<<<< HEAD
-        axisLine: { lineStyle: { color: '#8392A5' } }
-=======
-        
-        axisLine: { lineStyle: { color: "#8392A5" } },
->>>>>>> 328c5328 (frontend rebuilt for production)
+
       },
       yAxis: {
         axisLine: { lineStyle: { color: "#8392A5" } },

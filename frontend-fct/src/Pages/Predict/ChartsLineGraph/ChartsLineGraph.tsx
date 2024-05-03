@@ -13,7 +13,11 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import "./ChartsLineGraph.css";
-import { PredictionResponse, TickerHistoricalData } from "../../../types";
+import {
+  PredictionResponse,
+  TickerHistoricalData,
+  TickerResponse,
+} from "../../../types";
 import HistoricalGraph from "../../../Components/historical-graph/HistoricalGraph";
 import { Backend_url } from "../../../API/API_URL";
 
@@ -26,44 +30,70 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
 );
+
+const mockFuturePrices = [
+  { date: "14-06-2019", close: 133.15857142857143 },
+  { date: "13-06-2019", close: 132.81428571428572 },
+  { date: "12-06-2019", close: 132.45619047619047 },
+  { date: "11-06-2019", close: 132.2152380952381 },
+  { date: "10-06-2019", close: 131.9542857142857 },
+];
+
+const mockOriginalPrices = [
+  { date: "09-06-2019", close: 123.15857142857143 },
+  { date: "08-06-2019", close: 122.81428571428572 },
+  { date: "07-06-2019", close: 122.45619047619047 },
+  { date: "06-06-2019", close: 122.2152380952381 },
+  { date: "05-06-2019", close: 121.9542857142857 },
+];
+
+const mockPreditionData = {
+  original_prices: mockOriginalPrices,
+  predicted_prices: mockFuturePrices,
+};
 
 export default function ChartsLineGraph() {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<TickerHistoricalData[]>(
-    []
-  );
+
+  const [searchedQuery, setSearchedQuery] = useState<string>("");
+
+  const [searchResults, setSearchResults] = useState<TickerResponse | null>(null);
+
   const [chartData, setChartData] = useState<any>({});
-  const [searchButtonClicked, setSearchButtonClicked] =
-    useState<boolean>(false); // Track if search button is clicked
+  // const [searchButtonClicked, setSearchButtonClicked] =
+  // useState<boolean>(false); // Track if search button is clicked
   const [predictionResponse, setPredictionResponse] =
     useState<PredictionResponse | null>(null);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
-  // handling search query change
-  const handleSearchQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };
+  const [isPredictionLoading, setIsPredictionLoading] = useState(false)
+  const [isPredictionError, setIsPredictionError] = useState(false)
 
   // performing ticker search
   const searchTicker = async () => {
-    if (!searchButtonClicked) return;
     try {
+      setIsLoading(true);
+      setIsError(false);
+      setSearchedQuery(searchQuery);
       const response = await fetch(
-        `${Backend_url}/daily-historical?ticker=${searchQuery}`
+        `${Backend_url}/daily-historical?ticker=${searchQuery}`,
       );
       const data = await response.json();
-      setSearchResults(data.historical);
+
+      setSearchResults(data);
       setChartData({
         labels: data.historical.map(
-          (result: TickerHistoricalData) => result.date
+          (result: TickerHistoricalData) => result.date,
         ),
         datasets: [
           {
             label: "high",
             data: data.historical.map(
-              (result: TickerHistoricalData) => result.high
+              (result: TickerHistoricalData) => result.high,
             ),
             borderColor: "rgba(75,192,192,1)",
             borderWidth: 1,
@@ -71,23 +101,31 @@ export default function ChartsLineGraph() {
           {
             label: "low",
             data: data.historical.map(
-              (result: TickerHistoricalData) => result.low
+              (result: TickerHistoricalData) => result.low,
             ),
             borderColor: "red",
             borderWidth: 1,
           },
         ],
       });
-      console.log(data);
-      await sendDataToFlask(data);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error searching ticker:", error);
+      setIsError(true);
+      setIsLoading(false);
     }
   };
 
+  console.log(searchResults, 'aare the search')
+
   // sending data to flask after recieveing from node
-  const sendDataToFlask = async (data: TickerHistoricalData[]) => {
+  const sendDataToFlask = async (data: TickerResponse) => {
+    console.log("sendDataToFlask is being run");
+    console.log(data)
     try {
+      setIsPredictionLoading(true)
+      setIsPredictionError(false);
+      setPredictionResponse(null)
       const response = await fetch(
         "http://127.0.0.1:5000/predict-with-enhanced-model",
         {
@@ -96,27 +134,29 @@ export default function ChartsLineGraph() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ ticker_data: data }),
-        }
+        },
       );
       const responseData = await response.json();
-      console.log("Response from Flask:", responseData);
       setPredictionResponse(responseData);
+      setIsPredictionLoading(false)
+      console.log("Response from Flask:", responseData);
+      
     } catch (error) {
+      setIsLoading(false)
+      setIsPredictionError(true)
       console.error("Error sending data to Flask:", error);
     }
   };
-  // on search button click
-  const handleSearchButtonClick = () => {
-    setSearchButtonClicked(true);
-    searchTicker();
-  };
+
   const downloadData = () => {
-    const columnNames = Object.keys(searchResults[0]); // Extract column names from the first row
+    const columnNames = Object.keys((searchResults as TickerResponse).historical[0]); // Extract column names from the first row
     const csvContent =
       "data:text/csv;charset=utf-8," +
       columnNames.join(",") +
       "\n" +
-      searchResults.map((row) => Object.values(row).join(",")).join("\n");
+      (searchResults as TickerResponse).historical
+        .map((row) => Object.values(row).join(","))
+        .join("\n");
 
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
@@ -125,12 +165,21 @@ export default function ChartsLineGraph() {
     document.body.appendChild(link);
     link.click();
   };
+  let shouldBuyMore = undefined;
 
-  useEffect(() => {
-    if (searchButtonClicked) {
-      searchTicker();
-    }
-  }, [searchButtonClicked]);
+  if (predictionResponse) {
+    shouldBuyMore =
+      predictionResponse?.predicted_prices[0]?.close >
+        predictionResponse?.original_prices[0]?.close ?? undefined;
+  }
+
+  if (isLoading)
+    return (
+      <p style={{ textAlign: "center", padding: "28px" }}>
+        Getting Historical data
+      </p>
+    );
+
   return (
     <>
       <div className="line-graph">
@@ -138,27 +187,36 @@ export default function ChartsLineGraph() {
           <input
             type="text"
             value={searchQuery}
-            onChange={handleSearchQueryChange}
+            onChange={(event) => setSearchQuery(event.target.value)}
             placeholder="Enter Ticker To Predict"
           />
-          <button className="search-button" onClick={handleSearchButtonClick}>
+          <button className="search-button" onClick={() => searchTicker()}>
             Search
           </button>
         </div>
-        <div className="search-line-graph-result">
-          {searchButtonClicked && (
+        {isError && (
+          <div>
+            <p style={{ textAlign: "center", padding: "28px" }}>
+              You searched for {searchedQuery}. An Error occured with your
+              search. Please make sure your ticker value is correct and try
+              again.
+            </p>
+          </div>
+        )}
+        {!isError && (
+          <div className="search-line-graph-result">
             <div className="search-result">
-              {chartData.labels ? (
+              {chartData.labels && (
                 <>
                   <div className="table">
                     <h3 className="table-title">
-                      {searchQuery}'s Historical Data of 5 years
+                      {searchedQuery}'s Historical Data of 5 years
                     </h3>
                     <div className="main-graph">
-                    <HistoricalGraph
-                      symbol={searchQuery}
-                      selectedGraph="line"
-                    />
+                      <HistoricalGraph
+                        symbol={searchedQuery}
+                        selectedGraph="line"
+                      />
                     </div>
                     <div className="line-graph-buttons">
                       <button
@@ -169,13 +227,17 @@ export default function ChartsLineGraph() {
                       </button>
                       <button
                         className="predict-stock-button"
-                        // onClick={console.log(predict)}
+                        onClick={() => {
+                          if (searchResults) {
+                            sendDataToFlask(searchResults);
+                          }
+                        }}
                       >
-                        Predict {searchQuery.toUpperCase()} Future Price
+                        Predict {searchedQuery.toUpperCase()} Future Price
                       </button>
                     </div>
                   </div>
-                  {predictionResponse ? (
+                  {predictionResponse && !isPredictionLoading && !isPredictionError && (
                     <div className="table">
                       <h3 className="table-title">
                         Predicted vs Actual Close Prices
@@ -184,17 +246,17 @@ export default function ChartsLineGraph() {
                         data={{
                           labels: [
                             ...predictionResponse.original_prices.map(
-                              (item) => item.date
+                              (item) => item.date,
                             ),
                             ...predictionResponse.predicted_prices.map(
-                              (item) => item.date
+                              (item) => item.date,
                             ),
                           ],
                           datasets: [
                             {
                               label: "Actual Close",
                               data: predictionResponse.original_prices.map(
-                                (item) => item.close
+                                (item) => item.close,
                               ),
                               borderColor: "blue",
                               borderWidth: 1,
@@ -203,10 +265,10 @@ export default function ChartsLineGraph() {
                               label: "Predicted Close",
                               data: [
                                 ...Array(
-                                  predictionResponse.original_prices.length
+                                  predictionResponse.original_prices.length,
                                 ).fill(null),
                                 ...predictionResponse.predicted_prices.map(
-                                  (item) => item.close
+                                  (item) => item.close,
                                 ),
                               ],
                               borderColor: "green",
@@ -231,17 +293,93 @@ export default function ChartsLineGraph() {
                           },
                         }}
                       />
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        {shouldBuyMore === true && (
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <p>
+                              The prediction model shows that this stock will
+                              rise in value. Click below to buy more.
+                            </p>
+                            <button
+                              onClick={() => {
+                                console.log("clicked buying more stocks");
+                              }}
+                              style={{
+                                background: "green",
+                                color: "white",
+                              }}
+                            >
+                              Buy Stocks
+                            </button>
+                          </div>
+                        )}
+                        {shouldBuyMore === false && (
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <p>
+                              The prediction model shows that this stock will
+                              drop in value. Click below to sell.
+                            </p>
+                            <button
+                              onClick={() => {
+                                console.log("clicked selling stocks");
+                              }}
+                              style={{
+                                background: "red",
+                                color: "white",
+                              }}
+                            >
+                              Sell Stocks
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  ) : (
-                    <p style={{ textAlign: "center" }}>Run model for Predictions </p>
                   )}
+                  {!predictionResponse && !isPredictionLoading && !isPredictionError && (
+                    <p style={{ textAlign: "center" }}>
+                      Run model for Predictions{" "}
+                    </p>
+                  )}
+                  {
+                    !isPredictionLoading && !predictionResponse && isPredictionError && (
+                      <div>
+                        <p style={{ textAlign: "center" }}>There was an error with running the prediction model. Please try again later.</p>
+                      </div>
+                    )
+                  }
+                  {
+                    isPredictionLoading && !predictionResponse && !isPredictionError && (
+                      <div>
+                        <p style={{ textAlign: "center" }}>The prediction model is calculating. This may take some time (20 seconds max). Please wait...</p>
+                      </div>
+                    )
+                  }
                 </>
-              ) : (
-                <p style={{ textAlign: "center" }}>Getting Historical data</p>
               )}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </>
   );

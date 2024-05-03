@@ -1,3 +1,8 @@
+export type TickerResponse = {
+  historical: TickerHistoricalData[];
+  symbol: string;
+}
+
 
 export interface TickerHistoricalData {
     date: string;

@@ -93,9 +93,9 @@ def get_enhanced_model_prediction():
     try:
         if request.method == 'POST':
             # Get ticker data from the request sent by the frontend
-
+            
             ticker_data = request.json['ticker_data']
-
+    
             print("Received TICKER DATA in ENHANCED PREDICT route:")
 
             predictions = run_workflow(ticker_data)
