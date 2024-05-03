@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -33,26 +33,7 @@ ChartJS.register(
   Filler,
 );
 
-const mockFuturePrices = [
-  { date: "14-06-2019", close: 133.15857142857143 },
-  { date: "13-06-2019", close: 132.81428571428572 },
-  { date: "12-06-2019", close: 132.45619047619047 },
-  { date: "11-06-2019", close: 132.2152380952381 },
-  { date: "10-06-2019", close: 131.9542857142857 },
-];
 
-const mockOriginalPrices = [
-  { date: "09-06-2019", close: 123.15857142857143 },
-  { date: "08-06-2019", close: 122.81428571428572 },
-  { date: "07-06-2019", close: 122.45619047619047 },
-  { date: "06-06-2019", close: 122.2152380952381 },
-  { date: "05-06-2019", close: 121.9542857142857 },
-];
-
-const mockPreditionData = {
-  original_prices: mockOriginalPrices,
-  predicted_prices: mockFuturePrices,
-};
 
 export default function ChartsLineGraph() {
   const [searchQuery, setSearchQuery] = useState<string>("");
