@@ -113,16 +113,12 @@ The project utilizes Recharts and Charts.js libraries for visualizing data, enab
 
 ### Current Features
 - Top 5 Gainers and Losers in the stock market is displayed at home page.
-- Search Ticker: Search for ticker information for a specific company which displays their financial information.(inprogress)
+- Search Ticker: Search for ticker information for a specific company which displays their financial information.
+  - Auto fill is also possible when then the uses the search bar.
 - Search to Display Ticker: Retrieve history daily for previous 5 years for visualization & to download.
 - Latest News: Fetch the latest news related to stocks.
-- Prediction is done using a LSTM machine learning model with live data to display data for the next 30 days. 
-## UI
-Currently, the project is in the process of redesigning the User interface to simplify stock research for user.
-
-| ![search-bar](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/9caa3e7f-5ae5-4673-8caf-d6b5615715b6) | ![search-bar-2](https://github.com/MabroorA/stocks-prediction-app/assets/109113298/f09a39af-64ec-4048-b6d1-4848cdbf0e42)
-) |
-|---|---|
+- Prediction is done using a LSTM machine learning model with live data to display data for the next 30 days.
+- A Signal is provided for users to buy or sell their search stock.
 
 
 
