@@ -2,10 +2,11 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM
+from tensorflow.keras.layers import Dense, LSTM,Dropout
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 import pickle
+from keras.constraints import max_norm
 
 def preprocess_data(data):
     try:
@@ -27,10 +28,12 @@ def preprocess_data(data):
 def build_model(input_shape):
     model = Sequential()
     model.add(LSTM(128, return_sequences=True, input_shape=input_shape))
-    model.add(LSTM(64, return_sequences=False))
+    model.add(Dropout(0.5))  # Dropout layer with 50% dropout rate
+    model.add(LSTM(64, return_sequences=False,kernel_constraint=max_norm(2)))
     model.add(Dense(25))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mean_squared_error')
+
     return model
 
 def train_model(model, X_train, y_train, batch_size=32, epochs=10):
