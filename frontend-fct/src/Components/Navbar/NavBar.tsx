@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./NavBar.css";
+// import "./NavBar.css";
 import { CiSearch } from "react-icons/ci";
+import { FiMenu } from "react-icons/fi";
+
+
+interface Company {
+  symbol: string;
+}
 
 export default function NavBar() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const [searchResults, setSearchResults] = useState<any>([]); // State to store search results
+  const [searchResults, setSearchResults] = useState<string[]>([]); // State to store search results
 
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   
   const [error, setError] = useState<string>("");
 
-  const navigate = useNavigate(); // Access history object from react-router-dom
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   // Function to handle search
   const handleSearchIconClicked = async () => {
@@ -35,89 +43,66 @@ export default function NavBar() {
       setLoading(false)
       console.log(error, "Error occured with search")
     }
-    // Check if search query is not empty
-    // if (searchQuery.trim() !== "") {
-    //   // Navigate to FinancialSummary page with search query as URL parameter
-    //   navigate(`/financial-summary?query=${encodeURIComponent(searchQuery)}`);
-    //   // Clear error message
-    //   setError("");
-    // } else {
-    //   // If search query is empty, set error message
-    //   setError("Must Enter ticker");
-    // }
+
   };
 
-  // const handleDropDownSearch = (val: any) => {
-  //   navigate(`/financial-summary?query=${encodeURIComponent(val)}`);
-  // };
 
-  // const setSearchData = (val: String) => {
-  //   setLoading(true);
-  //   if (val === "") {
-  //     setSearchResults([]);
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //   // Send api request instead of setTimeout
-  //   setTimeout(() => {
-  //     const data = ["IBM", "IBMQ", "IMBH", "IMBH", "IMBH"];
-  //     setSearchResults(data);
-  //     setLoading(false);
-  //   }, 1000);
-  // };
 
   return (
-    <nav className="navbar">
-      <div>
-        <a className="Logo" href="/">
-          Home
-        </a>
+    <nav className="flex items-center justify-between py-4 text-black rounded-3xl">
+      <div className="flex items-center space-x-4">
+        <a className="text-lg font-bold" href="/">Finstimulate</a>
+        <div className="hidden space-x-4 md:flex">
+          <a className="px-2" href="/predict">Predict</a>
+          <a className="px-2" href="/news">News</a>
+        </div>
+      </div>
 
-        <div className={`search-container ${error ? "error" : ""}`}>
-          <input
-            className="menu-search-bar"
-            type="text"
-            placeholder={"Type and click search icon..."}
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              // setSearchData(e.target.value);
-            }}
-            onKeyPress={(e) => {
-              // Handle search when Enter key is pressed
-              if (e.key === "Enter") {
-                handleSearchIconClicked();
-              }
-            }}
-            onFocus={() => {
-              setError("")
-            }}
-          />
-          <div className="search-icon" onClick={handleSearchIconClicked}>
-            <CiSearch />
+      <div className="relative flex items-center space-x-4">
+        <div className={`search-container relative ${error ? "error" : ""}`}>
+          <div  className="flex flex-row">
+            <input
+              className="px-2 py-1 text-white bg-gray-700 rounded menu-search-bar"
+              type="text"
+              placeholder="Search ticker"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSearchIconClicked();
+                }
+              }}
+              onFocus={() => {
+                setError("");
+              }}
+            />
+            <div className="py-2 -ml-6 text-lg font-black text-teal-600" onClick={handleSearchIconClicked}>
+              <CiSearch size="20"/>
+            </div>
           </div>
 
           {loading && (
-            <div className="abs-menu">
+            <div className="absolute left-0 right-0 p-2 bg-gray-300 rounded shadow-lg">
               <div className="skeleton-wrapper">
-                <span className="skeleton-card"></span>
-                <span className="skeleton-card"></span>
-                <span className="skeleton-card"></span>
+                <span className="block w-full h-4 my-1 bg-gray-300 skeleton-card"></span>
+                <span className="block w-full h-4 my-1 bg-gray-300 skeleton-card"></span>
+                <span className="block w-full h-4 my-1 bg-gray-300 skeleton-card"></span>
               </div>
             </div>
           )}
 
           {searchResults?.length > 0 && !loading && (
-            <div className="abs-menu">
-              <h4 className="dropdown-title"> Stock </h4>
-              {searchResults.map((result: String, index: any) => (
+            <div className="absolute left-0 right-0 p-2 bg-gray-300 rounded shadow-lg">
+              <h4 className="text-sm font-semibold dropdown-title">Stock</h4>
+              {searchResults.map((result, index) => (
                 <button
                   key={index}
-                  className="dropdown-btn"
+                  className="w-full p-2 my-1 text-left bg-gray-400 rounded dropdown-btn hover:bg-gray-100"
                   onClick={() => {
                     navigate(`/financial-summary?query=${encodeURIComponent(searchQuery)}`);
-                    setSearchResults([])
+                    setSearchResults([]);
                   }}
                 >
                   {result}
@@ -126,11 +111,19 @@ export default function NavBar() {
             </div>
           )}
         </div>
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="text-red-500 error-message">{error}</div>}
       </div>
-      <div>
-        <a href="/predict">Predict</a>
-        <a href="/news">News</a>
+
+      <div className="md:hidden">
+        <button onClick={() => setMenuOpen(!menuOpen)}>
+          <FiMenu />
+        </button>
+        {menuOpen && (
+          <div className="absolute right-0 w-48 mt-2 text-white bg-gray-800 rounded shadow-lg">
+            <a className="block px-4 py-2" href="/predict">Predict</a>
+            <a className="block px-4 py-2" href="/news">News</a>
+          </div>
+        )}
       </div>
     </nav>
   );
