@@ -5,9 +5,9 @@ import { CiSearch } from "react-icons/ci";
 import { FiMenu } from "react-icons/fi";
 
 
-interface Company {
-  symbol: string;
-}
+// interface Company {
+//   symbol: string;
+// }
 
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState<string>("");
