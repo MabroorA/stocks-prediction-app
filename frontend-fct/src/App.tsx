@@ -1,5 +1,5 @@
 
-import "./App.css";
+import "./input.css";
 import FinancialSummary from "./Pages/FinancialSummary/FinancialSummary";
 import HomePage from "./Pages/Home/HomePage";
 import NewsPage from "./Pages/News/NewsPage";
